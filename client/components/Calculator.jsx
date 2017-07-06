@@ -83,52 +83,45 @@ export default class Calculator extends React.Component {
 
   handleCurrentAge(evt) {
     const age = evt.target.value
-    if(age < 0) {
+    console.log(typeof age)
+    if(+age < 0) {
       console.log('cant be negative')
       //display warning for can't be negative
       this.setState({
         currentAge: '1'
-      })
-
-    }
-
-    if(age >= this.state.retirementAge) {
+      }, () => this.computeData())
+    } else if(+age >= +this.state.retirementAge) {
       console.log(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
         currentAge: this.state.retirementAge - 1
-      })
+      }, () => this.computeData())
 
+    } else {
+      this.setState({
+        currentAge: age
+      }, () => this.computeData())
     }
-    this.setState({
-      currentAge: age
-    }, () => this.computeData())
-
-
   }
 
   handleRetirementAge(evt) {
     const retireAge = evt.target.value
-    if(retireAge <= 0) {
+    if(+retireAge <= 0) {
       //display no negatives error
       this.setState({
         retirementAge: '1'
-      })
-
-    }
-    if(retireAge <= this.state.currentAge) {
+      }, () => this.computeData())
+    } else if(+retireAge <= +this.state.currentAge) {
       console.log('less than')
       this.setState({
         //this might produce a bug, keep an eye out
         retirementAge: this.state.currentAge + 1
-      })
-
+      }, () => this.computeData())
+    } else {
+      this.setState({
+        retirementAge: retireAge
+      }, () => this.computeData())
     }
-
-    this.setState({
-      retirementAge: retireAge
-    }, () => this.computeData())
-
   }
 
   handleLifespanAge(evt) {
