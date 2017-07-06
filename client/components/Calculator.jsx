@@ -26,15 +26,15 @@ export default class Calculator extends React.Component {
       amtAtRetire: 0
     }
 
-    this.handleCurrentAge = _.throttle(this.handleCurrentAge.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleRetirementAge = _.throttle(this.handleRetirementAge.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleSalary = _.throttle(this.handleSalary.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleSalaryIncrease = _.throttle(this.handleSalaryIncrease.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleSavings = _.throttle(this.handleSavings.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleRetirementSpending = _.throttle(this.handleRetirementSpending.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleInvestmentReturn = _.throttle(this.handleInvestmentReturn.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleCurrentSavings = _.throttle(this.handleCurrentSavings.bind(this), 16, {'trailing': true, 'leading': false})
-    this.handleLifespanAge = _.throttle(this.handleLifespanAge.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleCurrentAge = this.handleCurrentAge.bind(this)
+    this.handleRetirementAge = this.handleRetirementAge.bind(this)
+    this.handleSalary = this.handleSalary.bind(this)
+    this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
+    this.handleSavings = this.handleSavings.bind(this)
+    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
+    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
+    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
+    this.handleLifespanAge = this.handleLifespanAge.bind(this)
     this.handleAddScenario = this.handleAddScenario.bind(this) // why did I have to do this for this.state to show up?
   }
 
