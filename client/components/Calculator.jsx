@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash';
 
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
@@ -16,8 +17,8 @@ export default class Calculator extends React.Component {
       salary: 50000,
       salaryIncrease: 3,
       retirementSpending: 40000,
-      investmentReturnPercent: 4,
-      savings: 5,
+      marketReturn: 4,
+      savings: 25,
       currentSavings: 0,
       graphData: [],
       numScenarios: [1],
@@ -25,16 +26,16 @@ export default class Calculator extends React.Component {
       amtAtRetire: 0
     }
 
-    this.handleCurrentAge = this.handleCurrentAge.bind(this)
-    this.handleRetirementAge = this.handleRetirementAge.bind(this)
-    this.handleSalary = this.handleSalary.bind(this)
-    this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
-    this.handleSavings = this.handleSavings.bind(this)
-    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
-    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
-    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
+    this.handleCurrentAge = _.throttle(this.handleCurrentAge.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleRetirementAge = _.throttle(this.handleRetirementAge.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleSalary = _.throttle(this.handleSalary.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleSalaryIncrease = _.throttle(this.handleSalaryIncrease.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleSavings = _.throttle(this.handleSavings.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleRetirementSpending = _.throttle(this.handleRetirementSpending.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleInvestmentReturn = _.throttle(this.handleInvestmentReturn.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleCurrentSavings = _.throttle(this.handleCurrentSavings.bind(this), 16, {'trailing': true, 'leading': false})
+    this.handleLifespanAge = _.throttle(this.handleLifespanAge.bind(this), 16, {'trailing': true, 'leading': false})
     this.handleAddScenario = this.handleAddScenario.bind(this) // why did I have to do this for this.state to show up?
-    this.handleLifespanAge = this.handleLifespanAge.bind(this)
   }
 
   componentDidMount(){
@@ -42,38 +43,40 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    const salaryMonth = this.state.salary / 12
-    const salaryIncrease = this.state.salaryIncrease
+    const yearlySalary = this.state.salary
     const savingsPercent = this.state.savings
-    const currSaved = this.state.currentSavings
+    const salarySaved = (yearlySalary / 100) * savingsPercent
+    const salaryIncrease = this.state.salaryIncrease
     const yearsToRetirement = this.state.retirementAge - this.state.currentAge
-    const monthsToRetirement = yearsToRetirement * 12
     const yearsToEnd = this.state.lifespanAge - this.state.currentAge
-    const monthsToEnd = yearsToEnd * 12
     let retiredBool = false
-    let savingsAtRetirement = 0;
-    let savingsAtEnd;
-    const retirementSpending = this.state.retirementSpending / 12
+    const retirementSpending = this.state.retirementSpending ;
+    //initialize with starting savings
+    let accumulatedSavings = this.state.currentSavings
+    const arrOfData = [];
+    const marketReturn = this.state.marketReturn
+    let currentAge = this.state.currentAge
 
-    for(let i = 0; i < monthsToEnd; i++) {
-      if(i >= monthsToRetirement && !retiredBool) {
+    for(let i = 0; i < yearsToEnd; i++) {
+      currentAge += 1;
+      if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
-        console.log('just retired')
-        savingsAtEnd = savingsAtRetirement
+        this.setState({
+          amtAtRetire: accumulatedSavings
+        })
       }
       if(!retiredBool) {
-        savingsAtRetirement += salaryMonth
+        accumulatedSavings += salarySaved
+      } else {
+        accumulatedSavings -= retirementSpending;
       }
-      if(retiredBool) {
-        savingsAtEnd -= retirementSpending;
-      }
+      accumulatedSavings += (accumulatedSavings/100) * marketReturn
+      arrOfData.push({savingsAtEnd: accumulatedSavings, age: currentAge})
     }
 
-    //want to display age on x axis, not month
-
     this.setState({
-      finalAmount: savingsAtEnd,
-      amtAtRetire: savingsAtRetirement
+      finalAmount: accumulatedSavings,
+      graphData: arrOfData
     })
   }
 
@@ -93,6 +96,8 @@ export default class Calculator extends React.Component {
     this.setState({
       currentAge: evt.target.value
     })
+
+    this.computeData()
   }
 
   handleRetirementAge(evt) {
@@ -110,6 +115,7 @@ export default class Calculator extends React.Component {
     this.setState({
       retirementAge: retireAge
     })
+    this.computeData()
   }
 
   handleLifespanAge(evt) {
@@ -120,42 +126,49 @@ export default class Calculator extends React.Component {
     this.setState({
       lifespanAge: ageAtDeath
     })
+    this.computeData()
   }
 
   handleSalary(evt) {
     this.setState({
       salary: +evt.target.value
     })
+    this.computeData()
   }
 
   handleSalaryIncrease(evt) {
     this.setState({
       salaryIncrease: +evt.target.value
     })
+    this.computeData()
   }
 
   handleSavings(evt) {
     this.setState({
       savings: +evt.target.value
     })
+    this.computeData()
   }
 
   handleRetirementSpending(evt) {
     this.setState({
       retirementSpending: +evt.target.value
     })
+    this.computeData()
   }
 
   handleInvestmentReturn(evt) {
     this.setState({
-      investmentReturnPercent: +evt.target.value
+      marketReturn: +evt.target.value
     })
+    this.computeData()
   }
 
   handleCurrentSavings(evt) {
     this.setState({
       currentSavings: +evt.target.value
     })
+    this.computeData()
   }
 
   handleAddScenario(){
@@ -198,7 +211,7 @@ export default class Calculator extends React.Component {
             Add Scenario
           </button>
         </div>
-        <Chart />
+        <Chart props={props.state}/>
       </div>
     )
   }

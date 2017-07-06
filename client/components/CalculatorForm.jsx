@@ -59,7 +59,7 @@ export default class CalculatorForm extends React.Component {
           <span>Investment Return:</span>
           <input
             onChange={ handle.handleInvestmentReturn }
-            value={ state.investmentReturnPercent }
+            value={ state.marketReturn }
           />
         </div>
         <div>
