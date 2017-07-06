@@ -5,7 +5,11 @@ const Footer = (props) => (
     <footer>
       <p className= "footer"> More from me! </p>
         <a href="linkedin_placehold">
-          <img src="img/linkedin_plalcehold" alt="LinkedIn Logo" className="social-icon" />
+          <img
+
+            alt="LinkedIn Logo"
+            className="social-icon"
+          />
         </a>
         <a href="http://facebook.com/gabriel.roo2">
           <img src="img/facebook-wrap.png" alt="Facebook Logo" className="social-icon"/>
@@ -19,3 +23,4 @@ const Footer = (props) => (
 )
 
 export default Footer
+//{/*src={require('../public/img/linkedin.png')}*/}
