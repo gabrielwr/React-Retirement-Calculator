@@ -44,19 +44,19 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    const yearlySalary = this.state.salary
-    const savingsPercent = this.state.savings
+    const yearlySalary = +this.state.salary
+    const savingsPercent = +this.state.savings
     const salarySaved = (yearlySalary / 100) * savingsPercent
-    const salaryIncrease = this.state.salaryIncrease
-    const yearsToRetirement = this.state.retirementAge - this.state.currentAge
-    const yearsToEnd = this.state.lifespanAge - this.state.currentAge
+    const salaryIncrease = +this.state.salaryIncrease
+    const yearsToRetirement = +this.state.retirementAge - +this.state.currentAge
+    const yearsToEnd = +this.state.lifespanAge - +this.state.currentAge
     let retiredBool = false
-    const retirementSpending = this.state.retirementSpending ;
+    const retirementSpending = +this.state.retirementSpending ;
     //initialize with starting savings
-    let accumulatedSavings = this.state.currentSavings
+    let accumulatedSavings = +this.state.currentSavings
     const arrOfData = [];
-    const marketReturn = this.state.marketReturn
-    let currentAge = this.state.currentAge
+    const marketReturn = +this.state.marketReturn
+    let currentAge = +this.state.currentAge
 
     for(let i = 0; i < yearsToEnd; i++) {
       currentAge += 1;
@@ -82,12 +82,12 @@ export default class Calculator extends React.Component {
   }
 
   handleCurrentAge(evt) {
-    const age = +evt.target.value
+    const age = evt.target.value
     if(age < 0) {
       console.log('cant be negative')
       //display warning for can't be negative
       this.setState({
-        currentAge: 1
+        currentAge: '1'
       })
 
     }
@@ -108,17 +108,18 @@ export default class Calculator extends React.Component {
   }
 
   handleRetirementAge(evt) {
-    const retireAge = +evt.target.value
+    const retireAge = evt.target.value
     if(retireAge <= 0) {
       //display no negatives error
       this.setState({
-        retirementAge: 1
+        retirementAge: '1'
       })
 
     }
     if(retireAge <= this.state.currentAge) {
       console.log('less than')
       this.setState({
+        //this might produce a bug, keep an eye out
         retirementAge: this.state.currentAge + 1
       })
 
@@ -131,7 +132,7 @@ export default class Calculator extends React.Component {
   }
 
   handleLifespanAge(evt) {
-    const ageAtDeath = +evt.target.value
+    const ageAtDeath = evt.target.value
 
     //validations
 
@@ -145,37 +146,37 @@ export default class Calculator extends React.Component {
 
   handleSalary(evt) {
     this.setState({
-      salary: +evt.target.value
+      salary: evt.target.value
     }, () => this.computeData() )
   }
 
   handleSalaryIncrease(evt) {
     this.setState({
-      salaryIncrease: +evt.target.value
+      salaryIncrease: evt.target.value
     }, () => this.computeData() )
   }
 
   handleSavings(evt) {
     this.setState({
-      savings: +evt.target.value
+      savings: evt.target.value
     }, () => this.computeData() )
   }
 
   handleRetirementSpending(evt) {
     this.setState({
-      retirementSpending: +evt.target.value
+      retirementSpending: evt.target.value
     }, () => this.computeData() )
   }
 
   handleInvestmentReturn(evt) {
     this.setState({
-      marketReturn: +evt.target.value
+      marketReturn: evt.target.value
     }, () => this.computeData() )
   }
 
   handleCurrentSavings(evt) {
     this.setState({
-      currentSavings: +evt.target.value
+      currentSavings: evt.target.value
     }, () => this.computeData() )
   }
 
@@ -210,10 +211,12 @@ export default class Calculator extends React.Component {
     //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
-        {this.state.numScenarios.map((currentScenario) => {
-            return (<CalculatorForm key={currentScenario} props={props} />)
-          })
-        }
+        <div>
+          {this.state.numScenarios.map((currentScenario) => {
+              return (<CalculatorForm key={currentScenario} props={props} />)
+            })
+          }
+        </div>
         <div>
           <button onClick={ this.handleAddScenario }>
             Add Scenario

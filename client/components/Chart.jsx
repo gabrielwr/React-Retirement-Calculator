@@ -5,9 +5,6 @@ import React from 'react'
 export default class DynamicChart extends React.Component {
   constructor(){
     super()
-    this.state = {
-
-    }
   }
 
   formatMoney(n, c, d, t){
@@ -27,9 +24,9 @@ export default class DynamicChart extends React.Component {
       <div id="chartContainer">
         <div id="finalSavings">
             <h3>Savings By Retirement</h3>
-            <h3>{`$${this.formatMoney(props.amtAtRetire, 0, '.', ',')}`}</h3>
+            <h3>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h3>
             <h3>Savings at end</h3>
-            <h3>{`$${this.formatMoney(props.finalAmount, 0, '.', ',')}`}</h3>
+            <h3>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h3>
         </div>
           <ResponsiveContainer>
             <AreaChart
@@ -41,7 +38,7 @@ export default class DynamicChart extends React.Component {
                 />
                 <YAxis
                   dataKey="savingsAtEnd"
-                  tickFormatter={(num) => '$' + this.formatMoney(num, 0, '.', ',')}
+                  tickFormatter={(money) => '$' + this.formatMoney(+money, 0, '.', ',')}
                 />
                 <Area
                   type="monotone"
@@ -51,7 +48,7 @@ export default class DynamicChart extends React.Component {
                 />
                 <Tooltip
                   labelFormatter={(age) => (`Age: ${age}`)}
-                  formatter={(num) => (`$${this.formatMoney(num, 0, '.', ',')}`)}/>
+                  formatter={(money) => (`$${this.formatMoney(+money, 0, '.', ',')}`)}/>
                 <CartesianGrid strokeDasharray="1 1" />
             </AreaChart>
           </ResponsiveContainer>
