@@ -11,19 +11,19 @@ export default class Calculator extends React.Component {
   constructor() {
     super()
     this.state = {
-      currentAge: 26,
-      retirementAge: 65,
-      lifespanAge: 90,
-      salary: 50000,
-      salaryIncrease: 3,
-      retirementSpending: 40000,
-      marketReturn: 4,
-      savings: 25,
-      currentSavings: 0,
+      currentAge: '26',
+      retirementAge: '65',
+      lifespanAge: '90',
+      salary: '50000',
+      salaryIncrease: '3',
+      retirementSpending: '40000',
+      marketReturn: '4',
+      savings: '25',
+      currentSavings: '0',
       graphData: [],
       numScenarios: [1],
-      finalAmount: 0,
-      amtAtRetire: 0
+      finalAmount: '0',
+      amtAtRetire: '0'
     }
 
     this.handleCurrentAge = this.handleCurrentAge.bind(this)
@@ -35,9 +35,8 @@ export default class Calculator extends React.Component {
     this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.handleAddScenario = this.handleAddScenario.bind(this)
+    this.handleAddScenario = this.handleAddScenario.bind(this) // why did I have to do this for this.state to show up?
     // why did I have to do this for this.state to show up?
-    this.computeData = this.computeData.bind(this)
   }
 
   componentDidMount(){
@@ -90,7 +89,7 @@ export default class Calculator extends React.Component {
       this.setState({
         currentAge: 1
       })
-      return
+
     }
 
     if(age >= this.state.retirementAge) {
@@ -99,13 +98,13 @@ export default class Calculator extends React.Component {
       this.setState({
         currentAge: this.state.retirementAge - 1
       })
-      return
+
     }
     this.setState({
       currentAge: age
-    })
+    }, () => this.computeData())
 
-    this.computeData()
+
   }
 
   handleRetirementAge(evt) {
@@ -115,20 +114,20 @@ export default class Calculator extends React.Component {
       this.setState({
         retirementAge: 1
       })
-      return
+
     }
     if(retireAge <= this.state.currentAge) {
       console.log('less than')
       this.setState({
         retirementAge: this.state.currentAge + 1
       })
-      return
+
     }
 
     this.setState({
       retirementAge: retireAge
-    })
-    this.computeData()
+    }, () => this.computeData())
+
   }
 
   handleLifespanAge(evt) {
@@ -138,50 +137,46 @@ export default class Calculator extends React.Component {
 
     this.setState({
       lifespanAge: ageAtDeath
+    }, () => {
+      this.computeData()
     })
-    this.computeData()
+
   }
 
   handleSalary(evt) {
     this.setState({
       salary: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleSalaryIncrease(evt) {
     this.setState({
       salaryIncrease: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleSavings(evt) {
     this.setState({
       savings: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleRetirementSpending(evt) {
     this.setState({
       retirementSpending: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleInvestmentReturn(evt) {
     this.setState({
       marketReturn: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleCurrentSavings(evt) {
     this.setState({
       currentSavings: +evt.target.value
-    })
-    this.computeData()
+    }, () => this.computeData() )
   }
 
   handleAddScenario(){
