@@ -94,7 +94,8 @@ export default class Calculator extends React.Component {
       console.log(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
-        currentAge: this.state.retirementAge - 1
+        currentAge: age,
+        retirementAge: `${+age + 1}`
       }, () => this.computeData())
 
     } else {
@@ -115,7 +116,8 @@ export default class Calculator extends React.Component {
       console.log('less than')
       this.setState({
         //this might produce a bug, keep an eye out
-        retirementAge: this.state.currentAge + 1
+        retirementAge: retireAge,
+        currentAge: `${+retireAge - 1}`
       }, () => this.computeData())
     } else {
       this.setState({

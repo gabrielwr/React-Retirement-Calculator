@@ -5,7 +5,22 @@ import { Link } from 'react-router'
 
 const Navbar = (props) => (
   <div style={{backgroundColor: "#e3f2fd"}}>
-    <h1>I am the navbar fix me </h1>
+    <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+      <Link className="navbar-brand" to="/calculator">Navbar w/ text</Link>
+      <div className="collapse navbar-collapse" id="navbarText">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+            <Link className="nav-link" to="/calculator">Calculator <span className="sr-only"></span></Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/about">About</Link>
+          </li>
+        </ul>
+        <span className="navbar-text">
+          Figure out what you need
+        </span>
+      </div>
+    </nav>
   </div>
 )
 
