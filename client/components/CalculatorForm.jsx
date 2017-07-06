@@ -1,7 +1,6 @@
 import React from 'react'
-import Slider from 'material-ui/Slider';
 
-import Chart from './Chart.jsx'
+
 
 
 export default class CalculatorForm extends React.Component {
@@ -10,108 +9,75 @@ export default class CalculatorForm extends React.Component {
   }
 
   render() {
-    //fix this
     const state = this.props.props.state
     const handle = this.props.props.handleChange
     return (
-      <div>
-        <div className="col-md-3">
+      <div className={`col-md-${ 12 / state.numScenarios.length }`}>
+        <div>
           <span>Age:</span>
-          <span><h1>{state.currentAge}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 129 }
-            step={ 1 }
-            defaultValue={ state.currentAge }
-            value={ state.currentAge }
+          <input
             onChange={ handle.handleCurrentAge }
+            value={ state.currentAge }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Retirement Age:</span>
-          <span><h1>{state.retirementAge}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 130 }
-            step={ 1 }
-            defaultValue={ 65 }
-            value={ state.retirementAge }
+          <input
             onChange={ handle.handleRetirementAge }
+            value={ state.retirementAge }
           />
         </div>
-        <div className="col-md-3">
+        <div>
+          <span>Lifespan Age:</span>
+          <input
+            onChange={ handle.handleLifespanAge }
+            value={ state.lifespanAge }
+          />
+        </div>
+        <div>
           <span>Salary:</span>
-          <span><h1>{state.salary}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 1000000 }
-            step={ 1 }
-            defaultValue={ 50000 }
-            value={ state.salary }
+          <input
             onChange={ handle.handleSalary }
+            value={ state.salary }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Salary Increase / Year:</span>
-          <span><h1>{state.salaryIncrease}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 10 }
-            step={ 1 }
-            defaultValue={ 3 }
-            value={ state.salaryIncrease }
+          <input
             onChange={ handle.handleSalaryIncrease }
+            value={ state.salaryIncrease }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Retirement Spending</span>
-          <span><h1>{state.retirementSpending }</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 1000000 }
-            step={ 1 }
-            defaultValue={ 40000 }
-            value={ state.retirementSpending }
+          <input
             onChange={ handle.handleRetirementSpending }
+            value={ state.retirementSpending }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Investment Return:</span>
-          <span><h1>{state.investmentReturnPercent}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 20 }
-            step={ 1 }
-            defaultValue={ 4 }
-            value={ state.investmentReturnPercent }
+          <input
             onChange={ handle.handleInvestmentReturn }
+            value={ state.investmentReturnPercent }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Savings Rate:</span>
-          <span><h1>{state.savings}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 10 }
-            step={ 0.1 }
-            defaultValue={ 3 }
-            value={ state.savings }
+          <input
             onChange={ handle.handleSavings }
+            value={ state.savings }
           />
         </div>
-        <div className="col-md-3">
+        <div>
           <span>Current Savings:</span>
-          <span><h1>{state.currentSavings}</h1></span>
-          <Slider
-            min={ 0 }
-            max={ 1000000 }
-            step={ 10 }
-            defaultValue={ 0 }
-            value={ state.currentSavings }
+          <input
             onChange={ handle.handleCurrentSavings }
+            value={ state.currentSavings }
           />
         </div>
-      <Chart />
+        {/*<div> { state.amtAtRetire }</div>*/}
+
       </div>
     )
   }
