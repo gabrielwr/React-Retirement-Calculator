@@ -1,2 +1,18 @@
 // can import these sass files straight into browser JS files
 // wepback will then build the scss into css that is usable on dom
+
+#finalSavings {
+    position: absolute;
+    left: 20%;
+    text-align: -webkit-center;
+}
+
+#chartContainer {
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    width: 90%;
+    position: relative;
+    left: -12px;
+    height: 496px;
+}

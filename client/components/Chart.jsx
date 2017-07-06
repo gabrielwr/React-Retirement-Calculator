@@ -24,10 +24,7 @@ export default class DynamicChart extends React.Component {
             <h3>Savings at end</h3>
             <h3>{props.finalAmount}</h3>
         </div>
-          <ResponsiveContainer
-                width={500}
-                height={500}
-          >
+          <ResponsiveContainer>
             <AreaChart
                 data={props.graphData}
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
