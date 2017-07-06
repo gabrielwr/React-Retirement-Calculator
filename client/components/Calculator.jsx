@@ -35,7 +35,9 @@ export default class Calculator extends React.Component {
     this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.handleAddScenario = this.handleAddScenario.bind(this) // why did I have to do this for this.state to show up?
+    this.handleAddScenario = this.handleAddScenario.bind(this)
+    // why did I have to do this for this.state to show up?
+    this.computeData = this.computeData.bind(this)
   }
 
   componentDidMount(){
@@ -88,14 +90,16 @@ export default class Calculator extends React.Component {
       this.setState({
         currentAge: 1
       })
+      return
     }
 
-    if(age > this.state.retirementAge) {
+    if(age >= this.state.retirementAge) {
       console.log(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
         currentAge: this.state.retirementAge - 1
       })
+      return
     }
     this.setState({
       currentAge: age
@@ -111,12 +115,14 @@ export default class Calculator extends React.Component {
       this.setState({
         retirementAge: 1
       })
+      return
     }
-    if(retireAge < this.state.currentAge) {
+    if(retireAge <= this.state.currentAge) {
       console.log('less than')
       this.setState({
         retirementAge: this.state.currentAge + 1
       })
+      return
     }
 
     this.setState({
