@@ -35,8 +35,7 @@ export default class Calculator extends React.Component {
     this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.handleAddScenario = this.handleAddScenario.bind(this) // why did I have to do this for this.state to show up?
-    // why did I have to do this for this.state to show up?
+    this.handleAddScenario = this.handleAddScenario.bind(this)
   }
 
   componentDidMount(){
@@ -59,6 +58,8 @@ export default class Calculator extends React.Component {
     let currentAge = +this.state.currentAge
 
     for(let i = 0; i < yearsToEnd; i++) {
+      accumulatedSavings += (accumulatedSavings/100) * marketReturn
+      arrOfData.push({savingsAtEnd: accumulatedSavings, age: currentAge})
       currentAge += 1;
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
@@ -71,8 +72,7 @@ export default class Calculator extends React.Component {
       } else {
         accumulatedSavings -= retirementSpending;
       }
-      accumulatedSavings += (accumulatedSavings/100) * marketReturn
-      arrOfData.push({savingsAtEnd: accumulatedSavings, age: currentAge})
+
     }
 
     this.setState({
@@ -107,7 +107,7 @@ export default class Calculator extends React.Component {
 
   handleRetirementAge(evt) {
     const retireAge = evt.target.value
-    if(+retireAge <= 0) {
+    if(+retireAge < 0) {
       //display no negatives error
       this.setState({
         retirementAge: '1'
@@ -130,12 +130,20 @@ export default class Calculator extends React.Component {
     const ageAtDeath = evt.target.value
 
     //validations
-
-    this.setState({
-      lifespanAge: ageAtDeath
-    }, () => {
-      this.computeData()
-    })
+    if(+ageAtDeath < +this.state.currentAge){
+      this.setState({
+        lifespanAge: ageAtDeath,
+        currentAge: `${ageAtDeath-1}`
+      }, () => {
+        this.computeData()
+      })
+    } else {
+      this.setState({
+        lifespanAge: ageAtDeath
+      }, () => {
+        this.computeData()
+      })
+    }
 
   }
 
@@ -177,11 +185,11 @@ export default class Calculator extends React.Component {
 
   handleAddScenario(){
     const arr = this.state.numScenarios
-    arr.push(this.state.numScenarios.length+1)
     if(arr.length > 3) {
       console.log('can only have 3 scenarios')
       return
     }
+    arr.push(this.state.numScenarios.length+1)
     this.setState({
       numScenarios: arr
     })
@@ -213,12 +221,28 @@ export default class Calculator extends React.Component {
           }
         </div>
         <div>
-          <button onClick={ this.handleAddScenario }>
-            Add Scenario
-          </button>
+          {this.state.numScenarios.length < 3 ? (
+            <button onClick={ this.handleAddScenario }>
+              Add Scenario
+            </button>)
+            :
+            <br />
+          }
         </div>
         <Chart props={props.state}/>
       </div>
     )
   }
 }
+
+
+//also, make this connected component have all of the on change stuff from here.
+// this way, in this container, we can "render"/create the appropriate amount of these
+//containers according to number of scenarios. Once
+
+//then, these three containers will on change to this container which will choose
+//then how to render the chart or send in data.
+
+
+// in order to have 3 scenarios, will need to have distinct datakeys for each
+// scenario that can be identified by chart

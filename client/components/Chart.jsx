@@ -47,6 +47,7 @@ export default class DynamicChart extends React.Component {
                   fill='#8884d8'
                 />
                 <Tooltip
+                  label={ 'savings' }
                   labelFormatter={(age) => (`Age: ${age}`)}
                   formatter={(money) => (`$${this.formatMoney(+money, 0, '.', ',')}`)}/>
                 <CartesianGrid strokeDasharray="1 1" />
