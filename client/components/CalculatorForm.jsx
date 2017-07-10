@@ -12,7 +12,7 @@ export default class CalculatorForm extends React.Component {
     const state = this.props.props.state
     const handle = this.props.props.handleChange
     return (
-      <div className={`col-md-${ 12 / state.numScenarios.length }`}>
+      <div className={`col-md-${ 12 / state.numScenarios }`}>
         <div>
           <span>Age:</span>
           <input
@@ -24,7 +24,7 @@ export default class CalculatorForm extends React.Component {
           <span>Retirement Age:</span>
           <input
             onChange={ handle.handleRetirementAge }
-            value={ state.retirementAge }
+            value={ state.retireAge }
           />
         </div>
         <div>
@@ -37,35 +37,35 @@ export default class CalculatorForm extends React.Component {
         <div>
           <span>Salary:</span>
           <input
-            onChange={ handle.handleSalary }
+            onChange={ handle.handleChange }
             value={ state.salary }
           />
         </div>
         <div>
           <span>Salary Increase / Year:</span>
           <input
-            onChange={ handle.handleSalaryIncrease }
+            onChange={ handle.handleChange }
             value={ state.salaryIncrease }
           />
         </div>
         <div>
           <span>Retirement Spending</span>
           <input
-            onChange={ handle.handleRetirementSpending }
-            value={ state.retirementSpending }
+            onChange={ handle.handleChange }
+            value={ state.retireSpending }
           />
         </div>
         <div>
           <span>Investment Return:</span>
           <input
-            onChange={ handle.handleInvestmentReturn }
+            onChange={ handle.handleChange }
             value={ state.marketReturn }
           />
         </div>
         <div>
           <span>Savings Rate:</span>
           <input
-            onChange={ handle.handleSavings }
+            onChange={ handle.handleChange }
             value={ state.savings }
           />
         </div>

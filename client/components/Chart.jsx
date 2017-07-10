@@ -20,6 +20,7 @@ export default class DynamicChart extends React.Component {
 
   render() {
     const props = this.props.props
+    console.log(props)
     return (
       <div id="chartContainer">
         <div id="finalSavings">
@@ -31,20 +32,27 @@ export default class DynamicChart extends React.Component {
           <ResponsiveContainer>
             <AreaChart
                 data={props.graphData}
-                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+                margin={{top: 5, right: 30, left: 0, bottom: 5}}>
                 <XAxis
                   interval={0}
                   dataKey="age"
                 />
                 <YAxis
-                  dataKey="savingsAtEnd"
                   tickFormatter={(money) => '$' + this.formatMoney(+money, 0, '.', ',')}
                 />
                 <Area
                   type="monotone"
-                  dataKey="savingsAtEnd"
+                  dataKey="1"
+                  stackId="1"
                   stroke="#8884d8"
                   fill='#8884d8'
+                />
+                <Area
+                  type='monotone'
+                  dataKey='2'
+                  stackId="1"
+                  stroke='#82ca9d'
+                  fill='#82ca9d'
                 />
                 <Tooltip
                   label={ 'savings' }
