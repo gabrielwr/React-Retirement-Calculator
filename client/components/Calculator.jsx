@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Button } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
@@ -38,11 +38,11 @@ export default class Calculator extends React.Component {
 
   computeData() {
     const state = {} = this.state
-    state.currentAge = +state.currentAge
+    let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
     const salaryIncrease = +state.salaryIncrease
-    const yearsToRetirement = +state.retireAge - state.currentAge
-    const yearsToEnd = +state.lifespanAge - state.currentAge
+    const yearsToRetirement = +state.retireAge - currentAge
+    const yearsToEnd = +state.lifespanAge - currentAge
     const retireSpending = +state.retireSpending
     let accumulatedSavings = +state.currentSavings
     let retiredBool = false
@@ -60,9 +60,9 @@ export default class Calculator extends React.Component {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
         [scenario]: accumulatedSavings,
-        age: `${state.currentAge}`,
+        age: `${currentAge}`,
       })
-      state.currentAge += 1;
+      currentAge += 1;
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.setState({
@@ -76,7 +76,11 @@ export default class Calculator extends React.Component {
       }
     }
 
-    arrOfData = arrOfData.concat(state.graphData)
+
+    //this is for concating scenarios
+    //do this later
+    //arrOfData = state.graphData.concat(arrOfData)
+
     this.setState({
       finalAmount: accumulatedSavings,
       graphData: arrOfData
@@ -84,31 +88,36 @@ export default class Calculator extends React.Component {
   }
 
   handleCurrentAge(evt) {
-    const age = evt.target.value
-    if(+age < 0) {
+    const age = +evt.target.value
+
+    if(Number.isNaN(age)) return
+
+    if(age < 0) {
       console.error('cant be negative')
       //display warning for can't be negative
       this.setState({
         currentAge: '1'
       }, () => this.computeData())
-    } else if(+age >= +this.state.retireAge) {
+    } else if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
-        currentAge: age,
-        retireAge: `${+age + 1}`
+        currentAge: `${age}`,
+        retireAge: `${age + 1}`
       }, () => this.computeData())
 
     } else {
       this.setState({
-        currentAge: age
+        currentAge: `${age}`
       }, () => this.computeData())
     }
   }
 
   handleRetirementAge(evt) {
-
     const retireAge = +evt.target.value
+
+    if(Number.isNaN(retireAge)) return
+
     if(retireAge < 0) {
       //display no negatives error
       this.setState({
@@ -132,6 +141,8 @@ export default class Calculator extends React.Component {
     const ageAtDeath = +evt.target.value
 
     //validations
+    if(Number.isNaN(ageAtDeath)) return
+
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
@@ -148,22 +159,27 @@ export default class Calculator extends React.Component {
     }
   }
 
+  handleCurrentSavings(evt) {
+    const value = +evt.target.value
+    if(isNaN(value)) return
+    this.setState({
+      currentSavings: evt.target.value
+    }, () => this.computeData() )
+  }
+
   handleChange(evt) {
     const value = +evt.target.value
+    if(isNaN(value)) return
+
     //check that value is not negative
     if(value < 0) {
       console.error('cannot be negative')
       return
     }
+    console.log('name', evt.target.name)
     this.setState({
       [evt.target.name]: `${value}`
-    }, () => computeData())
-  }
-
-  handleCurrentSavings(evt) {
-    this.setState({
-      currentSavings: evt.target.value
-    }, () => this.computeData() )
+    }, () => this.computeData())
   }
 
   handleAddScenario(){
@@ -203,11 +219,14 @@ export default class Calculator extends React.Component {
         </div>
         <div>
           {this.state.numScenarios < 3 ? (
-            <button onClick={ this.handleAddScenario }>
-              Add Scenario
-            </button>)
+            <Button floating large
+              onClick={ this.handleAddScenario }
+              className='red'
+              waves='light'
+              icon='add'
+            /> )
             :
-            <br />
+            <div />
           }
         </div>
         <Chart props={props.state}/>
@@ -227,3 +246,5 @@ export default class Calculator extends React.Component {
 
 // in order to have 3 scenarios, will need to have distinct datakeys for each
 // scenario that can be identified by chart
+
+

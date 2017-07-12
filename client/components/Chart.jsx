@@ -7,6 +7,7 @@ export default class DynamicChart extends React.Component {
     super()
   }
 
+  //update this
   formatMoney(n, c, d, t){
             c = isNaN(c = Math.abs(c)) ? 2 : c
             d = d == undefined ? "." : d
@@ -20,14 +21,13 @@ export default class DynamicChart extends React.Component {
 
   render() {
     const props = this.props.props
-    console.log(props)
     return (
       <div id="chartContainer">
         <div id="finalSavings">
-            <h3>Savings By Retirement</h3>
-            <h3>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h3>
-            <h3>Savings at end</h3>
-            <h3>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h3>
+            <h4>Savings By Retirement</h4>
+            <h4>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h4>
+            <h4>Savings at end</h4>
+            <h4>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h4>
         </div>
           <ResponsiveContainer>
             <AreaChart
@@ -61,7 +61,7 @@ export default class DynamicChart extends React.Component {
                 <CartesianGrid strokeDasharray="1 1" />
             </AreaChart>
           </ResponsiveContainer>
-    </div>
+      </div>
     )
   }
 }
