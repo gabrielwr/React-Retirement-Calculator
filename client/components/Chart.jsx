@@ -20,7 +20,8 @@ export default class DynamicChart extends React.Component {
 
 
   render() {
-    const props = this.props.props
+    const props = this.props
+    console.log('chart', props)
     return (
       <div id="chartContainer">
         <div id="finalSavings">

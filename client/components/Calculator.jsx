@@ -1,8 +1,9 @@
 import React from 'react'
-import { Button } from 'react-materialize'
+import { Button, Col } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
+import AddScenario from './AddScenario'
 
 export default class Calculator extends React.Component {
 
@@ -56,7 +57,7 @@ export default class Calculator extends React.Component {
     }
 
 
-    for(let i = 0; i < yearsToEnd; i++) {
+    for(let i = 0; i <= yearsToEnd; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
         [scenario]: accumulatedSavings,
@@ -161,7 +162,8 @@ export default class Calculator extends React.Component {
 
   handleCurrentSavings(evt) {
     const value = +evt.target.value
-    if(isNaN(value)) return
+    console.log(value)
+    if(isNaN(value) && evt.target.value !== '-') return
     this.setState({
       currentSavings: evt.target.value
     }, () => this.computeData() )
@@ -196,14 +198,12 @@ export default class Calculator extends React.Component {
 
   render() {
     const props = {
-      handleChange: {
-        handleCurrentAge: this.handleCurrentAge,
-        handleRetirementAge: this.handleRetirementAge,
-        handleLifespanAge: this.handleLifespanAge,
-        handleCurrentSavings: this.handleCurrentSavings,
-        handleChange: this.handleChange
-      },
-      state: this.state
+      handleCurrentAge: this.handleCurrentAge,
+      handleRetirementAge: this.handleRetirementAge,
+      handleLifespanAge: this.handleLifespanAge,
+      handleCurrentSavings: this.handleCurrentSavings,
+      handleChange: this.handleChange,
+      state: {...this.state}
     }
 
     const forms = []
@@ -214,22 +214,11 @@ export default class Calculator extends React.Component {
     //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
-        <div>
+        <Chart { ...props.state }/>
+        <Col>
           {forms}
-        </div>
-        <div>
-          {this.state.numScenarios < 3 ? (
-            <Button floating large
-              onClick={ this.handleAddScenario }
-              className='red'
-              waves='light'
-              icon='add'
-            /> )
-            :
-            <div />
-          }
-        </div>
-        <Chart props={props.state}/>
+          <AddScenario num={ props.state.numScenarios } handle={this.handleAddScenario} />
+        </Col>
       </div>
     )
   }

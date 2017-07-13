@@ -1,5 +1,7 @@
 import React from 'react'
-import { Row, Input } from 'react-materialize'
+import { Row, Input, Col } from 'react-materialize'
+
+
 
 
 //this probably should just be presentational?
@@ -14,87 +16,66 @@ export default class CalculatorForm extends React.Component {
 
   render() {
     const state = this.props.props.state
-    const handle = this.props.props.handleChange
-    console.log('state check:', state)
-    console.log('handle check:', handle)
+    const handle = this.props.props
     return (
-      <div className={`col-md-${ 12 / state.numScenarios }`}>
+      <Col s={ 12 / state.numScenarios } style={{paddingTop: '20px'}}>
         <Row>
-          <div>
-            <Input
-              onChange={ handle.handleCurrentAge }
-              value={ state.currentAge }
-              label="Age"
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleRetirementAge }
-              value={ state.retireAge }
-              label="Retirement Age"
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleLifespanAge }
-              value={ state.lifespanAge }
-              label="Lifespan Age"
-            />
-          </div>
+          <Input
+            onChange={ handle.handleCurrentAge }
+            value={ state.currentAge }
+            label="Age"
+          />
+          <Input
+            onChange={ handle.handleRetirementAge }
+            value={ state.retireAge }
+            label="Retirement Age"
+          />
+          <Input
+            onChange={ handle.handleLifespanAge }
+            value={ state.lifespanAge }
+            label="Lifespan Age"
+          />
         </Row>
         <Row>
-          <div>
-            <Input
-              onChange={ handle.handleChange }
-              value={ state.salary }
-              label="Salary"
-              name='salary'
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleChange }
-              value={ state.salaryIncrease }
-              label="Salary Increase/Year"
-              name='salaryIncrease'
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleChange }
-              value={ state.retireSpending }
-              label="Retirement Spending"
-              name='retireSpending'
-            />
-          </div>
+          <Input
+            onChange={ handle.handleChange }
+            value={ state.salary }
+            label="Salary (post-tax)"
+            name='salary'
+          />
+          <Input
+            onChange={ handle.handleChange }
+            value={ state.salaryIncrease }
+            label="Salary Increase/Year"
+            name='salaryIncrease'
+          />
+          <Input
+            onChange={ handle.handleChange }
+            value={ state.retireSpending }
+            label="Retirement Spending"
+            name='retireSpending'
+          />
         </Row>
         <Row>
-          <div>
-            <Input
-              onChange={ handle.handleChange }
-              value={ state.marketReturn }
-              label="Investment Return"
-              name='marketReturn'
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleChange }
-              value={ state.savings }
-              label="Savings Rate"
-              name='savings'
-            />
-          </div>
-          <div>
-            <Input
-              onChange={ handle.handleCurrentSavings }
-              value={ state.currentSavings }
-              label="Current Savings"
-            />
-          </div>
-          {/*<div> { state.amtAtRetire }</div>*/}
+          <Input
+            onChange={ handle.handleChange }
+            value={ state.marketReturn }
+            label="Investment Return"
+            name='marketReturn'
+          />
+          <Input
+            onChange={ handle.handleChange }
+            value={ state.savings }
+            label="Savings Rate"
+            name='savings'
+          />
+          <Input
+            onChange={ handle.handleCurrentSavings }
+            value={ state.currentSavings }
+            label="Current Savings"
+          />
         </Row>
-      </div>
+      </Col>
     )
   }
 }
