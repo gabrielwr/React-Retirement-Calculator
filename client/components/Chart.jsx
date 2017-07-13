@@ -21,7 +21,6 @@ export default class DynamicChart extends React.Component {
 
   render() {
     const props = this.props
-    console.log('chart', props)
     return (
       <div id="chartContainer">
         <div id="finalSavings">
@@ -33,7 +32,7 @@ export default class DynamicChart extends React.Component {
           <ResponsiveContainer>
             <AreaChart
                 data={props.graphData}
-                margin={{top: 5, right: 30, left: 0, bottom: 5}}>
+                margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
                   interval={0}
                   dataKey="age"
