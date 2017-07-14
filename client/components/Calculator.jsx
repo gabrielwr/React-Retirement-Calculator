@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Col } from 'react-materialize'
+import { Button, Col, Row } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
@@ -208,17 +208,24 @@ export default class Calculator extends React.Component {
 
     const forms = []
     for(let i = 0; i < this.state.numScenarios; i++) {
-      forms.push(<CalculatorForm key={i} props={props} />)
+      forms.push(
+        <Col m={ 12/this.state.numScenarios } key={ i}>
+          <CalculatorForm { ...props } />
+        </Col>
+      )
     }
 
     //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
         <Chart { ...props.state }/>
-        <Col>
+          <Row>
           {forms}
-          <AddScenario num={ props.state.numScenarios } handle={this.handleAddScenario} />
-        </Col>
+          <AddScenario
+            num={ props.state.numScenarios }
+            handle={ this.handleAddScenario }
+          />
+          </Row>
       </div>
     )
   }

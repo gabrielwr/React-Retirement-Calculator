@@ -15,10 +15,10 @@ import { Row, Input, Col } from 'react-materialize'
 export default class CalculatorForm extends React.Component {
 
   render() {
-    const state = this.props.props.state
-    const handle = this.props.props
+    const state = this.props.state
+    const handle = this.props
     return (
-      <Col s={ 12 / state.numScenarios } style={{paddingTop: '20px'}}>
+      <Col style={{paddingTop: '20px'}}>
         <Row>
           <Input
             onChange={ handle.handleCurrentAge }
@@ -40,7 +40,7 @@ export default class CalculatorForm extends React.Component {
           <Input
             onChange={ handle.handleChange }
             value={ state.salary }
-            label="Salary (post-tax)"
+            label="Salary (Post-Tax)"
             name='salary'
           />
           <Input
