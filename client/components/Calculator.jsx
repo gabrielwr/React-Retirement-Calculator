@@ -209,7 +209,7 @@ export default class Calculator extends React.Component {
     const forms = []
     for(let i = 0; i < this.state.numScenarios; i++) {
       forms.push(
-        <Col m={ 12/this.state.numScenarios } key={ i}>
+        <Col m={ 12 / this.state.numScenarios } key={ i }>
           <CalculatorForm { ...props } />
         </Col>
       )
@@ -219,13 +219,13 @@ export default class Calculator extends React.Component {
     return (
       <div>
         <Chart { ...props.state }/>
-          <Row>
+        <Row>
           {forms}
           <AddScenario
             num={ props.state.numScenarios }
             handle={ this.handleAddScenario }
           />
-          </Row>
+        </Row>
       </div>
     )
   }
