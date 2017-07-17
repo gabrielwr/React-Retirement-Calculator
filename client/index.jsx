@@ -22,6 +22,7 @@ render(
       </Route>
       <Route path='*' component={ NotFound } />
     </Router>
+
   </Provider>,
   document.getElementById('app')
 );

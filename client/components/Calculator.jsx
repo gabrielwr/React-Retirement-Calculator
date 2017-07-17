@@ -19,6 +19,9 @@ export default class Calculator extends React.Component {
       marketReturn: '4',
       savings: '25',
       currentSavings: '0',
+      scenario1: [],
+      scenario2: [],
+      scenario3: [],
       graphData: [],
       numScenarios: 1,
       finalAmount: '0',
@@ -31,6 +34,7 @@ export default class Calculator extends React.Component {
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
     this.handleAddScenario = this.handleAddScenario.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    // this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
@@ -203,7 +207,8 @@ export default class Calculator extends React.Component {
       handleLifespanAge: this.handleLifespanAge,
       handleCurrentSavings: this.handleCurrentSavings,
       handleChange: this.handleChange,
-      state: {...this.state}
+      // handleSubmit: this.handleSubmit,
+      state: { ...this.state }
     }
 
     const forms = []

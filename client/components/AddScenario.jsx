@@ -4,11 +4,11 @@ import { Button } from 'react-materialize'
 const AddScenario = (props) => {
   const { num, handle } = props
   return (
-    <div>
+    <div style={{display:"inline"}}>
       { num < 3 ? (
         <Button floating large
           onClick={ handle }
-          className='red'
+          className='blue'
           waves='light'
           icon='add'
         /> )

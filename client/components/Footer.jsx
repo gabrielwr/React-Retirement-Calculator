@@ -2,7 +2,9 @@ import React from 'react'
 import { Footer } from 'react-materialize'
 
 const Foot = (props) => (
-  <Footer copyrights="&copy; 2017 Gabriel Rowe" //center this
+  <Footer
+    copyrights="&copy; 2017 Gabriel Rowe"
+    style={{backgroundColor:"#015429"}}
     links={
       <ul>
         <li><a className="grey-text text-lighten-3" href="http://linkedin.com/in/gabrielrowe">LinkedIn</a></li>

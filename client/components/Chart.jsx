@@ -35,17 +35,17 @@ export default class DynamicChart extends React.Component {
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
                   interval={0}
-                  dataKey="age"
+                  dataKey='age'
                 />
                 <YAxis
                   tickFormatter={(money) => '$' + this.formatMoney(+money, 0, '.', ',')}
                 />
                 <Area
-                  type="monotone"
+                  type='monotone'
                   dataKey="1"
                   stackId="1"
-                  stroke="#8884d8"
-                  fill='#8884d8'
+                  stroke='#77C9D4'
+                  fill='#77C9D4'
                 />
                 <Area
                   type='monotone'
@@ -58,7 +58,7 @@ export default class DynamicChart extends React.Component {
                   label={ 'savings' }
                   labelFormatter={(age) => (`Age: ${age}`)}
                   formatter={(money) => (`$${this.formatMoney(+money, 0, '.', ',')}`)}/>
-                <CartesianGrid strokeDasharray="1 1" />
+                 <CartesianGrid strokeDasharray="1 1" />
             </AreaChart>
           </ResponsiveContainer>
       </div>
