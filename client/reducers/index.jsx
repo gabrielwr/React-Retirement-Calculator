@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
-  calc: require('./calc.jsx').default,
-  auth: require('./auth.jsx').default
+  numScenarios: require('./calcScenarios').default,
+  graphData: require('./graphData').default,
+  auth: require('./auth').default
 })
 
 export default rootReducer;

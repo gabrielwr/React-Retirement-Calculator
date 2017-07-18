@@ -5,6 +5,9 @@ import React from 'react'
 export default class DynamicChart extends React.Component {
   constructor(){
     super()
+    this.state = {
+      formattedData: []
+    }
   }
 
   //update this
@@ -20,18 +23,41 @@ export default class DynamicChart extends React.Component {
 
 
   render() {
-    const props = this.props
+    const props = {} = this.props
+    const dataArr = props.props.graphData.graphData
+    // console.log('props in chart', props.props.graphData.graphData)
+    let longest;
+    let newArr = [];
+
+    if(dataArr.length === 1) {
+      newArr = dataArr[0]
+    } else if(dataArr.length === 2){
+      longest = Math.max(dataArr[0].length, dataArr[1].length)
+      for(let i = 0; i < longest; i++) {
+        newArr.push(Object.assign({1: 0, 2: 0}, dataArr[0][i], dataArr[1][i]))
+      }
+    } else if (dataArr.length === 3) {
+      longest = Math.max(dataArr[0].length, dataArr[1].length, dataArr[2].length)
+      for(let i = 0; i < longest; i++) {
+        newArr.push(Object.assign({1: 0, 2: 0, 3: 0}, dataArr[0][i], dataArr[1][i], dataArr[2][i] ))
+      }
+    }
+
+
+
+    console.log('newarr is:', newArr)
+
     return (
       <div id="chartContainer">
-        <div id="finalSavings">
+        {/* <div id="finalSavings">
             <h4>Savings By Retirement</h4>
             <h4>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h4>
             <h4>Savings at end</h4>
             <h4>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h4>
-        </div>
-          <ResponsiveContainer>
+        </div> */}
+           <ResponsiveContainer>
             <AreaChart
-                data={props.graphData}
+                data={ newArr }
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
                   interval={0}

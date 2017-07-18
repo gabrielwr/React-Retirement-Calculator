@@ -1,5 +1,5 @@
 import React from 'react'
-import { Row, Input, Col } from 'react-materialize'
+import { Row, Input, Col, Button } from 'react-materialize'
 
 
 
@@ -18,7 +18,7 @@ export default class CalculatorForm extends React.Component {
     const state = this.props.state
     const handle = this.props
     return (
-      <Col style={{paddingTop: '20px'}}>
+      <Col style={{paddingTop: '20px'}} >
         <Row>
           <Input
             onChange={ handle.handleCurrentAge }
@@ -74,6 +74,7 @@ export default class CalculatorForm extends React.Component {
             value={ state.currentSavings }
             label="Current Savings"
           />
+          <Button waves='light' onClick={handle.handleSubmit}>submit</Button>
         </Row>
       </Col>
     )

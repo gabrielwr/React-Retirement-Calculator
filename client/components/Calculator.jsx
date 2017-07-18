@@ -2,11 +2,13 @@ import React from 'react'
 import { Button, Col, Row } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
-import Chart from './Chart.jsx'
-import AddScenario from './AddScenario'
+
+import { addGraphData } from '../reducers/graphData'
+import store from '../store'
+
+
 
 export default class Calculator extends React.Component {
-
   constructor() {
     super()
     this.state = {
@@ -18,12 +20,8 @@ export default class Calculator extends React.Component {
       retireSpending: '40000',
       marketReturn: '4',
       savings: '25',
-      currentSavings: '0',
-      scenario1: [],
-      scenario2: [],
-      scenario3: [],
       graphData: [],
-      numScenarios: 1,
+      currentSavings: '0',
       finalAmount: '0',
       amtAtRetire: '0'
     }
@@ -32,16 +30,18 @@ export default class Calculator extends React.Component {
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
-    this.handleAddScenario = this.handleAddScenario.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
-    this.computeData()
+    //better way to do this?
+    const firstScenarioArr = this.computeData()
+    store.dispatch(addGraphData(firstScenarioArr))
   }
 
   computeData() {
+    let scenarioProp = this.props.props.numScenarios.scenarios
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -54,9 +54,9 @@ export default class Calculator extends React.Component {
     let arrOfData = [];
 
     let scenario = 1;
-    if(state.numScenarios === 2) {
+    if(scenarioProp === 2) {
       scenario = 2
-    } else if(state.numScenarios === 3) {
+    } else if(scenarioProp === 3) {
       scenario = 3
     }
 
@@ -81,15 +81,13 @@ export default class Calculator extends React.Component {
       }
     }
 
-
-    //this is for concating scenarios
-    //do this later
-    //arrOfData = state.graphData.concat(arrOfData)
-
     this.setState({
       finalAmount: accumulatedSavings,
       graphData: arrOfData
     })
+    //this is a workaround only for the componentdidMount logic
+    // try to figure out a diff way?
+    return arrOfData
   }
 
   handleCurrentAge(evt) {
@@ -166,7 +164,6 @@ export default class Calculator extends React.Component {
 
   handleCurrentSavings(evt) {
     const value = +evt.target.value
-    console.log(value)
     if(isNaN(value) && evt.target.value !== '-') return
     this.setState({
       currentSavings: evt.target.value
@@ -188,17 +185,12 @@ export default class Calculator extends React.Component {
     }, () => this.computeData())
   }
 
-  handleAddScenario(){
-    let num = this.state.numScenarios
-    if(num >= 3) {
-      console.log('can only have 3 scenarios')
-      return
-    }
-    num++
-    this.setState({
-      numScenarios: num
-    })
+  handleSubmit(evt) {
+    evt.preventDefault()
+    store.dispatch(addGraphData(this.state.graphData))
   }
+
+
 
   render() {
     const props = {
@@ -207,29 +199,16 @@ export default class Calculator extends React.Component {
       handleLifespanAge: this.handleLifespanAge,
       handleCurrentSavings: this.handleCurrentSavings,
       handleChange: this.handleChange,
-      // handleSubmit: this.handleSubmit,
+      handleSubmit: this.handleSubmit,
       state: { ...this.state }
     }
 
-    const forms = []
-    for(let i = 0; i < this.state.numScenarios; i++) {
-      forms.push(
-        <Col m={ 12 / this.state.numScenarios } key={ i }>
-          <CalculatorForm { ...props } />
-        </Col>
-      )
-    }
-
-    //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
-        <Chart { ...props.state }/>
         <Row>
-          {forms}
-          <AddScenario
-            num={ props.state.numScenarios }
-            handle={ this.handleAddScenario }
-          />
+          <Col m={ 12 / this.props.props.numScenarios.scenarios }>
+            <CalculatorForm { ...props } />
+          </Col>
         </Row>
       </div>
     )
