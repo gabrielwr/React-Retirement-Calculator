@@ -34,7 +34,12 @@ export class Calculator extends React.Component {
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
-    this.handleChange = this.handleChange.bind(this)
+    this.handleSalary = this.handleSalary.bind(this)
+    // this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
+    this.handleSavings = this.handleSavings.bind(this)
+    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
+    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
+    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
   }
 
   componentDidMount(){
@@ -76,10 +81,11 @@ export class Calculator extends React.Component {
       }
     }
 
-    console.log('arr of data', arrOfData)
     this.setState({
       finalAmount: accumulatedSavings,
       graphData: arrOfData
+    }, () => {
+      store.dispatch(addGraphData(arrOfData))
     })
     //this is a workaround only for the componentdidMount logic
     // try to figure out a diff way?
@@ -87,6 +93,7 @@ export class Calculator extends React.Component {
   }
 
   handleCurrentAge(evt, age) {
+    console.log('evt', evt)
     if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
@@ -117,7 +124,6 @@ export class Calculator extends React.Component {
   }
 
   handleLifespanAge(evt, ageAtDeath) {
-
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
@@ -134,21 +140,30 @@ export class Calculator extends React.Component {
     }
   }
 
-  handleCurrentSavings(evt, ) {
-    if(isNaN(value) && evt.target.value !== '-') return
+  handleCurrentSavings(evt, currentSavings) {
     this.setState({
-      currentSavings: evt.target.value
+      currentSavings,
     }, () => this.computeData() )
   }
 
-  handleChange(evt) {
-    if(value < 0) {
-      console.error('cannot be negative')
-      return
-    }
-    console.log('name', evt.target.name)
+  handleSalary(evt, salary) {
     this.setState({
-      [evt.target.name]: `${value}`
+      salary
+    }, () => this.computeData())
+  }
+  handleSavings(evt, savings) {
+    this.setState({
+      savings
+    }, () => this.computeData())
+  }
+  handleRetirementSpending(evt, retireSpending ) {
+    this.setState({
+      retireSpending
+    }, () => this.computeData())
+  }
+  handleInvestmentReturn(evt, marketReturn) {
+    this.setState({
+      marketReturn
     }, () => this.computeData())
   }
 
@@ -159,7 +174,10 @@ export class Calculator extends React.Component {
         handleRetirementAge: this.handleRetirementAge,
         handleLifespanAge: this.handleLifespanAge,
         handleCurrentSavings: this.handleCurrentSavings,
-        handleChange: this.handleChange
+        handleSalary: this.handleSalary,
+        handleSavings: this.handleSavings,
+        handleRetirementSpending: this.handleRetirementSpending,
+        handleInvestmentReturn: this.handleInvestmentReturn,
       },
       state: {...this.state},
       graphData: this.props.graphData.graphData
