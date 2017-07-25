@@ -53,18 +53,18 @@ export default class Calculator extends React.Component {
     let retiredBool = false
     let arrOfData = [];
 
-    let scenario = 1;
-    if(scenarioProp === 2) {
-      scenario = 2
-    } else if(scenarioProp === 3) {
-      scenario = 3
-    }
+    // let scenario = 1;
+    // if(scenarioProp === 2) {
+    //   scenario = 2
+    // } else if(scenarioProp === 3) {
+    //   scenario = 3
+    // }
 
 
     for(let i = 0; i <= yearsToEnd; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
-        [scenario]: accumulatedSavings,
+        [scenarioProp]: accumulatedSavings,
         age: `${currentAge}`,
       })
       currentAge += 1;

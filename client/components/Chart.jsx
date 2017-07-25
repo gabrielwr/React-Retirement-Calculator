@@ -29,6 +29,8 @@ export default class DynamicChart extends React.Component {
     let longest;
     let newArr = [];
 
+    console.log('dataarr is:', dataArr)
+
     if(dataArr.length === 1) {
       newArr = dataArr[0]
     } else if(dataArr.length === 2){
@@ -45,7 +47,7 @@ export default class DynamicChart extends React.Component {
 
 
 
-    console.log('newarr is:', newArr)
+    // console.log('newarr is:', newArr)
 
     return (
       <div id="chartContainer">
@@ -64,19 +66,18 @@ export default class DynamicChart extends React.Component {
                   dataKey='age'
                 />
                 <YAxis
-                  tickFormatter={(money) => '$' + this.formatMoney(+money, 0, '.', ',')}
+                  tickFormatter={money => '$' + this.formatMoney(+money, 0, '.', ',')}
+                   dataKey='1'
                 />
                 <Area
                   type='monotone'
                   dataKey="1"
-                  stackId="1"
                   stroke='#77C9D4'
                   fill='#77C9D4'
                 />
                 <Area
                   type='monotone'
                   dataKey='2'
-                  stackId="1"
                   stroke='#82ca9d'
                   fill='#82ca9d'
                 />
