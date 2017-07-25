@@ -1,78 +1,128 @@
 import React from 'react'
-import { Row, Input, Col, Button } from 'react-materialize'
+import Slider from 'material-ui/Slider';
+
+import { Row, Col } from 'react-materialize'
 
 
-
-
-//this probably should just be presentational?
-//getting uncontrolled/controlled error here strictly because of
-//materialize Input tag... try to figure this out.
-
-
-//UPDATE! may want to have calculator form be aware and conditionally
-//render the # of forms necessary.
-//then send that to chart to be aware of how many "areas" to have
 export default class CalculatorForm extends React.Component {
+  constructor() {
+    super()
+  }
 
   render() {
-    const state = this.props.state
-    const handle = this.props
+    console.log('props', this.props)
+    const props = {} = this.props
+    const state = props.state
+    const handle = props.handleChange
+    console.log('handle is', handle)
     return (
-      <Col style={{paddingTop: '20px'}} >
+      <Col>
         <Row>
-          <Input
+          <span>Age:</span>
+          <span><h1>{ +state.currentAge }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 129 }
+            step={ 1 }
+            defaultValue={ +state.currentAge }
+            value={ +state.currentAge }
             onChange={ handle.handleCurrentAge }
-            value={ state.currentAge }
-            label="Age"
           />
-          <Input
+        </Row>
+        <Row>
+          <span>Retirement Age:</span>
+          <span><h1>{ +state.retirementAge }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 130 }
+            step={ 1 }
+            defaultValue={ 65 }
+            value={ +state.retirementAge }
             onChange={ handle.handleRetirementAge }
-            value={ state.retireAge }
-            label="Retirement Age"
           />
-          <Input
+        </Row>
+        <Row>
+          <span>Lifespan Age:</span>
+          <span><h1>{ +state.lifespanAge }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 130 }
+            step={ 1 }
+            defaultValue={ 90 }
+            value={ +state.lifespanAge }
             onChange={ handle.handleLifespanAge }
-            value={ state.lifespanAge }
-            label="Lifespan Age"
           />
         </Row>
         <Row>
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.salary }
-            label="Salary (Post-Tax)"
-            name='salary'
-          />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.salaryIncrease }
-            label="Salary Increase/Year"
-            name='salaryIncrease'
-          />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.retireSpending }
-            label="Retirement Spending"
-            name='retireSpending'
+          <span>Salary:</span>
+          <span><h1>{ +state.salary }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 1000000 }
+            step={ 1 }
+            defaultValue={ 50000 }
+            value={ +state.salary }
+            onChange={ handle.handleSalary }
           />
         </Row>
         <Row>
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.marketReturn }
-            label="Investment Return"
-            name='marketReturn'
+          <span>Salary Increase / Year:</span>
+          <span><h1>{ +state.salaryIncrease }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 10 }
+            step={ 1 }
+            defaultValue={ 3 }
+            value={ +state.salaryIncrease }
+            onChange={ handle.handleSalaryIncrease }
           />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.savings }
-            label="Savings Rate"
-            name='savings'
+        </Row>
+        <Row>
+          <span>Retirement Spending</span>
+          <span><h1>{ +state.retirementSpending }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 1000000 }
+            step={ 1 }
+            defaultValue={ 40000 }
+            value={ +state.retirementSpending }
+            onChange={ handle.handleRetirementSpending }
           />
-          <Input
+        </Row>
+        <Row>
+          <span>Investment Return:</span>
+          <span><h1>{ +state.investmentReturnPercent }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 20 }
+            step={ 1 }
+            defaultValue={ 4 }
+            value={ +state.investmentReturnPercent }
+            onChange={ handle.handleInvestmentReturn }
+          />
+        </Row>
+        <Row>
+          <span>Savings Rate:</span>
+          <span><h1>{ +state.savings }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 10 }
+            step={ 0.1 }
+            defaultValue={ 3 }
+            value={ +state.savings }
+            onChange={ handle.handleSavings }
+          />
+        </Row>
+        <Row>
+          <span>Current Savings:</span>
+          <span><h1>{ +state.currentSavings }</h1></span>
+          <Slider
+            min={ 0 }
+            max={ 1000000 }
+            step={ 10 }
+            defaultValue={ 0 }
+            value={ +state.currentSavings }
             onChange={ handle.handleCurrentSavings }
-            value={ state.currentSavings }
-            label="Current Savings"
           />
         </Row>
       </Col>

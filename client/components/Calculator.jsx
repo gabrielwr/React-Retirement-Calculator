@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
@@ -185,11 +187,13 @@ export class Calculator extends React.Component {
 
   render() {
     const props = {
-      handleCurrentAge: this.handleCurrentAge,
-      handleRetirementAge: this.handleRetirementAge,
-      handleLifespanAge: this.handleLifespanAge,
-      handleCurrentSavings: this.handleCurrentSavings,
-      handleChange: this.handleChange,
+      handleChange: {
+        handleCurrentAge: this.handleCurrentAge,
+        handleRetirementAge: this.handleRetirementAge,
+        handleLifespanAge: this.handleLifespanAge,
+        handleCurrentSavings: this.handleCurrentSavings,
+        handleChange: this.handleChange
+      },
       state: {...this.state},
       graphData: this.props.graphData.graphData
     }
@@ -199,7 +203,9 @@ export class Calculator extends React.Component {
       <div>
         <Row>
           <Chart { ...props } />
-          <CalculatorForm { ...props } />
+          <MuiThemeProvider>
+            <CalculatorForm { ...props } />
+          </MuiThemeProvider>
         </Row>
       </div>
     )
