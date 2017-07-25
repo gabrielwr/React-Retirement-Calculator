@@ -1,18 +1,16 @@
+//framework imports
 import React from 'react'
 import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-
+//component imports
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
 
+//reducer imports
 import { addGraphData } from '../reducers/graphData'
 import store from '../store'
-
-
-
-
 
 export class Calculator extends React.Component {
   constructor() {
@@ -40,8 +38,6 @@ export class Calculator extends React.Component {
   }
 
   componentDidMount(){
-    console.log('reached component did mount')
-    console.log('redux state?', this.props)
     //better way to do this?
     const firstScenarioArr = this.computeData()
     store.dispatch(addGraphData(firstScenarioArr))
@@ -90,25 +86,14 @@ export class Calculator extends React.Component {
     return arrOfData
   }
 
-  handleCurrentAge(evt) {
-    const age = +evt.target.value
-
-    if(Number.isNaN(age)) return
-
-    if(age < 0) {
-      console.error('cant be negative')
-      //display warning for can't be negative
-      this.setState({
-        currentAge: '1'
-      }, () => this.computeData())
-    } else if(age >= +this.state.retireAge) {
+  handleCurrentAge(evt, age) {
+    if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
         currentAge: `${age}`,
         retireAge: `${age + 1}`
       }, () => this.computeData())
-
     } else {
       this.setState({
         currentAge: `${age}`
@@ -116,17 +101,8 @@ export class Calculator extends React.Component {
     }
   }
 
-  handleRetirementAge(evt) {
-    const retireAge = +evt.target.value
-
-    if(Number.isNaN(retireAge)) return
-
-    if(retireAge < 0) {
-      //display no negatives error
-      this.setState({
-        retireAge: '1'
-      }, () => this.computeData())
-    } else if(retireAge <= +this.state.currentAge) {
+  handleRetirementAge(evt, retireAge) {
+    if(retireAge <= +this.state.currentAge) {
       console.log('less than')
       this.setState({
         //this might produce a bug, keep an eye out
@@ -140,11 +116,7 @@ export class Calculator extends React.Component {
     }
   }
 
-  handleLifespanAge(evt) {
-    const ageAtDeath = +evt.target.value
-
-    //validations
-    if(Number.isNaN(ageAtDeath)) return
+  handleLifespanAge(evt, ageAtDeath) {
 
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
@@ -162,8 +134,7 @@ export class Calculator extends React.Component {
     }
   }
 
-  handleCurrentSavings(evt) {
-    const value = +evt.target.value
+  handleCurrentSavings(evt, ) {
     if(isNaN(value) && evt.target.value !== '-') return
     this.setState({
       currentSavings: evt.target.value
@@ -171,10 +142,6 @@ export class Calculator extends React.Component {
   }
 
   handleChange(evt) {
-    const value = +evt.target.value
-    if(isNaN(value)) return
-
-    //check that value is not negative
     if(value < 0) {
       console.error('cannot be negative')
       return
