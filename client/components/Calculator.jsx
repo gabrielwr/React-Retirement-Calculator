@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
@@ -9,7 +10,9 @@ import store from '../store'
 
 
 
-export default class Calculator extends React.Component {
+
+
+export class Calculator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -21,6 +24,7 @@ export default class Calculator extends React.Component {
       retireSpending: '40000',
       marketReturn: '4',
       savings: '25',
+      currentSavings: '0',
       graphData: [],
       finalAmount: '0',
       amtAtRetire: '0'
@@ -34,12 +38,15 @@ export default class Calculator extends React.Component {
   }
 
   componentDidMount(){
+    console.log('reached component did mount')
+    console.log('redux state?', this.props)
     //better way to do this?
     const firstScenarioArr = this.computeData()
     store.dispatch(addGraphData(firstScenarioArr))
   }
 
   computeData() {
+
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -71,6 +78,7 @@ export default class Calculator extends React.Component {
       }
     }
 
+    console.log('arr of data', arrOfData)
     this.setState({
       finalAmount: accumulatedSavings,
       graphData: arrOfData
@@ -182,7 +190,8 @@ export default class Calculator extends React.Component {
       handleLifespanAge: this.handleLifespanAge,
       handleCurrentSavings: this.handleCurrentSavings,
       handleChange: this.handleChange,
-      state: {...this.state}
+      state: {...this.state},
+      graphData: this.props.graphData.graphData
     }
 
     //need to connect calculator form and make container since will pass info to rechart
@@ -197,5 +206,12 @@ export default class Calculator extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  graphData: state.graphData
+})
 
+export default connect(
+  mapStateToProps,
+  null
+)( Calculator );
 

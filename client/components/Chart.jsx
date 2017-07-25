@@ -25,16 +25,18 @@ export default class DynamicChart extends React.Component {
   render() {
     console.log(this.props)
     const props = {} = this.props
-    const newArr = props.props.graphData.graphData
+    const state = props.state
+    // const newArr = props.props.graphData.graphData
+    const newArr = props.graphData
 
     return (
       <div id="chartContainer">
-        {/* <div id="finalSavings">
+         <div id="finalSavings">
             <h4>Savings By Retirement</h4>
-            <h4>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h4>
+            <h4>{`$${this.formatMoney(+state.amtAtRetire, 0, '.', ',')}`}</h4>
             <h4>Savings at end</h4>
-            <h4>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h4>
-        </div> */}
+            <h4>{`$${this.formatMoney(+state.finalAmount, 0, '.', ',')}`}</h4>
+        </div>
            <ResponsiveContainer>
             <AreaChart
                 data={ newArr }
@@ -45,7 +47,7 @@ export default class DynamicChart extends React.Component {
                 />
                 <YAxis
                   tickFormatter={money => '$' + this.formatMoney(+money, 0, '.', ',')}
-                   dataKey='1'
+                   dataKey='savings'
                 />
                 <Area
                   type="monotone"
