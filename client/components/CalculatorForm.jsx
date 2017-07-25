@@ -1,80 +1,119 @@
 import React from 'react'
-import { Row, Input, Col, Button } from 'react-materialize'
+import Slider from 'material-ui/Slider';
+
+import { Row, Col } from 'react-materialize'
 
 
-
-
-//this probably should just be presentational?
-//getting uncontrolled/controlled error here strictly because of
-//materialize Input tag... try to figure this out.
-
-
-//UPDATE! may want to have calculator form be aware and conditionally
-//render the # of forms necessary.
-//then send that to chart to be aware of how many "areas" to have
 export default class CalculatorForm extends React.Component {
+  constructor() {
+    super()
+  }
 
   render() {
-    const state = this.props.state
-    const handle = this.props
+    const props = {} = this.props
+    const state = props.state
+    const handle = props.handleChange
     return (
-      <Col style={{paddingTop: '20px'}} >
+      <Col>
         <Row>
-          <Input
+          <span>Age: </span>
+          <span>{ +state.currentAge }</span>
+          <Slider
+            name='Age'
+            min={ 0 }
+            max={ 129 }
+            step={ 1 }
+            defaultValue={ +state.currentAge }
+            value={ +state.currentAge }
             onChange={ handle.handleCurrentAge }
-            value={ state.currentAge }
-            label="Age"
           />
-          <Input
+          <span>Retirement Age: </span>
+          <span>{ +state.retireAge }</span>
+          <Slider
+            min={ 1 }
+            max={ 130 }
+            step={ 1 }
+            defaultValue={ 65 }
+            value={ +state.retireAge }
             onChange={ handle.handleRetirementAge }
-            value={ state.retireAge }
-            label="Retirement Age"
           />
-          <Input
+          <span>Lifespan Age: </span>
+          <span>{ +state.lifespanAge }</span>
+          <Slider
+            min={ 0 }
+            max={ 130 }
+            step={ 1 }
+            defaultValue={ 90 }
+            value={ +state.lifespanAge }
             onChange={ handle.handleLifespanAge }
-            value={ state.lifespanAge }
-            label="Lifespan Age"
           />
         </Row>
         <Row>
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.salary }
-            label="Salary (Post-Tax)"
-            name='salary'
+          <span>Salary: </span>
+          <span>{ +state.salary }</span>
+          <Slider
+            min={ 0 }
+            max={ 1000000 }
+            step={ 1 }
+            defaultValue={ 50000 }
+            value={ +state.salary }
+            onChange={ handle.handleSalary }
           />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.salaryIncrease }
-            label="Salary Increase/Year"
-            name='salaryIncrease'
+          {/* <span>Salary Increase / Year: </span>
+          <span>{ +state.salaryIncrease }</span>
+          <Slider
+            min={ 0 }
+            max={ 10 }
+            step={ 1 }
+            defaultValue={ 3 }
+            value={ +state.salaryIncrease }
+            onChange={ handle.handleSalaryIncrease }
+          /> */}
+          <span>Retirement Spending: </span>
+          <span>{ +state.retireSpending }</span>
+          <Slider
+            min={ 0 }
+            max={ 500000 }
+            step={ 1 }
+            defaultValue={ 40000 }
+            value={ +state.retireSpending }
+            onChange={ handle.handleRetirementSpending }
           />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.retireSpending }
-            label="Retirement Spending"
-            name='retireSpending'
+          <span>Investment Return: </span>
+          <span>{ +state.marketReturn }</span>
+          <Slider
+            min={ 0 }
+            max={ 20 }
+            step={ 1 }
+            defaultValue={ 4 }
+            value={ +state.marketReturn }
+            onChange={ handle.handleInvestmentReturn }
           />
         </Row>
         <Row>
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.marketReturn }
-            label="Investment Return"
-            name='marketReturn'
+          <span>Savings Rate: </span>
+          <span>{ +state.savings }</span>
+          <Slider
+            name='Savings Rate'
+            min={ 0 }
+            max={ 100 }
+            step={ 0.5 }
+            defaultValue={ 3 }
+            value={ +state.savings }
+            onChange={ handle.handleSavings }
           />
-          <Input
-            onChange={ handle.handleChange }
-            value={ state.savings }
-            label="Savings Rate"
-            name='savings'
-          />
-          <Input
+        </Row>
+        <Row>
+          <span>Current Savings: </span>
+          <span>{ +state.currentSavings }</span>
+          <Slider
+            min={ 0 }
+            max={ 1000000 }
+            step={ 10 }
+            defaultValue={ 0 }
+            value={ +state.currentSavings }
             onChange={ handle.handleCurrentSavings }
-            value={ state.currentSavings }
-            label="Current Savings"
           />
-          <Button waves='light' onClick={handle.handleSubmit}>submit</Button>
         </Row>
       </Col>
     )

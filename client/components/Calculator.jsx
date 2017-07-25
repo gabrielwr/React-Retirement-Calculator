@@ -1,14 +1,18 @@
+//framework imports
 import React from 'react'
+import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
+//component imports
 import CalculatorForm from './CalculatorForm'
+import Chart from './Chart.jsx'
 
+//reducer imports
 import { addGraphData } from '../reducers/graphData'
 import store from '../store'
 
-
-
-export default class Calculator extends React.Component {
+export class Calculator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -20,8 +24,8 @@ export default class Calculator extends React.Component {
       retireSpending: '40000',
       marketReturn: '4',
       savings: '25',
-      graphData: [],
       currentSavings: '0',
+      graphData: [],
       finalAmount: '0',
       amtAtRetire: '0'
     }
@@ -30,8 +34,12 @@ export default class Calculator extends React.Component {
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSalary = this.handleSalary.bind(this)
+    // this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
+    this.handleSavings = this.handleSavings.bind(this)
+    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
+    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
+    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
   }
 
   componentDidMount(){
@@ -41,7 +49,7 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    let scenarioProp = this.props.props.numScenarios.scenarios
+
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -53,18 +61,10 @@ export default class Calculator extends React.Component {
     let retiredBool = false
     let arrOfData = [];
 
-    // let scenario = 1;
-    // if(scenarioProp === 2) {
-    //   scenario = 2
-    // } else if(scenarioProp === 3) {
-    //   scenario = 3
-    // }
-
-
     for(let i = 0; i <= yearsToEnd; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
-        [scenarioProp]: accumulatedSavings,
+        savings: accumulatedSavings,
         age: `${currentAge}`,
       })
       currentAge += 1;
@@ -84,31 +84,23 @@ export default class Calculator extends React.Component {
     this.setState({
       finalAmount: accumulatedSavings,
       graphData: arrOfData
+    }, () => {
+      store.dispatch(addGraphData(arrOfData))
     })
     //this is a workaround only for the componentdidMount logic
     // try to figure out a diff way?
     return arrOfData
   }
 
-  handleCurrentAge(evt) {
-    const age = +evt.target.value
-
-    if(Number.isNaN(age)) return
-
-    if(age < 0) {
-      console.error('cant be negative')
-      //display warning for can't be negative
-      this.setState({
-        currentAge: '1'
-      }, () => this.computeData())
-    } else if(age >= +this.state.retireAge) {
+  handleCurrentAge(evt, age) {
+    console.log('evt', evt)
+    if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
         currentAge: `${age}`,
         retireAge: `${age + 1}`
       }, () => this.computeData())
-
     } else {
       this.setState({
         currentAge: `${age}`
@@ -116,17 +108,8 @@ export default class Calculator extends React.Component {
     }
   }
 
-  handleRetirementAge(evt) {
-    const retireAge = +evt.target.value
-
-    if(Number.isNaN(retireAge)) return
-
-    if(retireAge < 0) {
-      //display no negatives error
-      this.setState({
-        retireAge: '1'
-      }, () => this.computeData())
-    } else if(retireAge <= +this.state.currentAge) {
+  handleRetirementAge(evt, retireAge) {
+    if(retireAge <= +this.state.currentAge) {
       console.log('less than')
       this.setState({
         //this might produce a bug, keep an eye out
@@ -140,12 +123,7 @@ export default class Calculator extends React.Component {
     }
   }
 
-  handleLifespanAge(evt) {
-    const ageAtDeath = +evt.target.value
-
-    //validations
-    if(Number.isNaN(ageAtDeath)) return
-
+  handleLifespanAge(evt, ageAtDeath) {
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
@@ -162,69 +140,69 @@ export default class Calculator extends React.Component {
     }
   }
 
-  handleCurrentSavings(evt) {
-    const value = +evt.target.value
-    if(isNaN(value) && evt.target.value !== '-') return
+  handleCurrentSavings(evt, currentSavings) {
     this.setState({
-      currentSavings: evt.target.value
+      currentSavings,
     }, () => this.computeData() )
   }
 
-  handleChange(evt) {
-    const value = +evt.target.value
-    if(isNaN(value)) return
-
-    //check that value is not negative
-    if(value < 0) {
-      console.error('cannot be negative')
-      return
-    }
-    console.log('name', evt.target.name)
+  handleSalary(evt, salary) {
     this.setState({
-      [evt.target.name]: `${value}`
+      salary
+    }, () => this.computeData())
+  }
+  handleSavings(evt, savings) {
+    this.setState({
+      savings
+    }, () => this.computeData())
+  }
+  handleRetirementSpending(evt, retireSpending ) {
+    this.setState({
+      retireSpending
+    }, () => this.computeData())
+  }
+  handleInvestmentReturn(evt, marketReturn) {
+    this.setState({
+      marketReturn
     }, () => this.computeData())
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault()
-    store.dispatch(addGraphData(this.state.graphData))
-  }
-
-
-
   render() {
     const props = {
-      handleCurrentAge: this.handleCurrentAge,
-      handleRetirementAge: this.handleRetirementAge,
-      handleLifespanAge: this.handleLifespanAge,
-      handleCurrentSavings: this.handleCurrentSavings,
-      handleChange: this.handleChange,
-      handleSubmit: this.handleSubmit,
-      state: { ...this.state }
+      handleChange: {
+        handleCurrentAge: this.handleCurrentAge,
+        handleRetirementAge: this.handleRetirementAge,
+        handleLifespanAge: this.handleLifespanAge,
+        handleCurrentSavings: this.handleCurrentSavings,
+        handleSalary: this.handleSalary,
+        handleSavings: this.handleSavings,
+        handleRetirementSpending: this.handleRetirementSpending,
+        handleInvestmentReturn: this.handleInvestmentReturn,
+      },
+      state: {...this.state},
+      graphData: this.props.graphData.graphData
     }
 
+    //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
         <Row>
-          <Col m={ 12 / this.props.props.numScenarios.scenarios }>
+          <Chart { ...props } />
+          <MuiThemeProvider>
             <CalculatorForm { ...props } />
-          </Col>
+          </MuiThemeProvider>
         </Row>
       </div>
     )
   }
 }
 
+const mapStateToProps = state => ({
+  graphData: state.graphData
+})
 
-//also, make this connected component have all of the on change stuff from here.
-// this way, in this container, we can "render"/create the appropriate amount of these
-//containers according to number of scenarios. Once
-
-//then, these three containers will on change to this container which will choose
-//then how to render the chart or send in data.
-
-
-// in order to have 3 scenarios, will need to have distinct datakeys for each
-// scenario that can be identified by chart
-
+export default connect(
+  mapStateToProps,
+  null
+)( Calculator );
 

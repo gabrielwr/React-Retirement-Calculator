@@ -24,39 +24,16 @@ export default class DynamicChart extends React.Component {
 
   render() {
     const props = {} = this.props
-    const dataArr = props.props.graphData.graphData
-    // console.log('props in chart', props.props.graphData.graphData)
-    let longest;
-    let newArr = [];
-
-    console.log('dataarr is:', dataArr)
-
-    if(dataArr.length === 1) {
-      newArr = dataArr[0]
-    } else if(dataArr.length === 2){
-      longest = Math.max(dataArr[0].length, dataArr[1].length)
-      for(let i = 0; i < longest; i++) {
-        newArr.push(Object.assign({1: 0, 2: 0}, dataArr[0][i], dataArr[1][i]))
-      }
-    } else if (dataArr.length === 3) {
-      longest = Math.max(dataArr[0].length, dataArr[1].length, dataArr[2].length)
-      for(let i = 0; i < longest; i++) {
-        newArr.push(Object.assign({1: 0, 2: 0, 3: 0}, dataArr[0][i], dataArr[1][i], dataArr[2][i] ))
-      }
-    }
-
-
-
-    // console.log('newarr is:', newArr)
-
+    const state = props.state
+    const newArr = props.graphData
     return (
       <div id="chartContainer">
-        {/* <div id="finalSavings">
+         <div id="finalSavings">
             <h4>Savings By Retirement</h4>
-            <h4>{`$${this.formatMoney(+props.amtAtRetire, 0, '.', ',')}`}</h4>
+            <h4>{`$${this.formatMoney(+state.amtAtRetire, 0, '.', ',')}`}</h4>
             <h4>Savings at end</h4>
-            <h4>{`$${this.formatMoney(+props.finalAmount, 0, '.', ',')}`}</h4>
-        </div> */}
+            <h4>{`$${this.formatMoney(+state.finalAmount, 0, '.', ',')}`}</h4>
+        </div>
            <ResponsiveContainer>
             <AreaChart
                 data={ newArr }
@@ -67,19 +44,13 @@ export default class DynamicChart extends React.Component {
                 />
                 <YAxis
                   tickFormatter={money => '$' + this.formatMoney(+money, 0, '.', ',')}
-                   dataKey='1'
+                   dataKey='savings'
                 />
                 <Area
-                  type='monotone'
-                  dataKey="1"
+                  type="monotone"
+                  dataKey="savings"
                   stroke='#77C9D4'
                   fill='#77C9D4'
-                />
-                <Area
-                  type='monotone'
-                  dataKey='2'
-                  stroke='#82ca9d'
-                  fill='#82ca9d'
                 />
                 <Tooltip
                   label={ 'savings' }
