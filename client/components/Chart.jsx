@@ -52,8 +52,8 @@ export default class DynamicChart extends React.Component {
                 <Area
                   type="monotone"
                   dataKey="savings"
-                  stroke="#8884d8"
-                  fill='#8884d8'
+                  stroke='#77C9D4'
+                  fill='#77C9D4'
                 />
                 <Tooltip
                   label={ 'savings' }
