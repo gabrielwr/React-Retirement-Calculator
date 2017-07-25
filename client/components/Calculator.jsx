@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Col, Row } from 'react-materialize'
 
 import CalculatorForm from './CalculatorForm'
+import Chart from './Chart.jsx'
 
 import { addGraphData } from '../reducers/graphData'
 import store from '../store'
@@ -21,7 +22,6 @@ export default class Calculator extends React.Component {
       marketReturn: '4',
       savings: '25',
       graphData: [],
-      currentSavings: '0',
       finalAmount: '0',
       amtAtRetire: '0'
     }
@@ -31,7 +31,6 @@ export default class Calculator extends React.Component {
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount(){
@@ -41,7 +40,6 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    let scenarioProp = this.props.props.numScenarios.scenarios
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -53,18 +51,10 @@ export default class Calculator extends React.Component {
     let retiredBool = false
     let arrOfData = [];
 
-    // let scenario = 1;
-    // if(scenarioProp === 2) {
-    //   scenario = 2
-    // } else if(scenarioProp === 3) {
-    //   scenario = 3
-    // }
-
-
     for(let i = 0; i <= yearsToEnd; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
-        [scenarioProp]: accumulatedSavings,
+        savings: accumulatedSavings,
         age: `${currentAge}`,
       })
       currentAge += 1;
@@ -185,13 +175,6 @@ export default class Calculator extends React.Component {
     }, () => this.computeData())
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault()
-    store.dispatch(addGraphData(this.state.graphData))
-  }
-
-
-
   render() {
     const props = {
       handleCurrentAge: this.handleCurrentAge,
@@ -199,32 +182,20 @@ export default class Calculator extends React.Component {
       handleLifespanAge: this.handleLifespanAge,
       handleCurrentSavings: this.handleCurrentSavings,
       handleChange: this.handleChange,
-      handleSubmit: this.handleSubmit,
-      state: { ...this.state }
+      state: {...this.state}
     }
 
+    //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
         <Row>
-          <Col m={ 12 / this.props.props.numScenarios.scenarios }>
-            <CalculatorForm { ...props } />
-          </Col>
+          <Chart { ...props } />
+          <CalculatorForm { ...props } />
         </Row>
       </div>
     )
   }
 }
 
-
-//also, make this connected component have all of the on change stuff from here.
-// this way, in this container, we can "render"/create the appropriate amount of these
-//containers according to number of scenarios. Once
-
-//then, these three containers will on change to this container which will choose
-//then how to render the chart or send in data.
-
-
-// in order to have 3 scenarios, will need to have distinct datakeys for each
-// scenario that can be identified by chart
 
 

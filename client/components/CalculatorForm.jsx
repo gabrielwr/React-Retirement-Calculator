@@ -74,7 +74,6 @@ export default class CalculatorForm extends React.Component {
             value={ state.currentSavings }
             label="Current Savings"
           />
-          <Button waves='light' onClick={handle.handleSubmit}>submit</Button>
         </Row>
       </Col>
     )

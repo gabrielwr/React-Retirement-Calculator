@@ -23,31 +23,9 @@ export default class DynamicChart extends React.Component {
 
 
   render() {
+    console.log(this.props)
     const props = {} = this.props
-    const dataArr = props.props.graphData.graphData
-    // console.log('props in chart', props.props.graphData.graphData)
-    let longest;
-    let newArr = [];
-
-    console.log('dataarr is:', dataArr)
-
-    if(dataArr.length === 1) {
-      newArr = dataArr[0]
-    } else if(dataArr.length === 2){
-      longest = Math.max(dataArr[0].length, dataArr[1].length)
-      for(let i = 0; i < longest; i++) {
-        newArr.push(Object.assign({1: 0, 2: 0}, dataArr[0][i], dataArr[1][i]))
-      }
-    } else if (dataArr.length === 3) {
-      longest = Math.max(dataArr[0].length, dataArr[1].length, dataArr[2].length)
-      for(let i = 0; i < longest; i++) {
-        newArr.push(Object.assign({1: 0, 2: 0, 3: 0}, dataArr[0][i], dataArr[1][i], dataArr[2][i] ))
-      }
-    }
-
-
-
-    // console.log('newarr is:', newArr)
+    const newArr = props.props.graphData.graphData
 
     return (
       <div id="chartContainer">
@@ -70,16 +48,10 @@ export default class DynamicChart extends React.Component {
                    dataKey='1'
                 />
                 <Area
-                  type='monotone'
-                  dataKey="1"
-                  stroke='#77C9D4'
-                  fill='#77C9D4'
-                />
-                <Area
-                  type='monotone'
-                  dataKey='2'
-                  stroke='#82ca9d'
-                  fill='#82ca9d'
+                  type="monotone"
+                  dataKey="savings"
+                  stroke="#8884d8"
+                  fill='#8884d8'
                 />
                 <Tooltip
                   label={ 'savings' }
