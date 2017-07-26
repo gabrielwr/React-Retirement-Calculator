@@ -1,6 +1,5 @@
 //framework imports
 import React from 'react'
-import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
@@ -10,7 +9,6 @@ import Chart from './Chart.jsx'
 
 //reducer imports
 import { addGraphData } from '../reducers/graphData'
-import store from '../store'
 
 export class Calculator extends React.Component {
   constructor() {
@@ -43,9 +41,7 @@ export class Calculator extends React.Component {
   }
 
   componentDidMount(){
-    //better way to do this?
     const firstScenarioArr = this.computeData()
-    store.dispatch(addGraphData(firstScenarioArr))
   }
 
   computeData() {
@@ -85,11 +81,10 @@ export class Calculator extends React.Component {
       finalAmount: accumulatedSavings,
       graphData: arrOfData
     }, () => {
-      store.dispatch(addGraphData(arrOfData))
+      this.props.dispatchGraph(addGraphData(arrOfData))
     })
     //this is a workaround only for the componentdidMount logic
     // try to figure out a diff way?
-    return arrOfData
   }
 
   handleCurrentAge(evt, age) {
@@ -196,13 +191,4 @@ export class Calculator extends React.Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  graphData: state.graphData
-})
-
-export default connect(
-  mapStateToProps,
-  null
-)( Calculator );
 
