@@ -8,9 +8,9 @@ import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
 
 //reducer imports
-import { addGraphData } from '../reducers/graphData'
+// import { addGraphData } from '../reducers/graphData'
 
-export class Calculator extends React.Component {
+export default class Calculator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -41,11 +41,11 @@ export class Calculator extends React.Component {
   }
 
   componentDidMount(){
-    const firstScenarioArr = this.computeData()
+    this.computeData()
   }
 
   computeData() {
-
+    console.log('props check', this.props)
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -61,9 +61,8 @@ export class Calculator extends React.Component {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       arrOfData.push({
         savings: accumulatedSavings,
-        age: `${currentAge}`,
+        age: `${currentAge++}`,
       })
-      currentAge += 1;
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.setState({
@@ -81,14 +80,11 @@ export class Calculator extends React.Component {
       finalAmount: accumulatedSavings,
       graphData: arrOfData
     }, () => {
-      this.props.dispatchGraph(addGraphData(arrOfData))
+      this.props.dispatchGraph(arrOfData)
     })
-    //this is a workaround only for the componentdidMount logic
-    // try to figure out a diff way?
   }
 
   handleCurrentAge(evt, age) {
-    console.log('evt', evt)
     if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
