@@ -92,7 +92,7 @@ export default class Calculator extends React.Component {
       //you have to change retirement age!
       this.setState({
         currentAge: `${age}`,
-        retireAge: `${age + 1}`
+        retireAge: `${++age}`
       }, () => this.computeData())
     } else {
       this.setState({
@@ -107,7 +107,7 @@ export default class Calculator extends React.Component {
       this.setState({
         //this might produce a bug, keep an eye out
         retireAge: `${retireAge}`,
-        currentAge: `${retireAge - 1}`
+        currentAge: `${--retireAge}`
       }, () => this.computeData())
     } else {
       this.setState({
@@ -120,7 +120,7 @@ export default class Calculator extends React.Component {
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
-        currentAge: `${ageAtDeath-1}`
+        currentAge: `${--ageAtDeath}`
       }, () => {
         this.computeData()
       })
