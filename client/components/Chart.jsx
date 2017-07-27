@@ -23,6 +23,7 @@ export default class DynamicChart extends React.Component {
 
 
   render() {
+    console.log('getting here', this.props)
     const props = {} = this.props
     const state = props.state
     const newArr = props.graphData

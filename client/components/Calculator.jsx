@@ -7,8 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
 
-//reducer imports
-// import { addGraphData } from '../reducers/graphData'
 
 export default class Calculator extends React.Component {
   constructor() {
@@ -45,7 +43,6 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    console.log('props check', this.props)
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -179,12 +176,12 @@ export default class Calculator extends React.Component {
     //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
-        <Row>
-          <Chart { ...props } />
+        <Chart { ...props } />
+        <Col id='form'>
           <MuiThemeProvider>
             <CalculatorForm { ...props } />
           </MuiThemeProvider>
-        </Row>
+        </Col>
       </div>
     )
   }

@@ -8,16 +8,16 @@ import Calculator from '../components/Calculator'
 
 
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   graphData: state.graphData
 })
 
-const mapDispatchToProps = dispatch => ({
-  dispatchGraph: graphData => dispatch(addGraph(graphData))
+const mapDispatch = dispatch => ({
+  dispatchGraph: graph => store.dispatch(addGraph(graph))
 })
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapState,
+  mapDispatch
 )( Calculator );
 
