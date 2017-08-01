@@ -11,13 +11,22 @@
     margin-right: auto;
     margin-left: auto;
     margin-top: 10px;
-    width: 90%;
+    width: 80%;
     position: relative;
     left: -12px;
     height: 496px;
 }
 
 #form {
-    margin: auto;
-    width: 30%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 35%;
+}
+
+#footer {
+    // need to update this
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;   /* Height of the footer */
 }

@@ -38,7 +38,7 @@ export default class Calculator extends React.Component {
     this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.computeData()
   }
 
@@ -75,7 +75,7 @@ export default class Calculator extends React.Component {
 
     //sync dispatch to store
     this.props.dispatchGraph(graphData)
-
+    localStorage.setItem('state', JSON.stringify(this.state))
     this.setState({
       finalAmount: accumulatedSavings,
       graphData
@@ -117,7 +117,7 @@ export default class Calculator extends React.Component {
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
-        currentAge: `${--ageAtDeath}`
+        currentAge: `${ageAtDeath}`
       }, () => {
         this.computeData()
       })

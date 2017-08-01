@@ -23,7 +23,6 @@ export default class DynamicChart extends React.Component {
 
 
   render() {
-    console.log('getting here', this.props)
     const props = {} = this.props
     const state = props.state
     const newArr = props.graphData
@@ -41,10 +40,16 @@ export default class DynamicChart extends React.Component {
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
                   interval={0}
+                  tickFormatter={ age => {
+                    if(age === state.currentAge || age === state.retireAge || age === state.lifespanAge) {
+                      return age
+                    }
+                    else if(age % 10 === 0) return age
+                  }}
                   dataKey='age'
                 />
                 <YAxis
-                  tickFormatter={money => '$' + this.formatMoney(+money, 0, '.', ',')}
+                  tickFormatter={ money => '$' + this.formatMoney(+money, 0, '.', ',')}
                    dataKey='savings'
                 />
                 <Area
@@ -57,7 +62,7 @@ export default class DynamicChart extends React.Component {
                   label={ 'savings' }
                   labelFormatter={(age) => (`Age: ${age}`)}
                   formatter={(money) => (`$${this.formatMoney(+money, 0, '.', ',')}`)}/>
-                 <CartesianGrid strokeDasharray="1 1" />
+                 {/* <CartesianGrid strokeDasharray="1 1" /> */}
             </AreaChart>
           </ResponsiveContainer>
       </div>

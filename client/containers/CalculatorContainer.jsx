@@ -6,14 +6,12 @@ import { addGraphData as addGraph } from '../reducers/graphData'
 
 import Calculator from '../components/Calculator'
 
-
-
 const mapState = state => ({
   graphData: state.graphData
 })
 
 const mapDispatch = dispatch => ({
-  dispatchGraph: graph => store.dispatch(addGraph(graph))
+  dispatchGraph: graph => store.dispatch(addGraph( graph ))
 })
 
 export default connect(

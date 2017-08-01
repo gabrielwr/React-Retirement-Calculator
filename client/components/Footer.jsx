@@ -3,6 +3,7 @@ import { Footer } from 'react-materialize'
 
 const Foot = (props) => (
   <Footer
+    id='footer'
     copyrights="&copy; 2017 Gabriel Rowe"
     style={{backgroundColor:"#015429"}}
     links={
