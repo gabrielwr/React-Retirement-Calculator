@@ -41,10 +41,13 @@ export default class DynamicChart extends React.Component {
                 <XAxis
                   interval={0}
                   tickFormatter={ age => {
-                    if(age === state.currentAge || age === state.retireAge || age === state.lifespanAge) {
-                      return age
+                    if(age === state.currentAge) {
+                      return `Current Age ${state.currentAge}`
+                    } else if(age === state.retireAge) {
+                      return `Retirement ${state.retireAge}`
+                    } else if ( age === state.lifespanAge) {
+                      return `Age ${state.lifespanAge}`
                     }
-                    else if(age % 10 === 0) return age
                   }}
                   dataKey='age'
                 />
