@@ -50,7 +50,7 @@ export default class CalculatorForm extends React.Component {
         </Col>
         <Col>
           <span>Salary: </span>
-          <span>{ +state.salary }</span>
+          <span>${ +state.salary }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
@@ -59,8 +59,8 @@ export default class CalculatorForm extends React.Component {
             value={ +state.salary }
             onChange={ handle.handleSalary }
           />
-           <span>Salary Increase / Year: </span>
-          <span>{ +state.salaryIncrease }</span>
+           <span>Salary Increase / Year:</span>
+          <span> { +state.salaryIncrease }%</span>
           <Slider
             min={ 0 }
             max={ 10 }
@@ -70,7 +70,7 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.handleSalaryIncrease }
           />
           <span>Retirement Spending: </span>
-          <span>{ +state.retireSpending }</span>
+          <span>${ +state.retireSpending }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
@@ -81,8 +81,8 @@ export default class CalculatorForm extends React.Component {
           />
         </Col>
         <Col>
-          <span>Investment Return: </span>
-          <span>{ +state.marketReturn }</span>
+          <span>Investment Return:</span>
+          <span> { +state.marketReturn }%</span>
           <Slider
             min={ 0 }
             max={ 20 }
@@ -91,8 +91,8 @@ export default class CalculatorForm extends React.Component {
             value={ +state.marketReturn }
             onChange={ handle.handleInvestmentReturn }
           />
-          <span>Savings Rate: </span>
-          <span>{ +state.savings }</span>
+          <span>Savings Rate:</span>
+          <span> { +state.savings }%</span>
           <Slider
             name='Savings Rate'
             min={ 0 }
