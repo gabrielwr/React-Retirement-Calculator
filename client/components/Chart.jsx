@@ -39,6 +39,7 @@ export default class DynamicChart extends React.Component {
                 data={ newArr }
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
+                  padding={{ top: 20 }}
                   interval={0}
                   tickFormatter={ age => {
                     if(age === state.currentAge) {

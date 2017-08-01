@@ -102,8 +102,8 @@ export default class CalculatorForm extends React.Component {
             value={ +state.savings }
             onChange={ handle.handleSavings }
           />
-          <span>Current Savings: </span>
-          <span>{ +state.currentSavings }</span>
+          <span>Current Savings:</span>
+          <span> ${ +state.currentSavings }</span>
           <Slider
             min={ 0 }
             max={ 1000000 }
