@@ -156,11 +156,11 @@ export default class Calculator extends React.Component {
     return (
       <div>
         <Chart { ...props } />
-        <Col id='form'>
+        <div id='form'>
           <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />
           </MuiThemeProvider>
-        </Col>
+        </div>
       </div>
     )
   }

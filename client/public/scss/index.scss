@@ -15,10 +15,11 @@
 
 .chartContainer {
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     justify-content: center;
+    // align-items: center;
     height: 496px;
-    position: relative;
+    // position: relative;
 }
 
 #savingsContainer {
@@ -33,12 +34,12 @@
 
 #form {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     font-family: 'Open Sans', sans-serif;
-    width: 50%;
 }
 
-#footer {
+footer {
     background-color: "#2266bb";
     font-family: 'Open Sans', sans-serif;
     position: absolute;
@@ -50,7 +51,9 @@
 
 .formContainer {
     display: flex;
-
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
 }
 
 footer .footer-copyright {
