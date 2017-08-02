@@ -1,5 +1,6 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import React from 'react'
+import CustomXAxis from './CustomizedXAxis'
 
 
 export default class DynamicChart extends React.Component {
@@ -42,6 +43,7 @@ export default class DynamicChart extends React.Component {
                   margin={{bottom: 100}}
                   padding={{ top: 20 }}
                   interval={0}
+                  tick={ <CustomXAxis {...state}/> }
                   tickFormatter={ age => {
                     if(age === state.currentAge) {
                       return `Current Age ${state.currentAge}`
