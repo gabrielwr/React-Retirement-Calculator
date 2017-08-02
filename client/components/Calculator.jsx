@@ -68,7 +68,7 @@ export default class Calculator extends React.Component {
 
     //sync dispatch to store
     this.props.dispatchGraph(graphData)
-    localStorage.setItem('state', JSON.stringify(this.state))
+    // localStorage.setItem('state', JSON.stringify(this.state))
     this.setState({
       finalAmount: accumulatedSavings,
       graphData
@@ -124,9 +124,9 @@ export default class Calculator extends React.Component {
   }
 
   changeHandler(keyName) {
-    return (evt, valueToSet) => {
+    return (evt, updatedValue) => {
       this.setState({
-        [keyName]: valueToSet
+        [keyName]: updatedValue
       }, () => this.computeData() )
     }
   }

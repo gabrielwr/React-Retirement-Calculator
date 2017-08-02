@@ -19,6 +19,8 @@ export default class CalculatorForm extends React.Component {
           <span>Age: </span>
           <span>{ +state.currentAge }</span>
           <Slider
+            sliderStyle={{color: "#2266bb"}}
+            slider={{color: "#2266bb"}}
             name='Age'
             min={ 0 }
             max={ 129 }
