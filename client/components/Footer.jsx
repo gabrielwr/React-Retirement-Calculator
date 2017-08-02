@@ -1,11 +1,11 @@
 import React from 'react'
 import { Footer } from 'react-materialize'
 
-const Foot = (props) => (
+const Foot = props => (
   <Footer
     id='footer'
     copyrights="&copy; 2017 Gabriel Rowe"
-    style={{backgroundColor:"#015429"}}
+    style={{ backgroundColor: "#015429" }}
     links={
       <ul>
         <li><a className="grey-text text-lighten-3" href="http://linkedin.com/in/gabrielrowe">LinkedIn</a></li>
@@ -13,7 +13,6 @@ const Foot = (props) => (
         <li><a className="grey-text text-lighten-3" href="#!">Link Placeholder</a></li>
       </ul>
     }
-    className='example'
   >
       <h5 className="white-text">Footer Content</h5>
       <p className="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
