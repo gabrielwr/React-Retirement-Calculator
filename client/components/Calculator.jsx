@@ -7,7 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
 
-
 export default class Calculator extends React.Component {
   constructor() {
     super()
@@ -29,13 +28,7 @@ export default class Calculator extends React.Component {
     this.handleCurrentAge = this.handleCurrentAge.bind(this)
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
-    this.handleSalary = this.handleSalary.bind(this)
-    // this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
-    this.handleSavings = this.handleSavings.bind(this)
-    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
-    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
-    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
+    this.changeHandler = this.changeHandler.bind(this)
   }
 
   componentWillMount(){
@@ -130,31 +123,12 @@ export default class Calculator extends React.Component {
     }
   }
 
-  handleCurrentSavings(evt, currentSavings) {
-    this.setState({
-      currentSavings,
-    }, () => this.computeData() )
-  }
-
-  handleSalary(evt, salary) {
-    this.setState({
-      salary
-    }, () => this.computeData())
-  }
-  handleSavings(evt, savings) {
-    this.setState({
-      savings
-    }, () => this.computeData())
-  }
-  handleRetirementSpending(evt, retireSpending ) {
-    this.setState({
-      retireSpending
-    }, () => this.computeData())
-  }
-  handleInvestmentReturn(evt, marketReturn) {
-    this.setState({
-      marketReturn
-    }, () => this.computeData())
+  changeHandler(keyName) {
+    return (evt, valueToSet) => {
+      this.setState({
+        [keyName]: valueToSet
+      }, () => this.computeData() )
+    }
   }
 
   render() {
@@ -163,17 +137,12 @@ export default class Calculator extends React.Component {
         handleCurrentAge: this.handleCurrentAge,
         handleRetirementAge: this.handleRetirementAge,
         handleLifespanAge: this.handleLifespanAge,
-        handleCurrentSavings: this.handleCurrentSavings,
-        handleSalary: this.handleSalary,
-        handleSavings: this.handleSavings,
-        handleRetirementSpending: this.handleRetirementSpending,
-        handleInvestmentReturn: this.handleInvestmentReturn,
+        changeHandler: this.changeHandler
       },
       state: {...this.state},
       graphData: this.props.graphData.graphData
     }
 
-    //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
         <Chart { ...props } />
