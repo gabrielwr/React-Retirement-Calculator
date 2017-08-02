@@ -6,6 +6,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 //component imports
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 
 export default class Calculator extends React.Component {
   constructor() {
@@ -24,6 +26,14 @@ export default class Calculator extends React.Component {
       finalAmount: '0',
       amtAtRetire: '0'
     }
+
+    //slider style
+    this.muiTheme = getMuiTheme({
+      slider: {
+        selectionColor: '#2266bb',
+        handleFillColor: '#2266bb'
+      },
+    });
 
     this.handleCurrentAge = this.handleCurrentAge.bind(this)
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
@@ -147,7 +157,7 @@ export default class Calculator extends React.Component {
       <div>
         <Chart { ...props } />
         <Col id='form'>
-          <MuiThemeProvider>
+          <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />
           </MuiThemeProvider>
         </Col>
