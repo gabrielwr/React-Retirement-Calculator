@@ -28,8 +28,8 @@ export default class DynamicChart extends React.Component {
     const state = props.state
     const newArr = props.graphData
     return (
-      <div id="chartContainer">
-         <div id="finalSavings">
+      <div className="chartContainer">
+         <div className="finalSavings">
             <h4>Savings By Retirement</h4>
             <h4>{`$${this.formatMoney(+state.amtAtRetire, 0, '.', ',')}`}</h4>
             <h4>Savings at end</h4>
@@ -44,15 +44,6 @@ export default class DynamicChart extends React.Component {
                   padding={{ top: 20 }}
                   interval={0}
                   tick={ <CustomXAxis {...state}/> }
-                  tickFormatter={ age => {
-                    if(age === state.currentAge) {
-                      return `Current Age ${state.currentAge}`
-                    } else if(age === state.retireAge) {
-                      return `Retirement ${state.retireAge}`
-                    } else if ( age === state.lifespanAge) {
-                      return `Age ${state.lifespanAge}`
-                    }
-                  }}
                   dataKey='age'
                 />
                 <YAxis

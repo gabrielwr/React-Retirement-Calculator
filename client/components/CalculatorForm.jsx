@@ -14,7 +14,7 @@ export default class CalculatorForm extends React.Component {
     const state = props.state
     const handle = props.handleChange
     return (
-      <Row>
+      <div className="formContainer">
         <Col>
           <span>Age: </span>
           <span>{ +state.currentAge }</span>
@@ -112,7 +112,7 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.changeHandler('currentSavings') }
           />
         </Col>
-      </Row>
+      </div>
     )
   }
 }

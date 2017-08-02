@@ -6,28 +6,36 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#finalSavings {
+.finalSavings {
     font-family: 'Open Sans', sans-serif;
     position: absolute;
     left: 20%;
     text-align: -webkit-center;
 }
 
-#chartContainer {
+.chartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 496px;
+    position: relative;
+}
+
+#savingsContainer {
     font-family: 'Open Sans', sans-serif;
     margin-right: auto;
     margin-left: auto;
     margin-top: 10px;
-    width: 80%;
     position: relative;
     left: -12px;
     height: 496px;
 }
 
 #form {
+    display: flex;
+    justify-content: center;
     font-family: 'Open Sans', sans-serif;
     width: 50%;
-    margin: 0 auto;
 }
 
 #footer {
@@ -38,6 +46,11 @@
     left: 0;
     width: 100%;
     padding: 1rem;
+}
+
+.formContainer {
+    display: flex;
+
 }
 
 footer .footer-copyright {
