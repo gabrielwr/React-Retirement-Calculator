@@ -30,7 +30,7 @@ export default class DynamicChart extends React.Component {
       <div className="chartContainer">
          <div className="finalSavings">
             <h4>Savings By Retirement</h4>
-            <h4>{`$${this.formatMoney(+state.amtAtRetire, 0, '.', ',')}`}</h4>
+            <h4>{`$${this.formatMoney(+state.retireAmt, 0, '.', ',')}`}</h4>
             <h4>Savings at end</h4>
             <h4>{`$${this.formatMoney(+state.finalAmount, 0, '.', ',')}`}</h4>
         </div>

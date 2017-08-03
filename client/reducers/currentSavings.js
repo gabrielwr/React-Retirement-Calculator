@@ -1,20 +1,21 @@
 
 /* ------------   INITIAL STATE     ------------------ */
 const initialState = {
-  graphData: []
+  currentSavings: '0'
 }
+
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_GRAPH_DATA = 'ADD_GRAPH_DATA';
+const ADD_CURRENT_SAVINGS = 'ADD_CURRENT_SAVINGS';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addGraphData = graphData => ({ type: ADD_GRAPH_DATA, graphData });
+export const currentSavings = currentSavings => ({ type: ADD_CURRENT_SAVINGS, currentSavings });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_GRAPH_DATA:
-      newState.graphData = action.graphData
+    case ADD_CURRENT_SAVINGS:
+      newState.currentSavings = action.currentSavings
       break;
     default:
       return state

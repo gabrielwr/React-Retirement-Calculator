@@ -1,20 +1,21 @@
 
 /* ------------   INITIAL STATE     ------------------ */
 const initialState = {
-  graphData: []
+  retireSpending: '40000'
 }
+
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_GRAPH_DATA = 'ADD_GRAPH_DATA';
+const ADD_RETIRE_SPENDING = 'ADD_RETIRE_SPENDING';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addGraphData = graphData => ({ type: ADD_GRAPH_DATA, graphData });
+export const retireSpending = retireSpending => ({ type: ADD_RETIRE_SPENDING, retireSpending });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_GRAPH_DATA:
-      newState.graphData = action.graphData
+    case ADD_RETIRE_SPENDING:
+      newState.retireSpending = action.retireSpending
       break;
     default:
       return state
