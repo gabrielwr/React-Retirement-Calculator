@@ -24,7 +24,7 @@ export default class Calculator extends React.Component {
       currentSavings: '0',
       graphData: [],
       finalAmount: '0',
-      reitreAmt: '0'
+      retireAmt: '0'
     }
 
     //slider style
@@ -66,7 +66,7 @@ export default class Calculator extends React.Component {
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.setState({
-          reitreAmt: accumulatedSavings
+          retireAmt: accumulatedSavings
         })
       }
       if(!retiredBool) {
