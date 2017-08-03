@@ -1,18 +1,15 @@
 //framework imports
 import React from 'react'
-import { connect } from 'react-redux';
 import { Button, Col, Row } from 'react-materialize'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 //component imports
 import CalculatorForm from './CalculatorForm'
 import Chart from './Chart.jsx'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-//reducer imports
-import { addGraphData } from '../reducers/graphData'
-import store from '../store'
 
-export class Calculator extends React.Component {
+export default class Calculator extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -30,26 +27,25 @@ export class Calculator extends React.Component {
       amtAtRetire: '0'
     }
 
+    //slider style
+    this.muiTheme = getMuiTheme({
+      slider: {
+        selectionColor: '#2266bb',
+        handleFillColor: '#2266bb'
+      },
+    });
+
     this.handleCurrentAge = this.handleCurrentAge.bind(this)
     this.handleRetirementAge = this.handleRetirementAge.bind(this)
     this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
-    this.handleSalary = this.handleSalary.bind(this)
-    // this.handleSalaryIncrease = this.handleSalaryIncrease.bind(this)
-    this.handleSavings = this.handleSavings.bind(this)
-    this.handleRetirementSpending = this.handleRetirementSpending.bind(this)
-    this.handleInvestmentReturn = this.handleInvestmentReturn.bind(this)
-    this.handleCurrentSavings = this.handleCurrentSavings.bind(this)
+    this.changeHandler = this.changeHandler.bind(this)
   }
 
-  componentDidMount(){
-    //better way to do this?
-    const firstScenarioArr = this.computeData()
-    store.dispatch(addGraphData(firstScenarioArr))
+  componentWillMount(){
+    this.computeData()
   }
 
   computeData() {
-
     const state = {} = this.state
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
@@ -59,15 +55,14 @@ export class Calculator extends React.Component {
     const retireSpending = +state.retireSpending
     let accumulatedSavings = +state.currentSavings
     let retiredBool = false
-    let arrOfData = [];
+    let graphData = [];
 
     for(let i = 0; i <= yearsToEnd; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
-      arrOfData.push({
+      graphData.push({
         savings: accumulatedSavings,
-        age: `${currentAge}`,
+        age: `${currentAge++}`,
       })
-      currentAge += 1;
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.setState({
@@ -81,25 +76,23 @@ export class Calculator extends React.Component {
       }
     }
 
+    //sync dispatch to store
+    this.props.dispatchGraph(graphData)
+    // localStorage.setItem('state', JSON.stringify(this.state))
     this.setState({
       finalAmount: accumulatedSavings,
-      graphData: arrOfData
-    }, () => {
-      store.dispatch(addGraphData(arrOfData))
+      graphData
     })
-    //this is a workaround only for the componentdidMount logic
-    // try to figure out a diff way?
-    return arrOfData
+
   }
 
   handleCurrentAge(evt, age) {
-    console.log('evt', evt)
     if(age >= +this.state.retireAge) {
       console.error(`age can't be greater than retire age`)
       //you have to change retirement age!
       this.setState({
         currentAge: `${age}`,
-        retireAge: `${age + 1}`
+        retireAge: `${++age}`
       }, () => this.computeData())
     } else {
       this.setState({
@@ -114,7 +107,7 @@ export class Calculator extends React.Component {
       this.setState({
         //this might produce a bug, keep an eye out
         retireAge: `${retireAge}`,
-        currentAge: `${retireAge - 1}`
+        currentAge: `${--retireAge}`
       }, () => this.computeData())
     } else {
       this.setState({
@@ -127,7 +120,7 @@ export class Calculator extends React.Component {
     if(ageAtDeath < +this.state.currentAge){
       this.setState({
         lifespanAge: `${ageAtDeath}`,
-        currentAge: `${ageAtDeath-1}`
+        currentAge: `${ageAtDeath}`
       }, () => {
         this.computeData()
       })
@@ -140,31 +133,12 @@ export class Calculator extends React.Component {
     }
   }
 
-  handleCurrentSavings(evt, currentSavings) {
-    this.setState({
-      currentSavings,
-    }, () => this.computeData() )
-  }
-
-  handleSalary(evt, salary) {
-    this.setState({
-      salary
-    }, () => this.computeData())
-  }
-  handleSavings(evt, savings) {
-    this.setState({
-      savings
-    }, () => this.computeData())
-  }
-  handleRetirementSpending(evt, retireSpending ) {
-    this.setState({
-      retireSpending
-    }, () => this.computeData())
-  }
-  handleInvestmentReturn(evt, marketReturn) {
-    this.setState({
-      marketReturn
-    }, () => this.computeData())
+  changeHandler(keyName) {
+    return (evt, updatedValue) => {
+      this.setState({
+        [keyName]: updatedValue
+      }, () => this.computeData() )
+    }
   }
 
   render() {
@@ -173,36 +147,22 @@ export class Calculator extends React.Component {
         handleCurrentAge: this.handleCurrentAge,
         handleRetirementAge: this.handleRetirementAge,
         handleLifespanAge: this.handleLifespanAge,
-        handleCurrentSavings: this.handleCurrentSavings,
-        handleSalary: this.handleSalary,
-        handleSavings: this.handleSavings,
-        handleRetirementSpending: this.handleRetirementSpending,
-        handleInvestmentReturn: this.handleInvestmentReturn,
+        changeHandler: this.changeHandler
       },
       state: {...this.state},
       graphData: this.props.graphData.graphData
     }
 
-    //need to connect calculator form and make container since will pass info to rechart
     return (
       <div>
-        <Row>
-          <Chart { ...props } />
-          <MuiThemeProvider>
+        <Chart { ...props } />
+        <Col id='form'>
+          <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />
           </MuiThemeProvider>
-        </Row>
+        </Col>
       </div>
     )
   }
 }
-
-const mapStateToProps = state => ({
-  graphData: state.graphData
-})
-
-export default connect(
-  mapStateToProps,
-  null
-)( Calculator );
 

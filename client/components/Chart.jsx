@@ -1,5 +1,6 @@
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 import React from 'react'
+import CustomXAxis from './CustomizedXAxis'
 
 
 export default class DynamicChart extends React.Component {
@@ -39,24 +40,36 @@ export default class DynamicChart extends React.Component {
                 data={ newArr }
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
                 <XAxis
+                  margin={{bottom: 100}}
+                  padding={{ top: 20 }}
                   interval={0}
+                  tick={ <CustomXAxis {...state}/> }
+                  tickFormatter={ age => {
+                    if(age === state.currentAge) {
+                      return `Current Age ${state.currentAge}`
+                    } else if(age === state.retireAge) {
+                      return `Retirement ${state.retireAge}`
+                    } else if ( age === state.lifespanAge) {
+                      return `Age ${state.lifespanAge}`
+                    }
+                  }}
                   dataKey='age'
                 />
                 <YAxis
-                  tickFormatter={money => '$' + this.formatMoney(+money, 0, '.', ',')}
+                  tickFormatter={ money => '$' + this.formatMoney(+money, 0, '.', ',')}
                    dataKey='savings'
                 />
                 <Area
                   type="monotone"
                   dataKey="savings"
-                  stroke='#77C9D4'
-                  fill='#77C9D4'
+                  stroke='rgb(107,174,214)'
+                  fill='rgb(107,174,214)'
                 />
                 <Tooltip
                   label={ 'savings' }
                   labelFormatter={(age) => (`Age: ${age}`)}
                   formatter={(money) => (`$${this.formatMoney(+money, 0, '.', ',')}`)}/>
-                 <CartesianGrid strokeDasharray="1 1" />
+                 {/* <CartesianGrid strokeDasharray="1 1" /> */}
             </AreaChart>
           </ResponsiveContainer>
       </div>

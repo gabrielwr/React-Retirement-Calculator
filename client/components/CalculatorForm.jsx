@@ -14,8 +14,8 @@ export default class CalculatorForm extends React.Component {
     const state = props.state
     const handle = props.handleChange
     return (
-      <Col>
-        <Row>
+      <Row>
+        <Col>
           <span>Age: </span>
           <span>{ +state.currentAge }</span>
           <Slider
@@ -47,20 +47,20 @@ export default class CalculatorForm extends React.Component {
             value={ +state.lifespanAge }
             onChange={ handle.handleLifespanAge }
           />
-        </Row>
-        <Row>
+        </Col>
+        <Col>
           <span>Salary: </span>
-          <span>{ +state.salary }</span>
+          <span>${ +state.salary }</span>
           <Slider
             min={ 0 }
-            max={ 1000000 }
-            step={ 1 }
+            max={ 300000 }
+            step={ 1000 }
             defaultValue={ 50000 }
             value={ +state.salary }
-            onChange={ handle.handleSalary }
+            onChange={ handle.changeHandler('salary') }
           />
-          {/* <span>Salary Increase / Year: </span>
-          <span>{ +state.salaryIncrease }</span>
+           <span>Salary Increase / Year:</span>
+          <span> { +state.salaryIncrease }%</span>
           <Slider
             min={ 0 }
             max={ 10 }
@@ -68,54 +68,51 @@ export default class CalculatorForm extends React.Component {
             defaultValue={ 3 }
             value={ +state.salaryIncrease }
             onChange={ handle.handleSalaryIncrease }
-          /> */}
+          />
           <span>Retirement Spending: </span>
-          <span>{ +state.retireSpending }</span>
+          <span>${ +state.retireSpending }</span>
           <Slider
             min={ 0 }
-            max={ 500000 }
-            step={ 1 }
+            max={ 300000 }
+            step={ 1000 }
             defaultValue={ 40000 }
             value={ +state.retireSpending }
-            onChange={ handle.handleRetirementSpending }
+            onChange={ handle.changeHandler('retireSpending') }
           />
-          <span>Investment Return: </span>
-          <span>{ +state.marketReturn }</span>
+        </Col>
+        <Col>
+          <span>Investment Return:</span>
+          <span> { +state.marketReturn }%</span>
           <Slider
             min={ 0 }
             max={ 20 }
             step={ 1 }
             defaultValue={ 4 }
             value={ +state.marketReturn }
-            onChange={ handle.handleInvestmentReturn }
+            onChange={ handle.changeHandler('marketReturn') }
           />
-        </Row>
-        <Row>
-          <span>Savings Rate: </span>
-          <span>{ +state.savings }</span>
+          <span>Savings Rate:</span>
+          <span> { +state.savings }%</span>
           <Slider
-            name='Savings Rate'
             min={ 0 }
             max={ 100 }
             step={ 0.5 }
             defaultValue={ 3 }
             value={ +state.savings }
-            onChange={ handle.handleSavings }
+            onChange={ handle.changeHandler('savings') }
           />
-        </Row>
-        <Row>
-          <span>Current Savings: </span>
-          <span>{ +state.currentSavings }</span>
+          <span>Current Savings:</span>
+          <span> ${ +state.currentSavings }</span>
           <Slider
             min={ 0 }
             max={ 1000000 }
-            step={ 10 }
+            step={ 1000 }
             defaultValue={ 0 }
             value={ +state.currentSavings }
-            onChange={ handle.handleCurrentSavings }
+            onChange={ handle.changeHandler('currentSavings') }
           />
-        </Row>
-      </Col>
+        </Col>
+      </Row>
     )
   }
 }
