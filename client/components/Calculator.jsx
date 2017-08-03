@@ -109,6 +109,10 @@ export default class Calculator extends React.Component {
         retireAge: `${retireAge}`,
         currentAge: `${--retireAge}`
       }, () => this.computeData())
+    } else if(retireAge >= this.state.lifespanAge) {
+      this.setState({
+        retireAge: `${this.state.lifespanAge-1}`,
+      }, () => this.computeData())
     } else {
       this.setState({
         retireAge: `${retireAge}`,
