@@ -3,6 +3,8 @@ import Slider from 'material-ui/Slider';
 
 import { Row, Col } from 'react-materialize'
 
+import { formatMoney } from '../utils/formatMoney'
+
 
 export default class CalculatorForm extends React.Component {
   constructor() {
@@ -50,7 +52,7 @@ export default class CalculatorForm extends React.Component {
         </Col>
         <Col>
           <span>Salary: </span>
-          <span>${ +state.salary }</span>
+          <span>{ `$${formatMoney(+state.salary, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
@@ -70,7 +72,7 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.handleSalaryIncrease }
           />
           <span>Retirement Spending: </span>
-          <span>${ +state.retireSpending }</span>
+          <span>{ `$${formatMoney(+state.retireSpending, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
@@ -101,8 +103,8 @@ export default class CalculatorForm extends React.Component {
             value={ +state.savings }
             onChange={ handle.changeHandler('savings') }
           />
-          <span>Current Savings:</span>
-          <span> ${ +state.currentSavings }</span>
+          <span>Current Savings: </span>
+          <span>{ `$${formatMoney(+state.currentSavings, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 1000000 }
