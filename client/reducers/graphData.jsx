@@ -1,8 +1,7 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  graphData: []
-}
+const initialState = []
+
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_GRAPH_DATA = 'ADD_GRAPH_DATA';
 

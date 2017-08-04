@@ -1,8 +1,6 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  marketReturn: '4'
-}
+const initialState = '4'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_MARKET_RETURN = 'ADD_MARKET_RETURN';

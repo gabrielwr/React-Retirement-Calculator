@@ -12,22 +12,8 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 export default class Calculator extends React.Component {
   constructor() {
     super()
-    this.state = {
-      currentAge: '26',
-      retireAge: '65',
-      lifespanAge: '90',
-      salary: '50000',
-      salaryIncrease: '3',
-      retireSpending: '40000',
-      marketReturn: '4',
-      savings: '25',
-      currentSavings: '0',
-      graphData: [],
-      finalAmount: '0',
-      retireAmt: '0'
-    }
 
-    //slider style
+    //Sets the MaterialUI Slider Style
     this.muiTheme = getMuiTheme({
       slider: {
         selectionColor: '#2266bb',
@@ -46,18 +32,19 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    const state = {} = this.state
+    const state = {...this.props}
+    console.log('in compute', state)
     let currentAge = +state.currentAge
     const salarySaved = (state.salary / 100) * state.savings
     const salaryIncrease = +state.salaryIncrease
     const yearsToRetirement = +state.retireAge - currentAge
-    const yearsToEnd = +state.lifespanAge - currentAge
+    const yearsLeft = +state.lifespan - currentAge
     const retireSpending = +state.retireSpending
     let accumulatedSavings = +state.currentSavings
     let retiredBool = false
     let graphData = [];
 
-    for(let i = 0; i <= yearsToEnd; i++) {
+    for(let i = 0; i <= yearsLeft; i++) {
       accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
       graphData.push({
         savings: accumulatedSavings,
@@ -76,6 +63,7 @@ export default class Calculator extends React.Component {
       }
     }
 
+    console.log('graphdata', graphData)
     //sync dispatch to store
     this.props.dispatchGraph(graphData)
     // localStorage.setItem('state', JSON.stringify(this.state))
@@ -109,9 +97,9 @@ export default class Calculator extends React.Component {
         retireAge: `${retireAge}`,
         currentAge: `${--retireAge}`
       }, () => this.computeData())
-    } else if(retireAge >= this.state.lifespanAge) {
+    } else if(retireAge >= this.state.lifespan) {
       this.setState({
-        retireAge: `${this.state.lifespanAge-1}`,
+        retireAge: `${this.state.lifespan-1}`,
       }, () => this.computeData())
     } else {
       this.setState({
@@ -120,17 +108,17 @@ export default class Calculator extends React.Component {
     }
   }
 
-  handleLifespanAge(evt, ageAtDeath) {
-    if(ageAtDeath < +this.state.currentAge){
+  handleLifespanAge(evt, lifespan) {
+    if(lifespan < +this.state.currentAge){
       this.setState({
-        lifespanAge: `${ageAtDeath}`,
-        currentAge: `${ageAtDeath}`
+        lifespan: `${lifespan}`,
+        currentAge: `${lifespan}`
       }, () => {
         this.computeData()
       })
     } else {
       this.setState({
-        lifespanAge: `${ageAtDeath}`
+        lifespan: `${lifespan}`
       }, () => {
         this.computeData()
       })
@@ -153,7 +141,7 @@ export default class Calculator extends React.Component {
         handleLifespanAge: this.handleLifespanAge,
         changeHandler: this.changeHandler
       },
-      state: {...this.state},
+      state: {...this.props},
       graphData: this.props.graphData.graphData
     }
 

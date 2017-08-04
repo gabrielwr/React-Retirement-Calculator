@@ -38,13 +38,13 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.handleRetirementAge }
           />
           <span>Lifespan Age: </span>
-          <span>{ +state.lifespanAge }</span>
+          <span>{ +state.lifespan }</span>
           <Slider
             min={ 0 }
             max={ 130 }
             step={ 1 }
             defaultValue={ 90 }
-            value={ +state.lifespanAge }
+            value={ +state.lifespan }
             onChange={ handle.handleLifespanAge }
           />
         </Col>

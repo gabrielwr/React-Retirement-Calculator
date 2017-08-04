@@ -1,8 +1,6 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  savings: '26'
-}
+const initialState = '0'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_SAVINGS = 'ADD_SAVINGS';

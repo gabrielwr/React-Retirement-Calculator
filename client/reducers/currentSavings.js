@@ -1,8 +1,6 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  currentSavings: '0'
-}
+const initialState = '0'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_CURRENT_SAVINGS = 'ADD_CURRENT_SAVINGS';

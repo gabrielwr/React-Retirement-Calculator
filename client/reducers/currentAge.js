@@ -1,12 +1,9 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  currentAge: '26'
-}
+const initialState = '26'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_CURRENT_AGE = 'ADD_CURRENT_AGE';
-
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
 export const addCurrentAge = currentAge => ({ type: ADD_CURRENT_AGE, currentAge });

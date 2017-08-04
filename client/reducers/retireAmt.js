@@ -1,8 +1,6 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  retireAmt: '0'
-}
+const initialState = '0'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_RETIRE_AMT = 'ADD_RETIRE_AMT';

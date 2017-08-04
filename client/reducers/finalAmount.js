@@ -1,8 +1,7 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  finalAmount: '0'
-}
+const initialState = '0'
+
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_FINAL_AMOUNT = 'ADD_FINAL_AMOUNT';

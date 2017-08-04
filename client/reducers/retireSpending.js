@@ -1,8 +1,6 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = {
-  retireSpending: '40000'
-}
+const initialState = '40000'
 
 /* -----------------    ACTION TYPES     ------------------ */
 const ADD_RETIRE_SPENDING = 'ADD_RETIRE_SPENDING';

@@ -6,8 +6,21 @@ import { addGraphData as addGraph } from '../reducers/graphData'
 
 import Calculator from '../components/Calculator'
 
+
+//currentAge: state.currentAge,
+  // currentSavings: state.currentSavings,
+  // finalAmount: state.finalAmount,
+  // graphData: state.graphData,
+  // lifespan: state.lifespan,
+  // marketReturn: state.marketReturn,
+  // retireAmt: state.retireAmt,
+  // retireSpending: state.retireSpending,
+  // salary: state.salary,
+  // salaryIncrease: state.salaryIncrease,
+  // savings: state.savings
+
 const mapState = state => ({
-  graphData: state.graphData
+  ...state
 })
 
 const mapDispatch = dispatch => ({
