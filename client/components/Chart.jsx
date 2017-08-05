@@ -8,15 +8,11 @@ import { formatMoney } from '../utils/formatMoney'
 export default class DynamicChart extends React.Component {
   constructor(){
     super()
-    this.state = {
-      formattedData: []
-    }
   }
 
   render() {
-    const props = {} = this.props
-    const state = props.state
-    const newArr = props.graphData
+    const state = {} = this.props
+    const newArr = state.graphData
     return (
       <div className="chartContainer">
          <div className="finalSavings">
