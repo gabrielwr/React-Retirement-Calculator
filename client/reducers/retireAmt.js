@@ -10,7 +10,6 @@ export const addRetireAmt = retireAmt => ({ type: ADD_RETIRE_AMT, retireAmt });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  console.log('got to retireAmt reducer', action)
   switch( action.type ) {
     case ADD_RETIRE_AMT:
       return action.retireAmt

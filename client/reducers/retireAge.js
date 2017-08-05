@@ -1,20 +1,18 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = '20'
+const initialState = '65'
 
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_SAVINGS = 'ADD_SAVINGS';
+const ADD_RETIRE_AGE = 'ADD_RETIRE_AGE';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addSavings = savings => ({ type: ADD_SAVINGS, savings });
+export const addRetireAge = retireAge => ({ type: ADD_RETIRE_AGE, retireAge });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_SAVINGS:
-      return action.savings
-      break;
+    case ADD_RETIRE_AGE:
+      return action.retireAge
     default:
       return state
   }

@@ -11,6 +11,7 @@ const rootReducer = combineReducers({
   graphData: require( './graphData' ).default,
   lifespan: require( './lifespan' ).default,
   marketReturn: require( './marketReturn' ).default,
+  retireAge: require( './retireAge' ).default,
   retireAmt: require( './retireAmt' ).default,
   retireSpending: require( './retireSpending' ).default,
   salary: require( './salary' ).default,

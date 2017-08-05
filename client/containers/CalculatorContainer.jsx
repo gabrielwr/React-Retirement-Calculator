@@ -10,6 +10,7 @@ import { addFinalAmt } from '../reducers/finalAmt'
 import { addGraphData as addGraph } from '../reducers/graphData'
 import { addLifespan } from '../reducers/lifespan'
 import { addMarketReturn } from '../reducers/marketReturn'
+import { addRetireAge } from '../reducers/retireAge'
 import { addRetireAmt } from '../reducers/retireAmt'
 import { addRetireSpending } from '../reducers/retireSpending'
 import { addSalary } from '../reducers/salary'
@@ -33,6 +34,7 @@ const mapDispatch = {
   addGraph,
   addLifespan,
   addMarketReturn,
+  addRetireAge,
   addRetireAmt,
   addRetireSpending,
   addSalary,

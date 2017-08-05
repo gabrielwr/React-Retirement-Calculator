@@ -38,8 +38,8 @@ export default class Calculator extends React.Component {
     const salarySaved = Math.floor((+state.salary / 100) * +state.savings)
     const salaryIncrease = +state.salaryIncrease
     const yearsToRetirement = +state.retireAge - currentAge
+    console.log(yearsToRetirement)
     const yearsLeft = +state.lifespan - currentAge
-    console.log('yearsLeft', yearsLeft)
     const retireSpending = +state.retireSpending
     let accumulatedSavings = +state.currentSavings
     let retiredBool = false
