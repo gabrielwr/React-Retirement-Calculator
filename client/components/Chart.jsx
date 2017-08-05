@@ -4,6 +4,8 @@ import CustomXAxis from './CustomizedXAxis'
 
 import { formatMoney } from '../utils/formatMoney'
 
+import BarChart from './BarChart'
+
 
 export default class DynamicChart extends React.Component {
   constructor(){
@@ -11,17 +13,20 @@ export default class DynamicChart extends React.Component {
   }
 
   render() {
-    const state = {} = this.props
-    const newArr = state.graphData
+    const newArr = this.props.graphData
+    const barArr = [{
+      retire: this.props.retireAmt,
+      end: this.props.finalAmount
+    }]
     return (
       <div className="chartContainer">
-         <div className="finalSavings">
+         {/* <div className="finalSavings">
             <h4>Savings By Retirement</h4>
-            <h4>{`$${formatMoney(+state.retireAmt, 0)}`}</h4>
+            <h4>{`$${formatMoney(+this.props.retireAmt, 0)}`}</h4>
             <h4>Savings at end</h4>
-            <h4>{`$${formatMoney(+state.finalAmount, 0)}`}</h4>
-        </div>
-           <ResponsiveContainer>
+            <h4>{`$${formatMoney(+this.props.finalAmount, 0)}`}</h4>
+        </div> */}
+           <ResponsiveContainer width={'75%'} height={'90%'}>
             <AreaChart
                 data={ newArr }
                 margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -29,7 +34,7 @@ export default class DynamicChart extends React.Component {
                   margin={{bottom: 100}}
                   padding={{ top: 20 }}
                   interval={0}
-                  tick={ <CustomXAxis {...state}/> }
+                  tick={ <CustomXAxis {...this.props}/> }
                   dataKey='age'
                 />
                 <YAxis
@@ -39,8 +44,8 @@ export default class DynamicChart extends React.Component {
                 <Area
                   type="monotone"
                   dataKey="savings"
-                  stroke='rgb(107,174,214)'
-                  fill='rgb(107,174,214)'
+                  stroke='#0074D9'
+                  fill='#0074D9'
                 />
                 <Tooltip
                   label={ 'savings' }
@@ -49,6 +54,7 @@ export default class DynamicChart extends React.Component {
                  {/* <CartesianGrid strokeDasharray="1 1" /> */}
             </AreaChart>
           </ResponsiveContainer>
+          <BarChart retireAmt={this.props.retireAmt} finalAmount={this.props.finalAmount} />
       </div>
     )
   }
