@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
 
+
+//should I use import here instead?
+//how is this working with require since I'm not
+// module.export-ing?
 const rootReducer = combineReducers({
-  auth: require( './auth' ).default,
   currentAge: require( './currentAge' ).default,
   currentSavings: require( './currentSavings' ).default,
   finalAmount: require( './finalAmount' ).default,
