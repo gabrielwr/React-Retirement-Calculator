@@ -33,7 +33,6 @@ export default class Calculator extends React.Component {
 
   computeData() {
     const state = {...this.props}
-    console.log('props', state)
     let currentAge = +state.currentAge
     const salarySaved = Math.floor((+state.salary / 100) * +state.savings)
     const salaryIncrease = +state.salaryIncrease
@@ -54,7 +53,6 @@ export default class Calculator extends React.Component {
       })
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
-        console.log('about to dispatch retireAMT')
         this.props.addRetireAmt(accumulatedSavings)
       }
       if(!retiredBool) {
@@ -69,61 +67,37 @@ export default class Calculator extends React.Component {
   }
 
   handleCurrentAge(evt, age) {
-    if(age >= +this.state.retireAge) {
-      console.error(`age can't be greater than retire age`)
-      //you have to change retirement age!
-      this.setState({
-        currentAge: `${age}`,
-        retireAge: `${++age}`
-      }, () => this.computeData())
-    } else {
-      this.setState({
-        currentAge: `${age}`
-      }, () => this.computeData())
+    if(age >= +this.props.retireAge) {
+      // console.error(`age can't be greater than retire age`)
+      this.props.addRetireAge(age + 1)
     }
+    this.props.addCurrentAge(age)
+    this.computeData()
   }
 
   handleRetirementAge(evt, retireAge) {
-    if(retireAge <= +this.state.currentAge) {
-      console.log('less than')
-      this.setState({
-        //this might produce a bug, keep an eye out
-        retireAge: `${retireAge}`,
-        currentAge: `${--retireAge}`
-      }, () => this.computeData())
-    } else if(retireAge >= this.state.lifespan) {
-      this.setState({
-        retireAge: `${this.state.lifespan-1}`,
-      }, () => this.computeData())
-    } else {
-      this.setState({
-        retireAge: `${retireAge}`,
-      }, () => this.computeData())
+    if(retireAge <= +this.props.currentAge) {
+      this.props.addCurrentAge(retireAge - 1)
+    } else if(retireAge >= this.props.lifespan) {
+      this.props.addRetireAge(this.props.lifespan-1)
     }
+    this.props.addRetireAge(retireAge)
+    this.computeData()
   }
 
   handleLifespanAge(evt, lifespan) {
-    if(lifespan < +this.state.currentAge){
-      this.setState({
-        lifespan: `${lifespan}`,
-        currentAge: `${lifespan}`
-      }, () => {
-        this.computeData()
-      })
-    } else {
-      this.setState({
-        lifespan: `${lifespan}`
-      }, () => {
-        this.computeData()
-      })
+    console.log('testing currage', this.props)
+    if(lifespan < +this.props.currentAge){
+      this.props.addCurrentAge(lifespan)
     }
+    this.props.addLifespan(lifespan)
+    this.computeData()
   }
 
   changeHandler(keyName) {
     return (evt, updatedValue) => {
-      this.setState({
-        [keyName]: updatedValue
-      }, () => this.computeData() )
+      this.props[`add${keyName}`](updatedValue)
+      this.computeData()
     }
   }
 
