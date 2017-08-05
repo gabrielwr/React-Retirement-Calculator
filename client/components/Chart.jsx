@@ -6,9 +6,6 @@ import CustomXAxis from './CustomizedXAxis'
 export default class DynamicChart extends React.Component {
   constructor(){
     super()
-    this.state = {
-      formattedData: []
-    }
   }
 
   //update this
@@ -23,9 +20,10 @@ export default class DynamicChart extends React.Component {
   }
 
   render() {
-    const props = {} = this.props
-    const state = props.state
-    const newArr = props.graphData
+    console.log('in chart', this.props)
+    const state = {} = this.props
+    console.log('state in chart', state)
+    const newArr = state.graphData.graphData
     return (
       <div className="chartContainer">
          <div className="finalSavings">

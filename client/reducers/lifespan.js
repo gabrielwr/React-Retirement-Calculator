@@ -9,13 +9,10 @@ export const addLifespan = lifespan => ({ type: ADD_LIFESPAN, lifespan });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_LIFESPAN:
-      newState.lifespan = action.lifespan
-      break;
+      return action.lifespan
     default:
       return state
   }
-  return newState
 }

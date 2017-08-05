@@ -13,10 +13,8 @@ export default ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_SALARY:
-      newState.salary = action.salary
-      break;
+      return action.salary
     default:
       return state
   }
-  return newState
 }

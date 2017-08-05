@@ -6,17 +6,14 @@ const initialState = '4'
 const ADD_MARKET_RETURN = 'ADD_MARKET_RETURN';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const marketReturn = marketReturn => ({ type: ADD_MARKET_RETURN, marketReturn });
+export const addMarketReturn = marketReturn => ({ type: ADD_MARKET_RETURN, marketReturn });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_MARKET_RETURN:
-      newState.marketReturn = action.marketReturn
-      break;
+      return action.marketReturn
     default:
       return state
   }
-  return newState
 }

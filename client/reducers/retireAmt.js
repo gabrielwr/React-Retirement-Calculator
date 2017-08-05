@@ -6,17 +6,15 @@ const initialState = '0'
 const ADD_RETIRE_AMT = 'ADD_RETIRE_AMT';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const retireAmt = retireAmt => ({ type: ADD_RETIRE_AMT, retireAmt });
+export const addRetireAmt = retireAmt => ({ type: ADD_RETIRE_AMT, retireAmt });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
+  console.log('got to retireAmt reducer', action)
   switch( action.type ) {
     case ADD_RETIRE_AMT:
-      newState.retireAmt = action.retireAmt
-      break;
+      return action.retireAmt
     default:
       return state
   }
-  return newState
 }

@@ -10,13 +10,10 @@ export const addGraphData = graphData => ({ type: ADD_GRAPH_DATA, graphData });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_GRAPH_DATA:
-      newState.graphData = action.graphData
-      break;
+      return action.graphData
     default:
       return state
   }
-  return newState
 }

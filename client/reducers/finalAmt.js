@@ -2,22 +2,18 @@
 /* ------------   INITIAL STATE     ------------------ */
 const initialState = '0'
 
-
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_FINAL_AMOUNT = 'ADD_FINAL_AMOUNT';
+const ADD_FINAL_AMT = 'ADD_FINAL_AMT';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const finalAmount = finalAmount => ({ type: ADD_FINAL_AMOUNT, finalAmount });
+export const addFinalAmt = finalAmount => ({ type: ADD_FINAL_AMT, finalAmount });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_FINAL_AMOUNT:
-      newState.finalAmount = action.finalAmount
-      break;
+    case ADD_FINAL_AMT:
+      return action.finalAmount
     default:
       return state
   }
-  return newState
 }

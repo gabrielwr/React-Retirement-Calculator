@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 //component imports
 import CalculatorForm from './CalculatorForm'
-import Chart from './Chart.jsx'
+import ChartContainer from '../containers/ChartContainer'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
@@ -33,28 +33,29 @@ export default class Calculator extends React.Component {
 
   computeData() {
     const state = {...this.props}
-    console.log('in compute', state)
+    console.log('props', state)
     let currentAge = +state.currentAge
-    const salarySaved = (state.salary / 100) * state.savings
+    const salarySaved = Math.floor((+state.salary / 100) * +state.savings)
     const salaryIncrease = +state.salaryIncrease
     const yearsToRetirement = +state.retireAge - currentAge
     const yearsLeft = +state.lifespan - currentAge
+    console.log('yearsLeft', yearsLeft)
     const retireSpending = +state.retireSpending
     let accumulatedSavings = +state.currentSavings
     let retiredBool = false
     let graphData = [];
 
     for(let i = 0; i <= yearsLeft; i++) {
-      accumulatedSavings += (accumulatedSavings/100) * state.marketReturn
+
+      accumulatedSavings += Math.floor((accumulatedSavings/100) * state.marketReturn)
       graphData.push({
         savings: accumulatedSavings,
         age: `${currentAge++}`,
       })
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
-        this.setState({
-          retireAmt: accumulatedSavings
-        })
+        console.log('about to dispatch retireAMT')
+        this.props.addRetireAmt(accumulatedSavings)
       }
       if(!retiredBool) {
         accumulatedSavings += salarySaved
@@ -62,16 +63,9 @@ export default class Calculator extends React.Component {
         accumulatedSavings -= retireSpending;
       }
     }
-
-    console.log('graphdata', graphData)
-    //sync dispatch to store
-    this.props.dispatchGraph(graphData)
-    // localStorage.setItem('state', JSON.stringify(this.state))
-    this.setState({
-      finalAmount: accumulatedSavings,
-      graphData
-    })
-
+    //dispatch to store
+    this.props.addGraph(graphData)
+    this.props.addFinalAmt(accumulatedSavings)
   }
 
   handleCurrentAge(evt, age) {
@@ -147,7 +141,7 @@ export default class Calculator extends React.Component {
 
     return (
       <div>
-        <Chart { ...props } />
+        <ChartContainer />
         <div id='form'>
           <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />

@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 const rootReducer = combineReducers({
   currentAge: require( './currentAge' ).default,
   currentSavings: require( './currentSavings' ).default,
-  finalAmount: require( './finalAmount' ).default,
+  finalAmount: require( './finalAmt' ).default,
   graphData: require( './graphData' ).default,
   lifespan: require( './lifespan' ).default,
   marketReturn: require( './marketReturn' ).default,
