@@ -8,7 +8,6 @@ import CalculatorForm from './CalculatorForm'
 import ChartContainer from '../containers/ChartContainer'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-
 export default class Calculator extends React.Component {
   constructor() {
     super()
