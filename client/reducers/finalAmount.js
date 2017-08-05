@@ -1,20 +1,21 @@
 
 /* ------------   INITIAL STATE     ------------------ */
 const initialState = {
-  graphData: []
+  finalAmount: '0'
 }
+
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_GRAPH_DATA = 'ADD_GRAPH_DATA';
+const ADD_FINAL_AMOUNT = 'ADD_FINAL_AMOUNT';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addGraphData = graphData => ({ type: ADD_GRAPH_DATA, graphData });
+export const finalAmount = finalAmount => ({ type: ADD_FINAL_AMOUNT, finalAmount });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_GRAPH_DATA:
-      newState.graphData = action.graphData
+    case ADD_FINAL_AMOUNT:
+      newState.finalAmount = action.finalAmount
       break;
     default:
       return state

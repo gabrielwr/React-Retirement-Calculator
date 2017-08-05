@@ -1,20 +1,21 @@
 
 /* ------------   INITIAL STATE     ------------------ */
 const initialState = {
-  graphData: []
+  salary: '50000'
 }
+
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_GRAPH_DATA = 'ADD_GRAPH_DATA';
+const ADD_SALARY = 'ADD_SALARY';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addGraphData = graphData => ({ type: ADD_GRAPH_DATA, graphData });
+export const addSalary = salary => ({ type: ADD_SALARY, salary });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
   const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_GRAPH_DATA:
-      newState.graphData = action.graphData
+    case ADD_SALARY:
+      newState.salary = action.salary
       break;
     default:
       return state

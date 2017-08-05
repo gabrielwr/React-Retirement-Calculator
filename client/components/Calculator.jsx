@@ -24,7 +24,7 @@ export default class Calculator extends React.Component {
       currentSavings: '0',
       graphData: [],
       finalAmount: '0',
-      amtAtRetire: '0'
+      retireAmt: '0'
     }
 
     //slider style
@@ -66,7 +66,7 @@ export default class Calculator extends React.Component {
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.setState({
-          amtAtRetire: accumulatedSavings
+          retireAmt: accumulatedSavings
         })
       }
       if(!retiredBool) {
@@ -108,6 +108,10 @@ export default class Calculator extends React.Component {
         //this might produce a bug, keep an eye out
         retireAge: `${retireAge}`,
         currentAge: `${--retireAge}`
+      }, () => this.computeData())
+    } else if(retireAge >= this.state.lifespanAge) {
+      this.setState({
+        retireAge: `${this.state.lifespanAge-1}`,
       }, () => this.computeData())
     } else {
       this.setState({
@@ -156,11 +160,11 @@ export default class Calculator extends React.Component {
     return (
       <div>
         <Chart { ...props } />
-        <Col id='form'>
+        <div id='form'>
           <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />
           </MuiThemeProvider>
-        </Col>
+        </div>
       </div>
     )
   }

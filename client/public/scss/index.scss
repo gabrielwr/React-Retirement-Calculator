@@ -6,31 +6,30 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-#finalSavings {
+.finalSavings {
     font-family: 'Open Sans', sans-serif;
     position: absolute;
     left: 20%;
     text-align: -webkit-center;
 }
 
-#chartContainer {
-    font-family: 'Open Sans', sans-serif;
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10px;
-    width: 80%;
-    position: relative;
-    left: -12px;
+.chartContainer {
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 496px;
+    // position: relative;
 }
 
 #form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     font-family: 'Open Sans', sans-serif;
-    width: 50%;
-    margin: 0 auto;
 }
 
-#footer {
+footer {
     background-color: "#2266bb";
     font-family: 'Open Sans', sans-serif;
     position: absolute;
@@ -40,6 +39,17 @@
     padding: 1rem;
 }
 
+.formContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
 footer .footer-copyright {
     background-color: transparent;
+}
+
+.formContainer .col {
+    padding: 1em;
 }
