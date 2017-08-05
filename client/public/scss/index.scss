@@ -1,32 +1,55 @@
 // can import these sass files straight into browser JS files
 // wepback will then build the scss into css that is usable on dom
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-#finalSavings {
+.nav {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.finalSavings {
+    font-family: 'Open Sans', sans-serif;
     position: absolute;
     left: 20%;
     text-align: -webkit-center;
 }
 
-#chartContainer {
-    margin-right: auto;
-    margin-left: auto;
-    margin-top: 10px;
-    width: 80%;
-    position: relative;
-    left: -12px;
+.chartContainer {
+    display: flex;
+    // flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: 496px;
+    // position: relative;
 }
 
 #form {
-    margin-right: auto;
-    margin-left: auto;
-    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
 }
 
-#footer {
-    // need to update this
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:60px;   /* Height of the footer */
+footer {
+    background-color: "#2266bb";
+    font-family: 'Open Sans', sans-serif;
+    position: absolute;
+    right: 0;
+    left: 0;
+    width: 100%;
+    padding: 1rem;
+}
+
+.formContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+footer .footer-copyright {
+    background-color: transparent;
+}
+
+.formContainer .col {
+    padding: 1em;
 }

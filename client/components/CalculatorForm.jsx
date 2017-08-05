@@ -3,6 +3,8 @@ import Slider from 'material-ui/Slider';
 
 import { Row, Col } from 'react-materialize'
 
+import { formatMoney } from '../utils/formatMoney'
+
 
 export default class CalculatorForm extends React.Component {
   constructor() {
@@ -14,12 +16,11 @@ export default class CalculatorForm extends React.Component {
     const state = props.state
     const handle = props.handleChange
     return (
-      <Row>
+      <div className="formContainer">
         <Col>
           <span>Age: </span>
           <span>{ +state.currentAge }</span>
           <Slider
-            name='Age'
             min={ 0 }
             max={ 129 }
             step={ 1 }
@@ -38,29 +39,29 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.handleRetirementAge }
           />
           <span>Lifespan Age: </span>
-          <span>{ +state.lifespanAge }</span>
+          <span>{ +state.lifespan }</span>
           <Slider
             min={ 0 }
             max={ 130 }
             step={ 1 }
             defaultValue={ 90 }
-            value={ +state.lifespanAge }
+            value={ +state.lifespan }
             onChange={ handle.handleLifespanAge }
           />
         </Col>
         <Col>
           <span>Salary: </span>
-          <span>{ +state.salary }</span>
+          <span>{ `$${formatMoney(+state.salary, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
             step={ 1000 }
             defaultValue={ 50000 }
             value={ +state.salary }
-            onChange={ handle.handleSalary }
+            onChange={ handle.changeHandler('Salary') }
           />
-           <span>Salary Increase / Year: </span>
-          <span>{ +state.salaryIncrease }</span>
+           <span>Salary Increase / Year:</span>
+          <span> { +state.salaryIncrease }%</span>
           <Slider
             min={ 0 }
             max={ 10 }
@@ -70,50 +71,49 @@ export default class CalculatorForm extends React.Component {
             onChange={ handle.handleSalaryIncrease }
           />
           <span>Retirement Spending: </span>
-          <span>{ +state.retireSpending }</span>
+          <span>{ `$${formatMoney(+state.retireSpending, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 300000 }
             step={ 1000 }
             defaultValue={ 40000 }
             value={ +state.retireSpending }
-            onChange={ handle.handleRetirementSpending }
+            onChange={ handle.changeHandler('RetireSpending') }
           />
         </Col>
         <Col>
-          <span>Investment Return: </span>
-          <span>{ +state.marketReturn }</span>
+          <span>Investment Return:</span>
+          <span> { +state.marketReturn }%</span>
           <Slider
             min={ 0 }
             max={ 20 }
             step={ 1 }
             defaultValue={ 4 }
             value={ +state.marketReturn }
-            onChange={ handle.handleInvestmentReturn }
+            onChange={ handle.changeHandler('MarketReturn') }
           />
-          <span>Savings Rate: </span>
-          <span>{ +state.savings }</span>
+          <span>Savings Rate:</span>
+          <span> { +state.savings }%</span>
           <Slider
-            name='Savings Rate'
             min={ 0 }
             max={ 100 }
             step={ 0.5 }
             defaultValue={ 3 }
             value={ +state.savings }
-            onChange={ handle.handleSavings }
+            onChange={ handle.changeHandler('Savings') }
           />
           <span>Current Savings: </span>
-          <span>{ +state.currentSavings }</span>
+          <span>{ `$${formatMoney(+state.currentSavings, 0)}` }</span>
           <Slider
             min={ 0 }
             max={ 1000000 }
             step={ 1000 }
             defaultValue={ 0 }
             value={ +state.currentSavings }
-            onChange={ handle.handleCurrentSavings }
+            onChange={ handle.changeHandler('CurrentSavings') }
           />
         </Col>
-      </Row>
+      </div>
     )
   }
 }
