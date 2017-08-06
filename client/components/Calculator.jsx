@@ -68,7 +68,7 @@ export default class Calculator extends React.Component {
   handleCurrentAge(evt, age) {
     if(age >= +this.props.retireAge) {
       // console.error(`age can't be greater than retire age`)
-      this.props.addRetireAge(`{age + 1}`)
+      this.props.addRetireAge(`${age + 1}`)
     }
     this.props.addCurrentAge(`${age}`)
     this.computeData()
