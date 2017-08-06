@@ -35,6 +35,7 @@ export default class DynamicChart extends React.Component {
                   padding={{ top: 20 }}
                   interval={0}
                   tick={ <CustomXAxis {...this.props}/> }
+
                   dataKey='age'
                 />
                 <YAxis
