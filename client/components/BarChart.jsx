@@ -30,7 +30,7 @@ export default class DynamicChart extends React.Component {
           labelFormatter={(amt) => (`Retire Amount ${amt}`)}
           formatter={(finalAmt) => (`$${formatMoney(+finalAmt, 0)}`)}
         />
-        <Legend />
+        <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
         <Bar dataKey="retireAmt" fill="#7FDBFF" />
         <Bar dataKey="endAmt" fill="#39CCCC" />
         </BarChart>
