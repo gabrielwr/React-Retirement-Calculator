@@ -58251,7 +58251,6 @@ var Calculator = function (_React$Component) {
       var salarySaved = Math.floor(+state.salary / 100 * +state.savings);
       var salaryIncrease = +state.salaryIncrease;
       var yearsToRetirement = +state.retireAge - currentAge;
-      console.log(yearsToRetirement);
       var yearsLeft = +state.lifespan - currentAge;
       var retireSpending = +state.retireSpending;
       var accumulatedSavings = +state.currentSavings;
@@ -58259,7 +58258,6 @@ var Calculator = function (_React$Component) {
       var graphData = [];
 
       for (var i = 0; i <= yearsLeft; i++) {
-
         accumulatedSavings += Math.floor(accumulatedSavings / 100 * state.marketReturn);
         graphData.push({
           savings: accumulatedSavings,
@@ -58267,7 +58265,7 @@ var Calculator = function (_React$Component) {
         });
         if (i >= yearsToRetirement && !retiredBool) {
           retiredBool = true;
-          this.props.addRetireAmt(accumulatedSavings);
+          this.props.addRetireAmt('' + accumulatedSavings);
         }
         if (!retiredBool) {
           accumulatedSavings += salarySaved;
@@ -58275,29 +58273,30 @@ var Calculator = function (_React$Component) {
           accumulatedSavings -= retireSpending;
         }
       }
+
       //dispatch to store
       this.props.addGraph(graphData);
-      this.props.addFinalAmt(accumulatedSavings);
+      this.props.addFinalAmt('' + accumulatedSavings);
     }
   }, {
     key: 'handleCurrentAge',
     value: function handleCurrentAge(evt, age) {
       if (age >= +this.props.retireAge) {
         // console.error(`age can't be greater than retire age`)
-        this.props.addRetireAge(age + 1);
+        this.props.addRetireAge('{age + 1}');
       }
-      this.props.addCurrentAge(age);
+      this.props.addCurrentAge('' + age);
       this.computeData();
     }
   }, {
     key: 'handleRetirementAge',
     value: function handleRetirementAge(evt, retireAge) {
       if (retireAge <= +this.props.currentAge) {
-        this.props.addCurrentAge(retireAge - 1);
+        this.props.addCurrentAge('' + (retireAge - 1));
       } else if (retireAge >= this.props.lifespan) {
-        this.props.addRetireAge(this.props.lifespan - 1);
+        this.props.addRetireAge('' + (this.props.lifespan - 1));
       }
-      this.props.addRetireAge(retireAge);
+      this.props.addRetireAge('' + retireAge);
       this.computeData();
     }
   }, {
@@ -58305,9 +58304,9 @@ var Calculator = function (_React$Component) {
     value: function handleLifespanAge(evt, lifespan) {
       console.log('testing currage', this.props);
       if (lifespan < +this.props.currentAge) {
-        this.props.addCurrentAge(lifespan);
+        this.props.addCurrentAge('' + lifespan);
       }
-      this.props.addLifespan(lifespan);
+      this.props.addLifespan('' + lifespan);
       this.computeData();
     }
   }, {
@@ -58316,7 +58315,7 @@ var Calculator = function (_React$Component) {
       var _this2 = this;
 
       return function (evt, updatedValue) {
-        _this2.props['add' + keyName](updatedValue);
+        _this2.props['add' + keyName]('' + updatedValue);
         _this2.computeData();
       };
     }
@@ -65944,6 +65943,7 @@ var DynamicChart = function (_React$Component) {
               padding: { top: 20 },
               interval: 0,
               tick: _react2.default.createElement(_CustomizedXAxis2.default, this.props),
+
               dataKey: 'age'
             }),
             _react2.default.createElement(_recharts.YAxis, {
@@ -80155,6 +80155,7 @@ var CustomizedXAxisTick = function CustomizedXAxisTick(_ref) {
       retireAge = _ref.retireAge,
       lifespan = _ref.lifespan;
 
+
   var xAxisMarker = null;
 
   if (payload.value === currentAge) {
@@ -80164,6 +80165,7 @@ var CustomizedXAxisTick = function CustomizedXAxisTick(_ref) {
   } else if (payload.value === lifespan) {
     xAxisMarker = "Age " + lifespan;
   }
+
   return _react2.default.createElement(
     "g",
     { transform: "translate(" + x + "," + y + ")" },
@@ -80172,8 +80174,7 @@ var CustomizedXAxisTick = function CustomizedXAxisTick(_ref) {
       {
         x: -30, y: 20,
         textAnchor: "start",
-        fill: "#666",
-        style: { paddingBottom: '100' }
+        fill: "#666"
       },
       xAxisMarker && xAxisMarker
     )
@@ -80224,10 +80225,11 @@ var DynamicChart = function (_React$Component) {
     key: 'render',
     value: function render() {
       var barArr = [{
-        retireAmt: this.props.retireAmt,
-        endAmt: this.props.finalAmount
+        retireAmt: +this.props.retireAmt,
+        endAmt: +this.props.finalAmount
       }];
 
+      console.log('barArr test', barArr);
       return _react2.default.createElement(
         _recharts.ResponsiveContainer,
         { width: '15%', height: '90%' },
