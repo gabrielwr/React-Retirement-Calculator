@@ -14,23 +14,33 @@ export default class DynamicChart extends React.Component {
       endAmt: +this.props.finalAmount
     }]
 
-    console.log('barArr test', barArr)
     return (
-      <ResponsiveContainer width={'15%'} height={'90%'}>
+      <ResponsiveContainer width={ '15%' } height={ '90%' }>
         <BarChart
+          barCategoryGap={ '10%' }
           data={ barArr }
-          margin={{top: 5, right: 30, left: 20, bottom: 5}}
+          margin={{ top: 5, right: 30, left: 20, bottom: 0 }}
         >
         <XAxis dataKey="name"/>
         <YAxis
-            tickFormatter={ money => '$' + formatMoney(+money, 0)}
+            tickFormatter={ money => '$' + formatMoney( +money, 0 ) }
         />
         {/* <CartesianGrid strokeDasharray="3 3"/> */}
         <Tooltip
-          labelFormatter={(amt) => (`Retire Amount ${amt}`)}
-          formatter={(finalAmt) => (`$${formatMoney(+finalAmt, 0)}`)}
+          labelFormatter={ amt => (`Retire Amount ${amt}`) }
+          formatter={ finalAmt => (`$${formatMoney( +finalAmt, 0 )}`) }
         />
-        <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
+        <Legend
+          width={'75%'}
+          wrapperStyle={{
+            bottom: 0,
+            right: 0,
+            backgroundColor: '#f5f5f5',
+            border: '1px solid #d5d5d5',
+            borderRadius: 3,
+            lineHeight: '40px'
+          }}
+        />
         <Bar dataKey="retireAmt" fill="#7FDBFF" />
         <Bar dataKey="endAmt" fill="#39CCCC" />
         </BarChart>
