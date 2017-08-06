@@ -10,10 +10,11 @@ export default class DynamicChart extends React.Component {
 
   render() {
     const barArr = [{
-      retireAmt: this.props.retireAmt,
-      endAmt: this.props.finalAmount
+      retireAmt: +this.props.retireAmt,
+      endAmt: +this.props.finalAmount
     }]
 
+    console.log('barArr test', barArr)
     return (
       <ResponsiveContainer width={'15%'} height={'90%'}>
         <BarChart
