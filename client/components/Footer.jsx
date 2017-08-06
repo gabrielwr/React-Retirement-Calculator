@@ -8,9 +8,15 @@ const Foot = props => (
     links={
       <ul>
         <p className="white-text"> More from me! </p>
-        <li><a className="grey-text text-lighten-3" href="http://linkedin.com/in/gabrielrowe">LinkedIn</a></li>
-        <li><a className="grey-text text-lighten-3" href="https://github.com/gabrielwr">GitHub</a></li>
-        <li><a className="grey-text text-lighten-3" href="http://linkedin.com/in/gabrielrowe">Email</a></li>
+        <a href="http://linkedin.com/in/gabrielrowe">
+          <i alt="LinkedIn Logo" className="fa fa-linkedin-square fa-2x icon" aria-hidden="true" ></i>
+        </a>
+        <a href="https://github.com/gabrielwr">
+          <i alt="GitHub Logo" className="fa fa-github fa-2x space-button icon" aria-hidden="true" ></i>
+        </a>
+        <a href="mailto:gabriel.wrowe@gmail.com">
+          <i alt="Email Logo" className="fa fa-envelope-o fa-2x space-button icon" aria-hidden="true" ></i>
+        </a>
       </ul>
     }
   >
