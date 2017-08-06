@@ -53946,7 +53946,7 @@ var _reactMaterialize = __webpack_require__(126);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Nav = function Nav(props) {
+var Nav = function Nav() {
   return _react2.default.createElement(
     _reactMaterialize.Navbar,
     { style: { backgroundColor: "#2266bb" }, brand: 'Figure out what you need', left: true },
@@ -80229,15 +80229,15 @@ var DynamicChart = function (_React$Component) {
         endAmt: +this.props.finalAmount
       }];
 
-      console.log('barArr test', barArr);
       return _react2.default.createElement(
         _recharts.ResponsiveContainer,
         { width: '15%', height: '90%' },
         _react2.default.createElement(
           _recharts.BarChart,
           {
+            barCategoryGap: '10%',
             data: barArr,
-            margin: { top: 5, right: 30, left: 20, bottom: 5 }
+            margin: { top: 5, right: 30, left: 20, bottom: 0 }
           },
           _react2.default.createElement(_recharts.XAxis, { dataKey: 'name' }),
           _react2.default.createElement(_recharts.YAxis, {
@@ -80253,7 +80253,17 @@ var DynamicChart = function (_React$Component) {
               return '$' + (0, _formatMoney.formatMoney)(+finalAmt, 0);
             }
           }),
-          _react2.default.createElement(_recharts.Legend, null),
+          _react2.default.createElement(_recharts.Legend, {
+            width: '75%',
+            wrapperStyle: {
+              bottom: 0,
+              right: 0,
+              backgroundColor: '#f5f5f5',
+              border: '1px solid #d5d5d5',
+              borderRadius: 3,
+              lineHeight: '40px'
+            }
+          }),
           _react2.default.createElement(_recharts.Bar, { dataKey: 'retireAmt', fill: '#7FDBFF' }),
           _react2.default.createElement(_recharts.Bar, { dataKey: 'endAmt', fill: '#39CCCC' })
         )
