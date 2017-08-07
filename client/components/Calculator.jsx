@@ -34,7 +34,7 @@ export default class Calculator extends React.Component {
   computeData() {
     const state = {...this.props}
     let currentAge = +state.currentAge
-    const salarySaved = Math.floor((+state.salary / 100) * +state.savings)
+    let salarySaved = Math.floor((+state.salary / 100) * +state.savings)
     const salaryIncrease = +state.salaryIncrease
     const yearsToRetirement = +state.retireAge - currentAge
     const yearsLeft = +state.lifespan - currentAge
@@ -58,6 +58,9 @@ export default class Calculator extends React.Component {
         savings: accumulatedSavings,
         age: `${currentAge++}`,
       })
+
+      //update via salaryIncrease
+      salarySaved += Math.floor((salarySaved/100) * salaryIncrease)
     }
 
     //dispatch to store
