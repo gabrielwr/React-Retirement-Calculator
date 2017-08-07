@@ -58014,58 +58014,47 @@ var Foot = function Foot(props) {
   return _react2.default.createElement(
     _reactMaterialize.Footer,
     {
+      copyrights: '\xA9 2017 Gabriel Rowe',
       style: { backgroundColor: "#2266bb" },
       links: _react2.default.createElement(
         'ul',
         null,
         _react2.default.createElement(
           'p',
-          null,
+          { className: 'white-text' },
           ' More from me! '
         ),
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            'a',
-            { className: 'grey-text text-lighten-3', href: 'http://linkedin.com/in/gabrielrowe' },
-            'LinkedIn'
-          )
+          'a',
+          { href: 'http://linkedin.com/in/gabrielrowe' },
+          _react2.default.createElement('i', { alt: 'LinkedIn Logo', className: 'fa fa-linkedin-square fa-2x icon', 'aria-hidden': 'true' })
         ),
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            'a',
-            { className: 'grey-text text-lighten-3', href: 'https://github.com/gabrielwr' },
-            'GitHub'
-          )
+          'a',
+          { href: 'https://github.com/gabrielwr' },
+          _react2.default.createElement('i', { alt: 'GitHub Logo', className: 'fa fa-github fa-2x space-button icon', 'aria-hidden': 'true' })
         ),
         _react2.default.createElement(
-          'li',
-          null,
-          _react2.default.createElement(
-            'a',
-            { className: 'grey-text text-lighten-3', href: '#!' },
-            'Link Placeholder'
-          )
+          'a',
+          { href: 'mailto:gabriel.wrowe@gmail.com' },
+          _react2.default.createElement('i', { alt: 'Email Logo', className: 'fa fa-envelope-o fa-2x space-button icon', 'aria-hidden': 'true' })
         )
       )
     },
     _react2.default.createElement(
       'h5',
       { className: 'white-text' },
-      'Footer Content'
-    ),
-    _react2.default.createElement(
-      'p',
-      { className: 'grey-text text-lighten-4' },
-      'You can use rows and columns here to organize your footer content.'
+      'Hey!'
     ),
     _react2.default.createElement(
       'p',
       { className: 'white-text' },
-      ' \xA9 2017 Gabriel Rowe'
+      'Thanks so much for coming to check this out!'
+    ),
+    _react2.default.createElement(
+      'p',
+      { className: 'white-text' },
+      'It\'s a fun little side project that is still very much a work in progress!'
     )
   );
 };
@@ -58259,10 +58248,6 @@ var Calculator = function (_React$Component) {
 
       for (var i = 0; i <= yearsLeft; i++) {
         accumulatedSavings += Math.floor(accumulatedSavings / 100 * state.marketReturn);
-        graphData.push({
-          savings: accumulatedSavings,
-          age: '' + currentAge++
-        });
         if (i >= yearsToRetirement && !retiredBool) {
           retiredBool = true;
           this.props.addRetireAmt('' + accumulatedSavings);
@@ -58272,11 +58257,15 @@ var Calculator = function (_React$Component) {
         } else {
           accumulatedSavings -= retireSpending;
         }
+        graphData.push({
+          savings: accumulatedSavings,
+          age: '' + currentAge++
+        });
       }
 
       //dispatch to store
-      this.props.addGraph(graphData);
       this.props.addFinalAmt('' + accumulatedSavings);
+      this.props.addGraph(graphData);
     }
   }, {
     key: 'handleCurrentAge',
@@ -80386,7 +80375,7 @@ exports = module.exports = __webpack_require__(1015)(undefined);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css?family=Open+Sans);", ""]);
 
 // module
-exports.push([module.i, ".nav {\n  font-family: 'Open Sans', sans-serif; }\n\n.chartContainer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 496px; }\n\n#form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  font-family: 'Open Sans', sans-serif; }\n\nfooter {\n  background-color: \"#2266bb\";\n  font-family: 'Open Sans', sans-serif;\n  position: absolute;\n  right: 0;\n  left: 0;\n  width: 100%;\n  padding: 1rem; }\n\n.formContainer {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  align-items: center; }\n\nfooter .footer-copyright {\n  background-color: transparent; }\n\n.formContainer .col {\n  padding: 1em; }\n", ""]);
+exports.push([module.i, ".nav {\n  font-family: 'Open Sans', sans-serif; }\n\n.chartContainer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 496px; }\n\n#form {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  font-family: 'Open Sans', sans-serif; }\n\nfooter {\n  background-color: \"#2266bb\";\n  font-family: 'Open Sans', sans-serif;\n  position: absolute;\n  right: 0;\n  left: 0;\n  width: 100%;\n  padding: 1rem; }\n\n.formContainer {\n  display: flex;\n  justify-content: center;\n  flex-direction: row;\n  align-items: center; }\n\nfooter .footer-copyright {\n  background-color: transparent; }\n\n.page-footer a {\n  color: white; }\n\n.icon {\n  background-color: #2266bb; }\n\n.space-button {\n  margin-left: 6%; }\n\n.formContainer .col {\n  padding: 1em; }\n", ""]);
 
 // exports
 

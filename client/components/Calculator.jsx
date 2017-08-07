@@ -44,10 +44,6 @@ export default class Calculator extends React.Component {
 
     for(let i = 0; i <= yearsLeft; i++) {
       accumulatedSavings += Math.floor((accumulatedSavings/100) * state.marketReturn)
-      graphData.push({
-        savings: accumulatedSavings,
-        age: `${currentAge++}`,
-      })
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.props.addRetireAmt(`${accumulatedSavings}`)
@@ -57,11 +53,15 @@ export default class Calculator extends React.Component {
       } else {
         accumulatedSavings -= retireSpending;
       }
+      graphData.push({
+        savings: accumulatedSavings,
+        age: `${currentAge++}`,
+      })
     }
 
     //dispatch to store
-    this.props.addGraph(graphData)
     this.props.addFinalAmt(`${accumulatedSavings}`)
+    this.props.addGraph(graphData)
   }
 
   handleCurrentAge(evt, age) {
