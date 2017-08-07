@@ -58261,6 +58261,9 @@ var Calculator = function (_React$Component) {
           savings: accumulatedSavings,
           age: '' + currentAge++
         });
+
+        //update via salaryIncrease
+        salarySaved += Math.floor(salarySaved / 100 * salaryIncrease);
       }
 
       //dispatch to store
@@ -63932,7 +63935,7 @@ var CalculatorForm = function (_React$Component) {
             step: 1,
             defaultValue: 3,
             value: +state.salaryIncrease,
-            onChange: handle.handleSalaryIncrease
+            onChange: handle.changeHandler('SalaryIncrease')
           }),
           _react2.default.createElement(
             'span',
