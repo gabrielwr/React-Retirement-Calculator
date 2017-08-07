@@ -58036,8 +58036,8 @@ var Foot = function Foot(props) {
         ),
         _react2.default.createElement(
           'a',
-          { href: 'mailto:gabriel.wrowe@gmail.com' },
-          _react2.default.createElement('i', { alt: 'Email Logo', className: 'fa fa-envelope-o fa-2x space-button icon', 'aria-hidden': 'true' })
+          { href: 'https://gabrielwr.github.io/' },
+          _react2.default.createElement('i', { alt: 'Portfolio Site', className: 'fa fa-file-pdf-o fa-2x space-button icon', 'aria-hidden': 'true' })
         )
       )
     },
@@ -58049,7 +58049,7 @@ var Foot = function Foot(props) {
     _react2.default.createElement(
       'p',
       { className: 'white-text' },
-      'Thanks so much for coming to check this out!'
+      'Thanks so much for coming to check this out.'
     ),
     _react2.default.createElement(
       'p',
