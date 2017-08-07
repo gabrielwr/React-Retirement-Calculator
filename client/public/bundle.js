@@ -58274,6 +58274,9 @@ var Calculator = function (_React$Component) {
         // console.error(`age can't be greater than retire age`)
         this.props.addRetireAge('' + (age + 1));
       }
+      if (age >= +this.props.lifespan) {
+        this.props.addLifespan('' + (age + 1));
+      }
       this.props.addCurrentAge('' + age);
       this.computeData();
     }
@@ -58291,9 +58294,8 @@ var Calculator = function (_React$Component) {
   }, {
     key: 'handleLifespanAge',
     value: function handleLifespanAge(evt, lifespan) {
-      console.log('testing currage', this.props);
-      if (lifespan < +this.props.currentAge) {
-        this.props.addCurrentAge('' + lifespan);
+      if (lifespan <= +this.props.currentAge) {
+        this.props.addCurrentAge('' + (lifespan - 1));
       }
       this.props.addLifespan('' + lifespan);
       this.computeData();
@@ -63883,7 +63885,7 @@ var CalculatorForm = function (_React$Component) {
             +state.lifespan
           ),
           _react2.default.createElement(_Slider2.default, {
-            min: 0,
+            min: 1,
             max: 130,
             step: 1,
             defaultValue: 90,
