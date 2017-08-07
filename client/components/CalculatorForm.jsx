@@ -68,7 +68,7 @@ export default class CalculatorForm extends React.Component {
             step={ 1 }
             defaultValue={ 3 }
             value={ +state.salaryIncrease }
-            onChange={ handle.handleSalaryIncrease }
+            onChange={ handle.changeHandler('SalaryIncrease') }
           />
           <span>Retirement Spending: </span>
           <span>{ `$${formatMoney(+state.retireSpending, 0)}` }</span>
