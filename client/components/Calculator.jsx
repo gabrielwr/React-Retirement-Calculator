@@ -70,6 +70,9 @@ export default class Calculator extends React.Component {
       // console.error(`age can't be greater than retire age`)
       this.props.addRetireAge(`${age + 1}`)
     }
+    if(age >= +this.props.lifespan) {
+      this.props.addLifespan(`${age + 1}`)
+    }
     this.props.addCurrentAge(`${age}`)
     this.computeData()
   }
@@ -85,9 +88,8 @@ export default class Calculator extends React.Component {
   }
 
   handleLifespanAge(evt, lifespan) {
-    console.log('testing currage', this.props)
-    if(lifespan < +this.props.currentAge){
-      this.props.addCurrentAge(`${lifespan}`)
+    if(lifespan <= +this.props.currentAge){
+      this.props.addCurrentAge(`${lifespan-1}`)
     }
     this.props.addLifespan(`${lifespan}`)
     this.computeData()
