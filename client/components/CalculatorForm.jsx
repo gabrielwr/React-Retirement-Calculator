@@ -41,7 +41,7 @@ export default class CalculatorForm extends React.Component {
           <span>Lifespan Age: </span>
           <span>{ +state.lifespan }</span>
           <Slider
-            min={ 0 }
+            min={ 1 }
             max={ 130 }
             step={ 1 }
             defaultValue={ 90 }
@@ -68,7 +68,7 @@ export default class CalculatorForm extends React.Component {
             step={ 1 }
             defaultValue={ 3 }
             value={ +state.salaryIncrease }
-            onChange={ handle.handleSalaryIncrease }
+            onChange={ handle.changeHandler('SalaryIncrease') }
           />
           <span>Retirement Spending: </span>
           <span>{ `$${formatMoney(+state.retireSpending, 0)}` }</span>
