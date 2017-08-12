@@ -9,7 +9,8 @@ import Root from './components/Root'
 import CalculatorContainer from './containers/CalculatorContainer'
 import NotFound  from './components/NotFound'
 
-import './public/scss/index.scss' //imports scss into browser files
+ //imports scss into browser files
+import './public/scss/index.scss'
 
 render(
   <Provider store={ store }>

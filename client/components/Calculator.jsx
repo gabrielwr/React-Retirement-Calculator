@@ -8,7 +8,6 @@ import CalculatorForm from './CalculatorForm'
 import ChartContainer from '../containers/ChartContainer'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-
 export default class Calculator extends React.Component {
   constructor() {
     super()
@@ -34,7 +33,7 @@ export default class Calculator extends React.Component {
   computeData() {
     const state = {...this.props}
     let currentAge = +state.currentAge
-    let salarySaved = Math.floor((+state.salary / 100) * +state.savings)
+    let salarySaved = Math.floor( +state.salary / 100 * +state.savings)
     const salaryIncrease = +state.salaryIncrease
     const yearsToRetirement = +state.retireAge - currentAge
     const yearsLeft = +state.lifespan - currentAge
@@ -44,7 +43,7 @@ export default class Calculator extends React.Component {
     let graphData = [];
 
     for(let i = 0; i <= yearsLeft; i++) {
-      accumulatedSavings += Math.floor((accumulatedSavings/100) * state.marketReturn)
+      accumulatedSavings += Math.floor(accumulatedSavings / 100 * state.marketReturn)
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
         this.props.addRetireAmt(`${accumulatedSavings}`)
@@ -60,7 +59,7 @@ export default class Calculator extends React.Component {
       })
 
       //update via salaryIncrease
-      salarySaved += Math.floor((salarySaved/100) * salaryIncrease)
+      salarySaved += Math.floor(salarySaved / 100 * salaryIncrease)
     }
 
     //dispatch to store
