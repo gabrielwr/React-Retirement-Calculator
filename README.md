@@ -1,5 +1,5 @@
-[![GitHub issues](https://img.shields.io/github/issues/gabrielwr/React-Retirement-Calculator.svg?style=flat-square)](https://github.com/gabrielwr/React-Retirement-Calculator/issues)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/gabrielwr/React-Retirement-Calculator.svg?style=flat-square)](https://github.com/gabrielwr/React-Retirement-Calculator/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/gabrielwr/React-Retirement-Calculator.svg)](https://github.com/gabrielwr/React-Retirement-Calculator/issues)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/gabrielwr/React-Retirement-Calculator.svg)](https://github.com/gabrielwr/React-Retirement-Calculator/pulls?q=is%3Apr+is%3Aclosed)
 
 # React Retirement Calculator
 
