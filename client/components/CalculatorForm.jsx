@@ -117,5 +117,3 @@ export default class CalculatorForm extends React.Component {
     )
   }
 }
-
-
