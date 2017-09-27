@@ -20,12 +20,6 @@ export default class DynamicChart extends React.Component {
     }]
     return (
       <div className="chartContainer">
-         {/* <div className="finalSavings">
-            <h4>Savings By Retirement</h4>
-            <h4>{`$${formatMoney(+this.props.retireAmt, 0)}`}</h4>
-            <h4>Savings at end</h4>
-            <h4>{`$${formatMoney(+this.props.finalAmount, 0)}`}</h4>
-        </div> */}
            <ResponsiveContainer width={'75%'} height={'90%'}>
             <AreaChart
                 data={ newArr }

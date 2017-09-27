@@ -27,20 +27,3 @@ const Foot = props => (
 )
 
 export default Foot
-
-//necessary updates
-  //     <p className= "footer"> More from me! </p>
-  //       <a href="linkedin_placehold">
-  //         <img
-
-  //           alt="LinkedIn Logo"
-  //         />
-  //       </a>
-  //       <a href="http://facebook.com/gabriel.roo2">
-  //         <img src="img/facebook-wrap.png" alt="Facebook Logo" className="social-icon"/>
-  //       </a>
-  //       <a href="https://github.com/gabrielwr">
-  //         <img src="img/git.png" alt= "Git Hub Logo" className = "social-icon"/>
-  //       </a>
-
-// <Image source={require('../public/img/linkedin.png')}/>

@@ -25,7 +25,6 @@ export default class DynamicChart extends React.Component {
         <YAxis
             tickFormatter={ money => '$' + formatMoney( +money, 0 ) }
         />
-        {/* <CartesianGrid strokeDasharray="3 3"/> */}
         <Tooltip
           labelFormatter={ amt => (`Retire Amount ${amt}`) }
           formatter={ finalAmt => (`$${formatMoney( +finalAmt, 0 )}`) }
@@ -48,6 +47,3 @@ export default class DynamicChart extends React.Component {
     )
   }
 }
-
-// BarChart style
-

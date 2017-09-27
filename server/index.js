@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const db = require('../db')
 
-//epxress Variables
+//express Variables
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -49,7 +49,7 @@ app.use((err, req, res, next) =>  {
   res.status(err.status || 500).send(err.message || 'Internal Server Error')
 })
 
-//note to self --> what is this for?
+//Sends index.html file to client on all get requests
 app.get('*', (req, res, next) => {
   res.sendFile(path.join(__dirname, '../client/public/index.html'));
 });

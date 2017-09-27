@@ -1,6 +1,10 @@
+[![GitHub issues](https://img.shields.io/github/issues/gabrielwr/React-Retirement-Calculator.svg)](https://github.com/gabrielwr/React-Retirement-Calculator/issues)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/gabrielwr/React-Retirement-Calculator.svg)](https://github.com/gabrielwr/React-Retirement-Calculator/pulls?q=is%3Apr+is%3Aclosed)
+
 # React Retirement Calculator
 
 Deployed link here: https://dynamic-retirement.herokuapp.com/ (give Heroku a bit to wake up!)
+
 
 React Retirement Calculator is a front end application using recharts.js to provide a dynamically updating graph and user experience.
 
