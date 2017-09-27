@@ -1,5 +1,4 @@
 
-//util to format money correctly
 export const formatMoney = (n, c = '.', d = ',', t) => {
   c = isNaN(c = Math.abs(c)) ? 2 : c
   d = d == undefined ? "." : d

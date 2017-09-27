@@ -31,7 +31,7 @@ export default class Calculator extends React.Component {
   }
 
   computeData() {
-    const state = {...this.props}
+    const state = { ...this.props }
     let currentAge = +state.currentAge
     let salarySaved = Math.floor( +state.salary / 100 * +state.savings)
     const salaryIncrease = +state.salaryIncrease
@@ -69,7 +69,6 @@ export default class Calculator extends React.Component {
 
   handleCurrentAge(evt, age) {
     if(age >= +this.props.retireAge) {
-      // console.error(`age can't be greater than retire age`)
       this.props.addRetireAge(`${age + 1}`)
     }
     if(age >= +this.props.lifespan) {
