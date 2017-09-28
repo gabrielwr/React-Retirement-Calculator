@@ -5,7 +5,7 @@ Deployed link here: https://dynamic-retirement.herokuapp.com/ (give Heroku a bit
 React Retirement Calculator is a front end application using recharts.js to provide a dynamically updating graph and user experience.
 
 ### Demo
-<img src='demo.gif' title='Video Walkthrough' alt='Video Walkthrough' />
+<img src='Demo1.gif' title='Video Walkthrough' alt='Video Walkthrough' />
 
 ## Table of Contents
 
