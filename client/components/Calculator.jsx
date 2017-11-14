@@ -8,9 +8,9 @@ import CalculatorForm from './CalculatorForm'
 import ChartContainer from '../containers/ChartContainer'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-export default class Calculator extends React.Component {
-  constructor() {
-    super()
+class Calculator extends React.Component {
+  constructor(props) {
+    super(props)
 
     //Sets the MaterialUI Slider Style
     this.muiTheme = getMuiTheme({
@@ -128,3 +128,4 @@ export default class Calculator extends React.Component {
   }
 }
 
+export default Calculator

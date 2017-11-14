@@ -6,7 +6,6 @@ import store from '../store'
 import Chart from '../components/Chart'
 
 const mapState = state => ({
-  //destructure state object
   ...state
 })
 
