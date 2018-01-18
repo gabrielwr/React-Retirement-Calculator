@@ -9,8 +9,6 @@ import Root from './components/Root'
 import CalculatorContainer from './containers/CalculatorContainer'
 import NotFound  from './components/NotFound'
 
- //imports scss into browser files
-import './public/scss/index.scss'
 
 render(
   <Provider store={ store }>
@@ -22,6 +20,6 @@ render(
       <Route path='*' component={ NotFound } />
     </Router>
   </Provider>,
-  document.getElementById('app')
+  document.getElementById('root')
 );
 
