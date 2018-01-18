@@ -2,13 +2,11 @@ import React from 'react'
 import Slider from 'material-ui/Slider';
 
 import { Row, Col } from 'react-materialize'
-
 import { formatMoney } from '../utils/formatMoney'
 
-
-export default class CalculatorForm extends React.Component {
-  constructor() {
-    super()
+class CalculatorForm extends React.Component {
+  constructor(props) {
+    super(props)
   }
 
   render() {
@@ -117,3 +115,5 @@ export default class CalculatorForm extends React.Component {
     )
   }
 }
+
+export default CalculatorForm

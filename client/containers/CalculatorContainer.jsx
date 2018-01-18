@@ -17,10 +17,7 @@ import { addSalary } from '../reducers/salary'
 import { addSalaryIncrease} from '../reducers/salaryIncrease'
 import { addSavings } from '../reducers/savings'
 
-
-
 import Calculator from '../components/Calculator'
-
 
 const mapState = state => ({
   //destructure state object
