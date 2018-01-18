@@ -4,7 +4,7 @@ const volleyball = require('volleyball')
 const routes = require('./routes.js')
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const db = require('../db')
+
 
 //express Variables
 const app = express();
@@ -30,17 +30,10 @@ app.use(volleyball)
 //routes:
 app.use('/api', routes)
 
-//database syncing
-db.sync()
-.then( () => {
-  app.listen(PORT, () => {
-    console.log('Server listening on port: ', PORT);
-  })
-})
-.catch(() => {
-  throw new Error('db could not be synced')
-})
 
+app.listen(PORT, () => {
+  console.log('Server listening on port: ', PORT);
+})
 
 //Error handling middleware
 app.use((err, req, res, next) =>  {
