@@ -10,7 +10,6 @@ export const addSalary = salary => ({ type: ADD_SALARY, salary });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_SALARY:
       return action.salary

@@ -4,10 +4,6 @@ import { ResponsiveContainer, XAxis, YAxis, BarChart, Bar, Legend, Tooltip } fro
 import { formatMoney } from '../utils/formatMoney'
 
 export default class DynamicChart extends React.Component {
-  constructor(){
-    super()
-  }
-
   render() {
     const barArr = [{
       retireAmt: +this.props.retireAmt,

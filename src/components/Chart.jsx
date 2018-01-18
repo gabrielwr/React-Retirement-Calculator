@@ -6,7 +6,6 @@ import {
   Area,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   ResponsiveContainer
 } from 'recharts'
@@ -15,16 +14,8 @@ import { formatMoney } from '../utils/formatMoney'
 import BarChart from './BarChart'
 
 class Chart extends React.Component {
-  constructor(props){
-    super(props)
-  }
-
   render() {
     const newArr = this.props.graphData
-    const barArr = [{
-      retire: this.props.retireAmt,
-      end: this.props.finalAmount
-    }]
     return (
       <div className="chartContainer">
           <ResponsiveContainer width={'75%'} height={'90%'}>

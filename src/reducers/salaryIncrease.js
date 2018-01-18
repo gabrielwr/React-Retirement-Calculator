@@ -10,11 +10,9 @@ export const addSalaryIncrease = salaryIncrease => ({ type: ADD_SALARY_INCREASE,
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
     case ADD_SALARY_INCREASE:
-      return action.salaryIncrease
-      break;
+      return action.salaryIncrease;
     default:
       return state
   }

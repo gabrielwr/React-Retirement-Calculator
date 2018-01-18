@@ -1,14 +1,10 @@
 import React from 'react'
 import Slider from 'material-ui/Slider';
 
-import { Row, Col } from 'react-materialize'
+import { Col } from 'react-materialize'
 import { formatMoney } from '../utils/formatMoney'
 
 class CalculatorForm extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const props = {} = this.props
     const state = props.state

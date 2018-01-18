@@ -1,6 +1,6 @@
 //framework imports
 import React from 'react'
-import { Button, Col, Row } from 'react-materialize'
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 //component imports
