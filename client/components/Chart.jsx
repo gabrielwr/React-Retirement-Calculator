@@ -66,7 +66,7 @@ class Chart extends React.Component {
 }
 
 Chart.proptypes = {
-  test123: PropTypes.string.isRequired
+  graphData: PropTypes.string
 }
 
 export default Chart

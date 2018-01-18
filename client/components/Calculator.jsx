@@ -111,7 +111,7 @@ class Calculator extends React.Component {
         handleLifespanAge: this.handleLifespanAge,
         changeHandler: this.changeHandler
       },
-      state: {...this.props},
+      state: { ...this.props },
       graphData: this.props.graphData.graphData
     }
 

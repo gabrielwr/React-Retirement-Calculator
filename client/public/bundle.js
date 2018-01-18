@@ -66354,7 +66354,7 @@ var Chart = function (_React$Component) {
 }(_react2.default.Component);
 
 Chart.proptypes = {
-  test123: _propTypes2.default.string.isRequired
+  graphData: _propTypes2.default.string
 };
 
 exports.default = Chart;
