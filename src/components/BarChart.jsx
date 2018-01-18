@@ -30,7 +30,7 @@ export default class DynamicChart extends React.Component {
           formatter={ finalAmt => (`$${formatMoney( +finalAmt, 0 )}`) }
         />
         <Legend
-          width={'75%'}
+
           wrapperStyle={{
             bottom: 0,
             right: 0,
