@@ -3,6 +3,7 @@ import Slider from 'material-ui/Slider';
 
 import { Col } from 'react-materialize';
 import { formatMoney } from '../utils/formatMoney';
+import '../css/index.css';
 
 class CalculatorForm extends Component {
   render() {

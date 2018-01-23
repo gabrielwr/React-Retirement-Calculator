@@ -9,7 +9,7 @@ import {
   ResponsiveContainer
 } from 'recharts';
 
-import '../css/scss/index.scss';
+import '../css/index.css';
 
 import { formatMoney } from '../utils/formatMoney';
 import BarChart from './DynamicChart';
