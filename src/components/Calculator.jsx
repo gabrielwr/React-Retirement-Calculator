@@ -1,16 +1,14 @@
-//framework imports
-import React from 'react'
-
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-
-//component imports
-import CalculatorForm from './CalculatorForm'
-import ChartContainer from '../containers/ChartContainer'
+import React, { Component } from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-class Calculator extends React.Component {
-  constructor(props) {
-    super(props)
+//component imports
+import CalculatorForm from './CalculatorForm';
+import ChartContainer from '../containers/ChartContainer';
+
+class Calculator extends Component {
+  constructor() {
+    super();
 
     //Sets the MaterialUI Slider Style
     this.muiTheme = getMuiTheme({
@@ -19,15 +17,10 @@ class Calculator extends React.Component {
         handleFillColor: '#2266bb'
       },
     });
-
-    this.handleCurrentAge = this.handleCurrentAge.bind(this)
-    this.handleRetirementAge = this.handleRetirementAge.bind(this)
-    this.handleLifespanAge = this.handleLifespanAge.bind(this)
-    this.changeHandler = this.changeHandler.bind(this)
   }
 
   componentWillMount(){
-    this.computeData()
+    this.computeData();
   }
 
   computeData() {
@@ -67,7 +60,7 @@ class Calculator extends React.Component {
     this.props.addGraph(graphData)
   }
 
-  handleCurrentAge(evt, age) {
+  handleCurrentAge = (evt, age) => {
     if(age >= +this.props.retireAge) {
       this.props.addRetireAge(`${age + 1}`)
     }
@@ -78,7 +71,7 @@ class Calculator extends React.Component {
     this.computeData()
   }
 
-  handleRetirementAge(evt, retireAge) {
+  handleRetirementAge = (evt, retireAge) => {
     if(retireAge <= +this.props.currentAge) {
       this.props.addCurrentAge(`${retireAge - 1}`)
     } else if(retireAge >= this.props.lifespan) {
@@ -88,7 +81,7 @@ class Calculator extends React.Component {
     this.computeData()
   }
 
-  handleLifespanAge(evt, lifespan) {
+  handleLifespanAge = (evt, lifespan) => {
     if(lifespan <= +this.props.currentAge){
       this.props.addCurrentAge(`${lifespan-1}`)
     }
@@ -96,10 +89,10 @@ class Calculator extends React.Component {
     this.computeData()
   }
 
-  changeHandler(keyName) {
+  changeHandler = (keyName) => {
     return (evt, updatedValue) => {
-      this.props[`add${keyName}`](`${updatedValue}`)
-      this.computeData()
+      this.props[`add${keyName}`](`${updatedValue}`);
+      this.computeData();
     }
   }
 
@@ -124,8 +117,8 @@ class Calculator extends React.Component {
           </MuiThemeProvider>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default Calculator
+export default Calculator;

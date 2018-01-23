@@ -14,6 +14,6 @@ export default ( state = initialState, action ) => {
     case ADD_SALARY_INCREASE:
       return action.salaryIncrease;
     default:
-      return state
+      return state;
   }
 }

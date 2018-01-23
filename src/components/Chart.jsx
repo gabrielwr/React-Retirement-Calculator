@@ -12,7 +12,7 @@ import {
 import '../css/scss/index.scss';
 
 import { formatMoney } from '../utils/formatMoney';
-import BarChart from './BarChart';
+import BarChart from './DynamicChart';
 
 class Chart extends Component {
   render() {

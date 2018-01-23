@@ -12,8 +12,8 @@ export const addSavings = savings => ({ type: ADD_SAVINGS, savings });
 export default ( state = initialState, action ) => {
   switch( action.type ) {
     case ADD_SAVINGS:
-      return action.savings
+      return action.savings;
     default:
-      return state
+      return state;
   }
 }

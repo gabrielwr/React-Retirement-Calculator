@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router'
-import { Navbar } from 'react-materialize'
+import React from 'react';
+import { Link } from 'react-router';
+import { Navbar } from 'react-materialize';
 
 const Nav = () => (
   <Navbar style={{ backgroundColor: "#2266bb" }} brand='Figure out what you need' left>
@@ -8,5 +8,5 @@ const Nav = () => (
   </Navbar>
 )
 
-export default Nav
+export default Nav;
 

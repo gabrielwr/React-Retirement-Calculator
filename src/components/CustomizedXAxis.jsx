@@ -1,15 +1,15 @@
-import React from 'react'
+import React from 'react';
 
 const CustomizedXAxisTick = ({ x, y, payload, currentAge, retireAge, lifespan }) => {
 
-  let xAxisMarker = null
+  let xAxisMarker = null;
 
   if( payload.value === currentAge ) {
-    xAxisMarker = `Current Age ${currentAge}`
+    xAxisMarker = `Current Age ${currentAge}`;
   } else if( payload.value === retireAge ) {
-    xAxisMarker =  `Retirement ${retireAge}`
+    xAxisMarker =  `Retirement ${retireAge}`;
   } else if ( payload.value === lifespan ) {
-    xAxisMarker = `Age ${lifespan}`
+    xAxisMarker = `Age ${lifespan}`;
   }
 
   return (
@@ -22,7 +22,7 @@ const CustomizedXAxisTick = ({ x, y, payload, currentAge, retireAge, lifespan })
           { xAxisMarker && xAxisMarker }
         </text>
     </g>
-  )
+  );
 }
 
-export default CustomizedXAxisTick
+export default CustomizedXAxisTick;

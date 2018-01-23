@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react';
 import { ResponsiveContainer, XAxis, YAxis, BarChart, Bar, Legend, Tooltip } from 'recharts'
 
 import { formatMoney } from '../utils/formatMoney'
 
-export default class DynamicChart extends React.Component {
+class DynamicChart extends Component {
   render() {
     const barArr = [{
       retireAmt: +this.props.retireAmt,
@@ -43,3 +43,5 @@ export default class DynamicChart extends React.Component {
     )
   }
 }
+
+export default DynamicChart;

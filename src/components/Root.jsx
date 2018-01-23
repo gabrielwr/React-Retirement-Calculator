@@ -1,6 +1,6 @@
-import React from 'react'
-import Navbar from './Navbar'
-import Footer from './Footer'
+import React from 'react';
+import Navbar from './Navbar';
+import Footer from './Footer';
 
 const Root = ({ children }) => (
   <div id="main">
@@ -10,4 +10,4 @@ const Root = ({ children }) => (
   </div>
 )
 
-export default Root
+export default Root;
