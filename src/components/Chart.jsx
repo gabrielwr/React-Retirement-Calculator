@@ -1,6 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import CustomXAxis from './CustomizedXAxis'
+import React, { Component } from 'react';
+import CustomXAxis from './CustomizedXAxis';
 import {
   AreaChart,
   Area,
@@ -8,17 +7,19 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer
-} from 'recharts'
+} from 'recharts';
 
-import { formatMoney } from '../utils/formatMoney'
-import BarChart from './BarChart'
+import '../css/scss/index.scss';
 
-class Chart extends React.Component {
+import { formatMoney } from '../utils/formatMoney';
+import BarChart from './BarChart';
+
+class Chart extends Component {
   render() {
-    const newArr = this.props.graphData
+    const newArr = this.props.graphData;
     return (
       <div className="chartContainer">
-          <ResponsiveContainer width={'75%'} height={'90%'}>
+        <ResponsiveContainer width={'75%'} height={'90%'}>
           <AreaChart
             data={ newArr }
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -52,12 +53,8 @@ class Chart extends React.Component {
           finalAmount={this.props.finalAmount}
         />
       </div>
-    )
+    );
   }
 }
 
-Chart.proptypes = {
-  graphData: PropTypes.string
-}
-
-export default Chart
+export default Chart;

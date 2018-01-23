@@ -4,7 +4,7 @@ export const formatMoney = (n, c = '.', d = ',', t) => {
   d = d === undefined ? "." : d
   t = t === undefined ? "," : t
   let s = n < 0 ? "-" : ""
-  let i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c)))
+  let i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c), 10))
   let j;
   j = (j = i.length) > 3 ? j % 3 : 0;
 

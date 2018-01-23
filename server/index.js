@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //static serving middleware
-app.use(express.static(path.join(__dirname, '../client/public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 //body parsing middleware
 app.use(bodyParser.json());
@@ -44,5 +44,5 @@ app.use((err, req, res, next) =>  {
 
 //Sends index.html file to client on all get requests
 app.get('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });

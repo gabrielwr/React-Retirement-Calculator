@@ -105,7 +105,7 @@ class Calculator extends React.Component {
 
   render() {
     const props = {
-      handleChange: {
+      handle: {
         handleCurrentAge: this.handleCurrentAge,
         handleRetirementAge: this.handleRetirementAge,
         handleLifespanAge: this.handleLifespanAge,
