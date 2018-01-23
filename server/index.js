@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
-const volleyball = require('volleyball')
-const routes = require('./routes.js')
+const volleyball = require('volleyball');
+const routes = require('./routes.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
@@ -11,7 +11,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 //static serving middleware
-app.use(express.static(path.join(__dirname, '../client/public')))
+app.use(express.static(path.join(__dirname, '../public')));
 
 //body parsing middleware
 app.use(bodyParser.json());
@@ -25,24 +25,24 @@ app.use(session({
 }));
 
 // logging middleware:
-app.use(volleyball)
+app.use(volleyball);
 
 //routes:
-app.use('/api', routes)
+app.use('/api', routes);
 
 
 app.listen(PORT, () => {
   console.log('Server listening on port: ', PORT);
-})
+});
 
 //Error handling middleware
 app.use((err, req, res, next) =>  {
-  console.error(err)
-  console.error(err.stack)
-  res.status(err.status || 500).send(err.message || 'Internal Server Error')
-})
+  console.error(err);
+  console.error(err.stack);
+  res.status(err.status || 500).send(err.message || 'Internal Server Error');
+});
 
 //Sends index.html file to client on all get requests
 app.get('*', (req, res, next) => {
-  res.sendFile(path.join(__dirname, '../client/public/index.html'));
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });

@@ -1,21 +1,19 @@
 
 /* ------------   INITIAL STATE     ------------------ */
-const initialState = '3'
+const initialState = '20'
 
 /* -----------------    ACTION TYPES     ------------------ */
-const ADD_SALARY_INCREASE = 'ADD_SALARY_INCREASE';
+const ADD_SAVINGS = 'ADD_SAVINGS';
 
 /* ------------  SYNC ACTION CREATORS     ------------------ */
-export const addSalaryIncrease = salaryIncrease => ({ type: ADD_SALARY_INCREASE, salaryIncrease });
+export const addSavings = savings => ({ type: ADD_SAVINGS, savings });
 
 /* ------------       REDUCER    ------------------ */
 export default ( state = initialState, action ) => {
-  const newState = Object.assign( {}, state )
   switch( action.type ) {
-    case ADD_SALARY_INCREASE:
-      return action.salaryIncrease
-      break;
+    case ADD_SAVINGS:
+      return action.savings;
     default:
-      return state
+      return state;
   }
 }

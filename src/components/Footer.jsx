@@ -24,6 +24,6 @@ const Foot = props => (
       <p className="white-text">Thanks so much for coming to check this out.</p>
       <p className="white-text">It's a fun little side project that is still very much a work in progress!</p>
   </Footer>
-)
+);
 
-export default Foot
+export default Foot;
