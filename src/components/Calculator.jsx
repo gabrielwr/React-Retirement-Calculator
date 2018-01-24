@@ -4,7 +4,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 //component imports
 import CalculatorForm from './CalculatorForm';
-import ChartContainer from '../containers/ChartContainer';
+import Chart from './chart';
 
 class Calculator extends Component {
   constructor() {
@@ -110,7 +110,7 @@ class Calculator extends Component {
 
     return (
       <div>
-        <ChartContainer />
+        <Chart />
         <div id='form'>
           <MuiThemeProvider muiTheme={this.muiTheme}>
             <CalculatorForm { ...props } />

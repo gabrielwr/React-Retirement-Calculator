@@ -1,22 +1,26 @@
 import React, { Component } from 'react';
-import { ResponsiveContainer } from 'recharts';
+import { connect } from 'react-redux';
 
 import '../../css/index.css';
 
-import BarChart from '../../elements/bar-chart';
-import LineChart from '../../elements/line-chart';
+import LineChart from '../../elements/line-chart/index.jsx';
+import BarChart from '../../elements/bar-chart/index.jsx';
 
 class Chart extends Component {
   render() {
+    console.log('STATE IN CHART', this.props)
+    const { finalAmount, retireAmt, graphData } = this.props;
     return (
       <div className="chartContainer">
-        <ResponsiveContainer width={'75%'} height={'90%'}>
-          <LineChart />
-          <BarChart />
-        </ResponsiveContainer>
+        <LineChart graphData={graphData}/>
+        <BarChart finalAmount={finalAmount} retireAmt={retireAmt}/>
       </div>
     );
   }
 }
 
-export default Chart;
+const mapState = state => ({
+  ...state
+});
+
+export default connect(mapState, null)(Chart);

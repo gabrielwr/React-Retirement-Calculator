@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
-import { ResponsiveContainer, XAxis, YAxis, BarChart, Bar, Legend, Tooltip } from 'recharts';
+import {
+  ResponsiveContainer,
+  XAxis,
+  YAxis,
+  BarChart,
+  Bar,
+  Legend,
+  Tooltip
+} from 'recharts';
 
 import { formatMoney } from '../../utils/formatMoney'
-
-
 
 class DynamicBarChart extends Component {
   render() {
