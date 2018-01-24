@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import CustomXAxis from './CustomizedXAxis';
+import XAxisTick from './x-axis-tick';
 import {
   AreaChart,
   Area,
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer
 } from 'recharts';
 
-import '../css/index.css';
+import '../../css/index.css';
 
-import { formatMoney } from '../utils/formatMoney';
-import BarChart from './DynamicChart';
+import { formatMoney } from '../../utils/formatMoney';
 
 class Chart extends Component {
   render() {
     const newArr = this.props.graphData;
     return (
       <div className="chartContainer">
-        <ResponsiveContainer width={'75%'} height={'90%'}>
           <AreaChart
             data={ newArr }
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -28,7 +25,7 @@ class Chart extends Component {
               margin={{ bottom: 100 }}
               padding={{ top: 20 }}
               interval={ 0 }
-              tick={ <CustomXAxis {...this.props}/> }
+              tick={ <XAxisTick {...this.props}/> }
               dataKey='age'
             />
             <YAxis
@@ -47,11 +44,6 @@ class Chart extends Component {
               formatter={(money) => (`$${formatMoney(+money, 0)}`)}
             />
           </AreaChart>
-        </ResponsiveContainer>
-        <BarChart
-          retireAmt={this.props.retireAmt}
-          finalAmount={this.props.finalAmount}
-        />
       </div>
     );
   }

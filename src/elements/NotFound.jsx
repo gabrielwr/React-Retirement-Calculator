@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const NotFound = props => {
+const NotFound = (props) => {
   const { pathname } = props.location || {pathname: '<< no path >>'}
   console.error('NotFound: %s not found (%o)', pathname, props);
   return (
