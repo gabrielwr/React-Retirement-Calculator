@@ -9,7 +9,7 @@ import BarChart from '../../elements/bar-chart/index.jsx';
 class Chart extends Component {
   render() {
     console.log('STATE IN CHART', this.props)
-    const { finalAmount, retireAmt, graphData } = this.props;
+    const { finalAmount, graphData, retireAmt } = this.props;
     return (
       <div className="chartContainer">
         <LineChart graphData={graphData}/>

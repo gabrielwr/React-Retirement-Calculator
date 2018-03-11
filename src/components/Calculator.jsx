@@ -25,14 +25,14 @@ class Calculator extends Component {
 
   computeData() {
     const state = { ...this.props }
-    let currentAge = +state.currentAge
-    let salarySaved = Math.floor( +state.salary / 100 * +state.savings)
-    const salaryIncrease = +state.salaryIncrease
-    const yearsToRetirement = +state.retireAge - currentAge
-    const yearsLeft = +state.lifespan - currentAge
-    const retireSpending = +state.retireSpending
-    let accumulatedSavings = +state.currentSavings
-    let retiredBool = false
+    let currentAge = +state.currentAge;
+    let salarySaved = Math.floor( +state.salary / 100 * +state.savings);
+    const salaryIncrease = +state.salaryIncrease;
+    const yearsToRetirement = +state.retireAge - currentAge;
+    const yearsLeft = +state.lifespan - currentAge;
+    const retireSpending = +state.retireSpending;
+    let accumulatedSavings = +state.currentSavings;
+    let retiredBool = false;
     let graphData = [];
 
     for(let i = 0; i <= yearsLeft; i++) {
@@ -56,37 +56,37 @@ class Calculator extends Component {
     }
 
     //dispatch to store
-    this.props.addFinalAmt(`${accumulatedSavings}`)
-    this.props.addGraph(graphData)
+    this.props.addFinalAmt(`${accumulatedSavings}`);
+    this.props.addGraph(graphData);
   }
 
   handleCurrentAge = (evt, age) => {
     if(age >= +this.props.retireAge) {
-      this.props.addRetireAge(`${age + 1}`)
+      this.props.addRetireAge(`${age + 1}`);
     }
     if(age >= +this.props.lifespan) {
-      this.props.addLifespan(`${age + 1}`)
+      this.props.addLifespan(`${age + 1}`);
     }
-    this.props.addCurrentAge(`${age}`)
-    this.computeData()
+    this.props.addCurrentAge(`${age}`);
+    this.computeData();
   }
 
   handleRetirementAge = (evt, retireAge) => {
     if(retireAge <= +this.props.currentAge) {
-      this.props.addCurrentAge(`${retireAge - 1}`)
+      this.props.addCurrentAge(`${retireAge - 1}`);
     } else if(retireAge >= this.props.lifespan) {
-      this.props.addRetireAge(`${this.props.lifespan-1}`)
+      this.props.addRetireAge(`${this.props.lifespan-1}`);
     }
-    this.props.addRetireAge(`${retireAge}`)
-    this.computeData()
+    this.props.addRetireAge(`${retireAge}`);
+    this.computeData();
   }
 
   handleLifespanAge = (evt, lifespan) => {
     if(lifespan <= +this.props.currentAge){
-      this.props.addCurrentAge(`${lifespan-1}`)
+      this.props.addCurrentAge(`${lifespan-1}`);
     }
-    this.props.addLifespan(`${lifespan}`)
-    this.computeData()
+    this.props.addLifespan(`${lifespan}`);
+    this.computeData();
   }
 
   changeHandler = (keyName) => {
@@ -106,7 +106,7 @@ class Calculator extends Component {
       },
       state: { ...this.props },
       graphData: this.props.graphData.graphData
-    }
+    };
 
     return (
       <div>

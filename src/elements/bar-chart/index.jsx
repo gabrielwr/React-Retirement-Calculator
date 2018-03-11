@@ -9,14 +9,14 @@ import {
   Tooltip
 } from 'recharts';
 
-import { formatMoney } from '../../utils/formatMoney'
+import { formatMoney } from '../../utils/formatMoney';
 
 class DynamicBarChart extends Component {
   render() {
     const barArr = [{
       retireAmt: +this.props.retireAmt,
       endAmt: +this.props.finalAmount
-    }]
+    }];
 
     return (
       <ResponsiveContainer width={ '15%' } height={ '90%' }>
@@ -27,14 +27,13 @@ class DynamicBarChart extends Component {
         >
         <XAxis dataKey="name"/>
         <YAxis
-            tickFormatter={ money => '$' + formatMoney( +money, 0 ) }
+          tickFormatter={ money => '$' + formatMoney( +money, 0 ) }
         />
         <Tooltip
           labelFormatter={ amt => (`Retire Amount ${amt}`) }
           formatter={ finalAmt => (`$${formatMoney( +finalAmt, 0 )}`) }
         />
         <Legend
-
           wrapperStyle={{
             bottom: 0,
             right: 0,
@@ -48,7 +47,7 @@ class DynamicBarChart extends Component {
         <Bar dataKey="endAmt" fill="#39CCCC" />
         </BarChart>
       </ResponsiveContainer>
-    )
+    );
   }
 }
 

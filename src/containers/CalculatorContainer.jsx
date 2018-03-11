@@ -18,7 +18,6 @@ import { addSavings } from '../reducers/savings';
 import Calculator from '../components/Calculator';
 
 const mapState = state => ({
-  //destructure state object
   ...state
 });
 
@@ -38,4 +37,3 @@ const mapDispatch = {
 };
 
 export default connect(mapState, mapDispatch)( Calculator );
-
