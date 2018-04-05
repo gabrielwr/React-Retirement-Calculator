@@ -4,9 +4,8 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import store from './store.jsx';
-
 import App from './elements/App';
-import CalculatorContainer from './containers/CalculatorContainer';
+import CalculatorContainer from './containers/calculator-container';
 import NotFound from './elements/NotFound';
 
 render(

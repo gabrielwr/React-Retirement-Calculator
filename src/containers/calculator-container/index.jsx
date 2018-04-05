@@ -1,10 +1,25 @@
+import { connect } from 'react-redux';
+
+/* ------------       REDUCERS    ------------------ */
+import { addCurrentAge } from '../../reducers/currentAge';
+import { addCurrentSavings } from '../../reducers/currentSavings';
+import { addFinalAmt } from '../../reducers/finalAmt';
+import { addGraphData as addGraph } from '../../reducers/graphData';
+import { addLifespan } from '../../reducers/lifespan';
+import { addMarketReturn } from '../../reducers/marketReturn';
+import { addRetireAge } from '../../reducers/retireAge';
+import { addRetireAmt } from '../../reducers/retireAmt';
+import { addRetireSpending } from '../../reducers/retireSpending';
+import { addSalary } from '../../reducers/salary';
+import { addSalaryIncrease} from '../../reducers/salaryIncrease';
+import { addSavings } from '../../reducers/savings';
+
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-//component imports
-import CalculatorForm from './CalculatorForm';
-import Chart from './chart';
+import CalculatorForm from '../../components/calculator-form';
+import Chart from '../../components/chart';
 
 class Calculator extends Component {
   constructor() {
@@ -93,7 +108,7 @@ class Calculator extends Component {
     return (evt, updatedValue) => {
       this.props[`add${keyName}`](`${updatedValue}`);
       this.computeData();
-    }
+    };
   }
 
   render() {
@@ -121,4 +136,23 @@ class Calculator extends Component {
   }
 }
 
-export default Calculator;
+const mapState = state => ({
+  ...state
+});
+
+const mapDispatch = {
+  addCurrentAge,
+  addCurrentSavings,
+  addFinalAmt,
+  addGraph,
+  addLifespan,
+  addMarketReturn,
+  addRetireAge,
+  addRetireAmt,
+  addRetireSpending,
+  addSalary,
+  addSalaryIncrease,
+  addSavings
+};
+
+export default connect(mapState, mapDispatch)( Calculator );
