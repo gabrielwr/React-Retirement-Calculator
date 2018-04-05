@@ -15,13 +15,15 @@
     "react-scripts": "1.1.0",
     "recharts": "^1.0.0-beta.9",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6",
-    "volleyball": "^1.4.1"
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "volleyball": "^1.4.1"
   }
 }
