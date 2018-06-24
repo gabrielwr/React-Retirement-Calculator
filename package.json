@@ -6,6 +6,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
+    "ramda": "^0.25.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
