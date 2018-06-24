@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 /* ------------       REDUCERS    ------------------ */
@@ -14,15 +15,40 @@ import { addSalary } from '../../reducers/salary';
 import { addSalaryIncrease} from '../../reducers/salaryIncrease';
 import { addSavings } from '../../reducers/savings';
 
-import React, { Component } from 'react';
 
 import CalculatorForm from '../../components/calculator-form';
 import Chart from '../../components/chart';
+import AgeForm from '../../components/age-form';
+
+import {
+  CalculatorContainerWrapper,
+  ContentWrapper,
+  IntroFormWrapper
+} from './styled';
+
+import {
+  IconButton,
+  IconImage
+} from '../../elements/styled';
+
+import ContinueIcon from '../../assets/continue.svg';
 
 class Calculator extends Component {
 
+  constructor() {
+    super();
+
+    this.state = {
+      isShowingChart: true
+    };
+  }
+
   componentWillMount(){
     this.computeData();
+  }
+
+  handleContinueClick = () => {
+    this.setState({ isShowingChart: true });
   }
 
   computeData() {
@@ -62,7 +88,7 @@ class Calculator extends Component {
     this.props.addGraph(graphData);
   }
 
-  handleCurrentAge = (evt, age) => {
+  handleCurrentAge = (_evt, age) => {
     if(age >= +this.props.retireAge) {
       this.props.addRetireAge(`${age + 1}`);
     }
@@ -73,7 +99,7 @@ class Calculator extends Component {
     this.computeData();
   }
 
-  handleRetirementAge = (evt, retireAge) => {
+  handleRetirementAge = (_evt, retireAge) => {
     if(retireAge <= +this.props.currentAge) {
       this.props.addCurrentAge(`${retireAge - 1}`);
     } else if(retireAge >= this.props.lifespan) {
@@ -83,7 +109,7 @@ class Calculator extends Component {
     this.computeData();
   }
 
-  handleLifespanAge = (evt, lifespan) => {
+  handleLifespanAge = (_evt, lifespan) => {
     if(lifespan <= +this.props.currentAge){
       this.props.addCurrentAge(`${lifespan-1}`);
     }
@@ -92,13 +118,15 @@ class Calculator extends Component {
   }
 
   changeHandler = (keyName) => {
-    return (evt, updatedValue) => {
+    return (_evt, updatedValue) => {
       this.props[`add${keyName}`](`${updatedValue}`);
       this.computeData();
     };
   }
 
   render() {
+    const { isShowingChart } = this.state;
+
     const props = {
       handle: {
         handleCurrentAge: this.handleCurrentAge,
@@ -111,12 +139,22 @@ class Calculator extends Component {
     };
 
     return (
-      <div>
-        <Chart />
-        <div id='form'>
+      <ContentWrapper>
+      { isShowingChart ?
+        <CalculatorContainerWrapper>
+          <AgeForm />
+          <Chart />
           <CalculatorForm { ...props } />
-        </div>
-      </div>
+        </CalculatorContainerWrapper>
+        :
+        <IntroFormWrapper>
+          <AgeForm />
+          <IconButton marginLeft={'10%'} onClick={this.handleContinueClick}>
+            <IconImage alt='Continue' src={ContinueIcon} />
+          </IconButton>
+        </IntroFormWrapper>
+      }
+      </ContentWrapper>
     );
   }
 }

@@ -4,5 +4,6 @@ export const ChartWrapper= styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 496px;
+  height: 40vh;
+  width: 100%;
 `;
