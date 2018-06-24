@@ -1,48 +1,5 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-}
-
-.chartContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 496px;
-}
-
-#form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-family: 'Open Sans', sans-serif;
-}
-
-footer {
-  background-color: "#2266bb";
-  font-family: 'Open Sans', sans-serif;
-  position: absolute;
-  right: 0;
-  left: 0;
-  width: 100%;
-  padding: 1rem;
-}
-
-.formContainer {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-}
-
-.icon {
-  background-color: #2266bb;
-}
-
-.space-button {
-  margin-left: 6%;
-}
-
-.formContainer .col {
-  padding: 1em;
+  font-family: Roboto;
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
 import { formatMoney } from '../../utils/formatMoney';
-import '../../index.css';
+
+import { FormWrapper } from './styled';
 
 class CalculatorForm extends Component {
   render() {
@@ -19,7 +20,7 @@ class CalculatorForm extends Component {
     } = state;
 
     return (
-      <div className="formContainer">
+      <FormWrapper>
         <div>
           <span>Age: </span>
           <span>{ +currentAge }</span>
@@ -116,7 +117,7 @@ class CalculatorForm extends Component {
             onChange={ handle.changeHandler('CurrentSavings') }
           />
         </div>
-      </div>
+      </FormWrapper>
     );
   }
 }

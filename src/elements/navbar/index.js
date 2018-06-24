@@ -1,10 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
+
+import {
+  Navbar,
+  NavbarList,
+  NavbarLink,
+  StyledLink,
+} from './styled';
 
 const Nav = () => (
-  <div style={{ backgroundColor: "#2266bb" }} brand='Figure out what you need' left>
-    <li><Link to='/'>Calculator</Link></li>
-  </div>
+  <Navbar>
+    <NavbarList>
+      <NavbarLink><StyledLink to='/'>Retirement Calculator</StyledLink></NavbarLink>
+    </NavbarList>
+  </Navbar>
 )
 
 export default Nav;
