@@ -5,4 +5,23 @@ export const FormWrapper = styled.div`
   justify-content: center;
   flex-direction: row;
   align-items: center;
+  justify-content: space-evenly;
+  box-shadow: 0 4px 6px 0 #E5E5E5;
+  width: 60%;
+  height: 25%;
+`;
+
+export const FormColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 40%;
+`;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: ${props => props.advanced ? 25 : 100/3}%;
 `;
