@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { formatMoney } from '../../utils/formatMoney';
-import '../../css/index.css';
+import '../../index.css';
 
 class CalculatorForm extends Component {
   render() {

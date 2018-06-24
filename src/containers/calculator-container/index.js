@@ -20,9 +20,6 @@ import CalculatorForm from '../../components/calculator-form';
 import Chart from '../../components/chart';
 
 class Calculator extends Component {
-  constructor() {
-    super();
-  }
 
   componentWillMount(){
     this.computeData();
