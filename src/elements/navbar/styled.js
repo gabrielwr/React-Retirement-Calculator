@@ -27,7 +27,3 @@ export const StyledLink = styled(Link)`
   font-size: 24px;
   text-shadow: 0 2px 4px rgba(0,0,0,0.50);
 `;
-
-// /* Rectangle: */
-// background-image: linear-gradient(-90deg, #3023AE 0%, #53A0FD 77%, #59A5F2 88%, #82C5AB 95%);
-// box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
