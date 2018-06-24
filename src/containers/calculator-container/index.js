@@ -15,8 +15,6 @@ import { addSalaryIncrease} from '../../reducers/salaryIncrease';
 import { addSavings } from '../../reducers/savings';
 
 import React, { Component } from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import CalculatorForm from '../../components/calculator-form';
 import Chart from '../../components/chart';
@@ -24,14 +22,6 @@ import Chart from '../../components/chart';
 class Calculator extends Component {
   constructor() {
     super();
-
-    //Sets the MaterialUI Slider Style
-    this.muiTheme = getMuiTheme({
-      slider: {
-        selectionColor: '#2266bb',
-        handleFillColor: '#2266bb'
-      },
-    });
   }
 
   componentWillMount(){
@@ -127,9 +117,7 @@ class Calculator extends Component {
       <div>
         <Chart />
         <div id='form'>
-          <MuiThemeProvider muiTheme={this.muiTheme}>
-            <CalculatorForm { ...props } />
-          </MuiThemeProvider>
+          <CalculatorForm { ...props } />
         </div>
       </div>
     );

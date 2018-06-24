@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Slider from 'material-ui/Slider';
-import { Col } from 'react-materialize';
 
 import { formatMoney } from '../../utils/formatMoney';
 import '../../css/index.css';
@@ -22,10 +20,10 @@ class CalculatorForm extends Component {
 
     return (
       <div className="formContainer">
-        <Col>
+        <div>
           <span>Age: </span>
           <span>{ +currentAge }</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 129 }
             step={ 1 }
@@ -35,7 +33,7 @@ class CalculatorForm extends Component {
           />
           <span>Retirement Age: </span>
           <span>{ +retireAge }</span>
-          <Slider
+          <div
             min={ 1 }
             max={ 130 }
             step={ 1 }
@@ -45,7 +43,7 @@ class CalculatorForm extends Component {
           />
           <span>Lifespan Age: </span>
           <span>{ +lifespan }</span>
-          <Slider
+          <div
             min={ 1 }
             max={ 130 }
             step={ 1 }
@@ -53,11 +51,11 @@ class CalculatorForm extends Component {
             value={ +lifespan }
             onChange={ handle.handleLifespanAge }
           />
-        </Col>
-        <Col>
+        </div>
+        <div>
           <span>Salary: </span>
           <span>{ `$${formatMoney(+salary, 0)}` }</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 300000 }
             step={ 1000 }
@@ -67,7 +65,7 @@ class CalculatorForm extends Component {
           />
            <span>Salary Increase / Year:</span>
           <span> { +salaryIncrease }%</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 10 }
             step={ 1 }
@@ -77,7 +75,7 @@ class CalculatorForm extends Component {
           />
           <span>Retirement Spending: </span>
           <span>{ `$${formatMoney(+retireSpending, 0)}` }</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 300000 }
             step={ 1000 }
@@ -85,11 +83,11 @@ class CalculatorForm extends Component {
             value={ +retireSpending }
             onChange={ handle.changeHandler('RetireSpending') }
           />
-        </Col>
-        <Col>
+        </div>
+        <div>
           <span>Investment Return:</span>
           <span> { +marketReturn }%</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 20 }
             step={ 1 }
@@ -99,7 +97,7 @@ class CalculatorForm extends Component {
           />
           <span>Savings Rate:</span>
           <span>{ +savings }%</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 100 }
             step={ 0.5 }
@@ -109,7 +107,7 @@ class CalculatorForm extends Component {
           />
           <span>Current Savings: </span>
           <span>{ `$${formatMoney(+currentSavings, 0)}` }</span>
-          <Slider
+          <div
             min={ 0 }
             max={ 1000000 }
             step={ 1000 }
@@ -117,7 +115,7 @@ class CalculatorForm extends Component {
             value={ +currentSavings }
             onChange={ handle.changeHandler('CurrentSavings') }
           />
-        </Col>
+        </div>
       </div>
     );
   }
