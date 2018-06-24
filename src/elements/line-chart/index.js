@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import XAxisTick from './x-axis-tick';
+
 import {
   ResponsiveContainer,
   AreaChart,
@@ -9,13 +10,18 @@ import {
   Tooltip,
 } from 'recharts';
 
+import {
+  GRAPH_AREA_PURPLE,
+  LINE_DEEP_PURPLE
+} from '../styled';
+
 import { formatMoney } from '../../utils/formatMoney';
 
 class LineChart extends Component {
   render() {
     const newArr = this.props.graphData;
     return (
-      <ResponsiveContainer width={'75%'} height={'90%'}>
+      <ResponsiveContainer width={'65%'} height={'90%'}>
         <AreaChart
           data={ newArr }
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
@@ -23,7 +29,7 @@ class LineChart extends Component {
           <XAxis
             margin={{ bottom: 100 }}
             padding={{ top: 20 }}
-            interval={ 0 }
+            interval={ 10 }
             tick={ <XAxisTick {...this.props}/> }
             dataKey='age'
           />
@@ -34,8 +40,8 @@ class LineChart extends Component {
           <Area
             type="monotone"
             dataKey="savings"
-            stroke='#0074D9'
-            fill='#0074D9'
+            stroke={LINE_DEEP_PURPLE}
+            fill={GRAPH_AREA_PURPLE}
           />
           <Tooltip
             label={ 'savings' }

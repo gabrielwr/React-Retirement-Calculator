@@ -1,9 +1,8 @@
 import React from 'react';
-import { Footer } from 'react-materialize';
 
 const Foot = props => {
   return (
-    <Footer
+    <div
       copyrights="&copy; 2017 Gabriel Rowe"
       style={{ backgroundColor: "#2266bb" }}
       links={
@@ -24,7 +23,7 @@ const Foot = props => {
         <h5 className="white-text">Hey!</h5>
         <p className="white-text">Thanks so much for coming to check this out.</p>
         <p className="white-text">It's a fun little side project that is still very much a work in progress!</p>
-    </Footer>
+    </div>
   );
 }
 

@@ -6,16 +6,15 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "material-ui": "^0.20.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-materialize": "^1.1.2",
     "react-redux": "^5.0.7",
     "react-router": "^3.2.1",
     "react-scripts": "^1.1.4",
     "recharts": "^1.0.0-beta.10",
     "redux": "^3.7.2",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "styled-components": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

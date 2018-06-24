@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router';
-import { Navbar } from 'react-materialize';
+
+import {
+  Navbar,
+  NavbarList,
+  NavbarLink,
+  StyledLink,
+} from './styled';
 
 const Nav = () => (
-  <Navbar style={{ backgroundColor: "#2266bb" }} brand='Figure out what you need' left>
-    <li><Link to='/'>Calculator</Link></li>
+  <Navbar>
+    <NavbarList>
+      <NavbarLink><StyledLink to='/'>Retirement Calculator</StyledLink></NavbarLink>
+    </NavbarList>
   </Navbar>
 )
 
