@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import currentAge from './currentAge';
+import calculationData from './calculation-data';
 import currentSavings from './currentSavings';
 import finalAmount from './finalAmt';
 import graphData from './graphData';
@@ -14,7 +14,7 @@ import salaryIncrease from './salaryIncrease';
 import savings from './savings';
 
 const rootReducer = combineReducers({
-  currentAge,
+  calculationData,
   currentSavings,
   finalAmount,
   graphData,

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 /* ------------       REDUCERS    ------------------ */
-import { addCurrentAge } from '../../reducers/currentAge';
 import { addCurrentSavings } from '../../reducers/currentSavings';
 import { addFinalAmt } from '../../reducers/finalAmt';
 import { addGraphData as addGraph } from '../../reducers/graphData';
@@ -35,20 +34,8 @@ import ContinueIcon from '../../assets/continue.svg';
 
 class Calculator extends Component {
 
-  constructor() {
-    super();
-
-    this.state = {
-      isShowingChart: true
-    };
-  }
-
   componentWillMount(){
     this.computeData();
-  }
-
-  handleContinueClick = () => {
-    this.setState({ isShowingChart: true });
   }
 
   computeData() {
@@ -125,8 +112,6 @@ class Calculator extends Component {
   }
 
   render() {
-    const { isShowingChart } = this.state;
-
     const props = {
       handle: {
         handleCurrentAge: this.handleCurrentAge,
@@ -140,20 +125,11 @@ class Calculator extends Component {
 
     return (
       <ContentWrapper>
-      { isShowingChart ?
         <CalculatorContainerWrapper>
           <AgeForm />
           <Chart />
           <CalculatorForm { ...props } />
         </CalculatorContainerWrapper>
-        :
-        <IntroFormWrapper>
-          <AgeForm />
-          <IconButton marginLeft={'10%'} onClick={this.handleContinueClick}>
-            <IconImage alt='Continue' src={ContinueIcon} />
-          </IconButton>
-        </IntroFormWrapper>
-      }
       </ContentWrapper>
     );
   }
@@ -164,7 +140,6 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  addCurrentAge,
   addCurrentSavings,
   addFinalAmt,
   addGraph,
