@@ -61,18 +61,18 @@ export const actions = {
 };
 
 export const INITIAL_STATE = {
-  finalSavings: '0',
+  finalSavings: 0,
   graphData: [],
-  investmentReturnRate: '4',
-  lifeExpectancy: '80',
-  retireAge: '65',
-  retireAmt: '0',
-  retireSpending: '40000',
-  salary: '50000',
-  salaryIncrease: '3',
-  savingsRate: '10',
-  startingAge: '26',
-  startingSavings: '0',
+  investmentReturnRate: 4,
+  lifeExpectancy: 80,
+  retireAge: 65,
+  retireAmt: 0,
+  retireSpending: 40000,
+  salary: 50000,
+  salaryIncrease: 3,
+  savingsRate: 10,
+  startingAge: 26,
+  startingSavings: 0,
 };
 
 export default (_state = INITIAL_STATE, action) => {
