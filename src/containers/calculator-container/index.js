@@ -42,22 +42,30 @@ class CalculatorContainer extends Component {
   }
 
   computeData() {
-    const state = { ...this.props }
-    let startingAge = +state.startingAge;
-    let salarySaved = Math.floor( +state.salary / 100 * +state.savings);
-    const salaryIncrease = +state.salaryIncrease;
-    const yearsToRetirement = +state.retireAge - startingAge;
-    const yearsLeft = +state.lifespan - startingAge;
-    const retireSpending = +state.retireSpending;
-    let accumulatedSavings = +state.currentSavings;
+    const {
+      startingAge,
+      salary,
+      salaryIncrease,
+      retireAge,
+      savingsRate,
+      lifeExpectancy,
+      startingSavings,
+      investmentReturnRate
+    } = this.props;
+
+    let salarySaved = Math.floor( salary / 100 * savingsRate);
+    const yearsToRetirement = retireAge - startingAge;
+    const yearsLeft = lifeExpectancy - startingAge;
+    const retireSpending = retireSpending;
+    let accumulatedSavings = startingSavings;
     let retiredBool = false;
     let graphData = [];
 
     for(let i = 0; i <= yearsLeft; i++) {
-      accumulatedSavings += Math.floor(accumulatedSavings / 100 * state.marketReturn);
+      accumulatedSavings += Math.floor(accumulatedSavings / 100 * investmentReturnRate);
       if(i >= yearsToRetirement && !retiredBool) {
         retiredBool = true;
-        this.props.addRetireAmt(`${accumulatedSavings}`);
+        this.props.addRetireAmt(accumulatedSavings);
       }
       if(!retiredBool) {
         accumulatedSavings += salarySaved;
@@ -66,7 +74,7 @@ class CalculatorContainer extends Component {
       }
       graphData.push({
         savings: accumulatedSavings,
-        age: `${startingAge++}`,
+        age: `${startingAge+1}`,
       });
 
       //update via salaryIncrease
@@ -79,10 +87,10 @@ class CalculatorContainer extends Component {
 
   handleCurrentAge = (_evt, age) => {
     const { retireAge, setLifeExpectancy, lifeExpectancy, addCurrentAge, addRetireAge } = this.props;
-    if(age >= +retireAge) {
+    if(age >= retireAge) {
       addRetireAge(age + 1);
     }
-    if(age >= +lifeExpectancy) {
+    if(age >= lifeExpectancy) {
       setLifeExpectancy(age + 1);
     }
     addCurrentAge(age);
@@ -91,7 +99,7 @@ class CalculatorContainer extends Component {
 
   handleRetirementAge = (_evt, retireAge) => {
     const { addCurrentAge, addRetireAge, startingAge, lifeExpectancy } = this.props;
-    if(retireAge <= +startingAge) {
+    if(retireAge <= startingAge) {
       addCurrentAge(retireAge - 1);
     } else if(retireAge >= lifeExpectancy) {
       addRetireAge(lifeExpectancy-1);
@@ -158,6 +166,8 @@ const mapState = (state) => {
   const savingsRate = R.path(['calculationData', 'savingsRate'])(state);
   const startingSavings = R.path(['calculationData', 'startingSavings'])(state);
 
+  const lifeExpectancy = R.path(['calculationData', 'lifeExpectancy'])(state);
+
   return {
     finalSavings,
     investmentReturnRate,
@@ -168,6 +178,7 @@ const mapState = (state) => {
     salaryIncrease,
     savingsRate,
     startingSavings,
+    lifeExpectancy
   };
 };
 
