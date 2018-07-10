@@ -11,9 +11,3 @@ export const CalculatorContainerWrapper = styled.div`
 export const ContentWrapper = styled.div`
   height: 90%;
 `;
-
-export const IntroFormWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
