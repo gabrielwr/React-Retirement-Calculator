@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as R from 'ramda';
 
 import LineChart from '../../elements/line-chart/index';
 
@@ -16,8 +17,12 @@ class Chart extends Component {
   }
 }
 
-const mapState = state => ({
-  ...state
-});
+const mapState = (state) => {
+  const graphData = R.path(['calculationData', 'graphData'])(state);
+
+  return {
+    graphData
+  };
+};
 
 export default connect(mapState, null)(Chart);
