@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-/* ------------       REDUCERS    ------------------ */
-import { addCurrentSavings } from '../../reducers/currentSavings';
-import { addFinalAmt } from '../../reducers/finalAmt';
-import { addGraphData as addGraph } from '../../reducers/graphData';
-import { addLifespan } from '../../reducers/lifespan';
-import { addMarketReturn } from '../../reducers/marketReturn';
-import { addRetireAge } from '../../reducers/retireAge';
-import { addRetireAmt } from '../../reducers/retireAmt';
-import { addRetireSpending } from '../../reducers/retireSpending';
-import { addSalary } from '../../reducers/salary';
-import { addSalaryIncrease} from '../../reducers/salaryIncrease';
-import { addSavings } from '../../reducers/savings';
-
+import { actions as calculationDataActions } from '../../reducers/calculation-data';
 
 import CalculatorForm from '../../components/calculator-form';
 import Chart from '../../components/chart';
@@ -22,7 +10,6 @@ import AgeForm from '../../components/age-form';
 import {
   CalculatorContainerWrapper,
   ContentWrapper,
-  IntroFormWrapper
 } from './styled';
 
 import {
@@ -32,7 +19,22 @@ import {
 
 import ContinueIcon from '../../assets/continue.svg';
 
-class Calculator extends Component {
+const {
+  setFinalSavings,
+  setGraphData,
+  setInvestmentReturnRate,
+  setLifeExpectancy,
+  setRetireAge,
+  setRetireAmt,
+  setRetireSpending,
+  setSalary,
+  setSalaryIncrease,
+  setSavingsRate,
+  setStartingAge,
+  setStartingSavings
+} = calculationDataActions;
+
+class CalculatorContainer extends Component {
 
   componentWillMount(){
     this.computeData();
@@ -40,11 +42,11 @@ class Calculator extends Component {
 
   computeData() {
     const state = { ...this.props }
-    let currentAge = +state.currentAge;
+    let startingAge = +state.startingAge;
     let salarySaved = Math.floor( +state.salary / 100 * +state.savings);
     const salaryIncrease = +state.salaryIncrease;
-    const yearsToRetirement = +state.retireAge - currentAge;
-    const yearsLeft = +state.lifespan - currentAge;
+    const yearsToRetirement = +state.retireAge - startingAge;
+    const yearsLeft = +state.lifespan - startingAge;
     const retireSpending = +state.retireSpending;
     let accumulatedSavings = +state.currentSavings;
     let retiredBool = false;
@@ -63,7 +65,7 @@ class Calculator extends Component {
       }
       graphData.push({
         savings: accumulatedSavings,
-        age: `${currentAge++}`,
+        age: `${startingAge++}`,
       })
 
       //update via salaryIncrease
@@ -71,36 +73,40 @@ class Calculator extends Component {
     }
 
     //dispatch to store
-    this.props.addFinalAmt(`${accumulatedSavings}`);
-    this.props.addGraph(graphData);
+    this.props.setFinalSavings(`${accumulatedSavings}`);
+    this.props.setGraphData(graphData);
   }
 
   handleCurrentAge = (_evt, age) => {
-    if(age >= +this.props.retireAge) {
-      this.props.addRetireAge(`${age + 1}`);
+    const { retireAge, setLifeExpectancy, lifeExpectancy, addCurrentAge, addRetireAge } = this.props;
+    if(age >= +retireAge) {
+      addRetireAge(`${age + 1}`);
     }
-    if(age >= +this.props.lifespan) {
-      this.props.addLifespan(`${age + 1}`);
+    if(age >= +lifeExpectancy) {
+      setLifeExpectancy(`${age + 1}`);
     }
-    this.props.addCurrentAge(`${age}`);
+    addCurrentAge(`${age}`);
     this.computeData();
   }
 
   handleRetirementAge = (_evt, retireAge) => {
-    if(retireAge <= +this.props.currentAge) {
-      this.props.addCurrentAge(`${retireAge - 1}`);
-    } else if(retireAge >= this.props.lifespan) {
-      this.props.addRetireAge(`${this.props.lifespan-1}`);
+    const { addCurrentAge, addRetireAge, startingAge, lifeExpectancy } = this.props;
+    if(retireAge <= +startingAge) {
+      addCurrentAge(`${retireAge - 1}`);
+    } else if(retireAge >= lifeExpectancy) {
+      addRetireAge(`${lifeExpectancy-1}`);
     }
-    this.props.addRetireAge(`${retireAge}`);
+    addRetireAge(`${retireAge}`);
     this.computeData();
   }
 
-  handleLifespanAge = (_evt, lifespan) => {
-    if(lifespan <= +this.props.currentAge){
-      this.props.addCurrentAge(`${lifespan-1}`);
+  handleLifespanAge = (_evt, lifeExpectancy) => {
+    const { startingAge, addCurrentAge, setLifeExpectancy } = this.props;
+
+    if(lifeExpectancy <= +startingAge){
+      addCurrentAge(`${lifeExpectancy-1}`);
     }
-    this.props.addLifespan(`${lifespan}`);
+    setLifeExpectancy(`${lifeExpectancy}`);
     this.computeData();
   }
 
@@ -120,7 +126,7 @@ class Calculator extends Component {
         changeHandler: this.changeHandler
       },
       state: { ...this.props },
-      graphData: this.props.graphData.graphData
+      graphData: this.props.graphData
     };
 
     return (
@@ -140,17 +146,18 @@ const mapState = state => ({
 });
 
 const mapDispatch = {
-  addCurrentSavings,
-  addFinalAmt,
-  addGraph,
-  addLifespan,
-  addMarketReturn,
-  addRetireAge,
-  addRetireAmt,
-  addRetireSpending,
-  addSalary,
-  addSalaryIncrease,
-  addSavings
+  setFinalSavings,
+  setGraphData,
+  setInvestmentReturnRate,
+  setLifeExpectancy,
+  setRetireAge,
+  setRetireAmt,
+  setRetireSpending,
+  setSalary,
+  setSalaryIncrease,
+  setSavingsRate,
+  setStartingAge,
+  setStartingSavings
 };
 
-export default connect(mapState, mapDispatch)( Calculator );
+export default connect(mapState, mapDispatch)( CalculatorContainer );

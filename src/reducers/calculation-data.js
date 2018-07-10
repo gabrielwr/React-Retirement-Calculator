@@ -49,13 +49,13 @@ export const actions = {
   setSalaryIncrease(salaryIncrease) {
     return { type: actionTypes.SET_SALARY, salaryIncrease };
   },
-  setSalaryIncrease(savingsRate) {
+  setSavingsRate(savingsRate) {
     return { type: actionTypes.SET_SAVINGS_RATE, savingsRate };
   },
   setStartingAge(age) {
     return { type: actionTypes.SET_STARTING_AGE, age };
   },
-  setStartingAge(savings) {
+  setStartingSavings(savings) {
     return { type: actionTypes.SET_STARTING_SAVINGS, savings };
   },
 };
@@ -75,7 +75,7 @@ export const INITIAL_STATE = {
   startingSavings: '0',
 };
 
-export default reducer = (_state = INITIAL_STATE, action) => {
+export default (_state = INITIAL_STATE, action) => {
   let state = Object.assign({}, _state);
 
   switch(action.type) {
