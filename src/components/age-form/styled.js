@@ -13,4 +13,5 @@ export const AgeFormInput = styled.input`
   background: transparent;
   border-bottom: 1px dashed black;
   text-align: center;
+  margin: 0 10px 0 10px;
 `;

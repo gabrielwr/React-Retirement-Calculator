@@ -24,7 +24,6 @@ class AgeForm extends Component {
         <AgeFormInput type='number' value={startingAge}/>
         <span>years old with a life expectancy of</span>
         <AgeFormInput type='number' value={lifeExpectancy}/>
-        <span>.</span>
       </AgeFormWrapper>
     );
   }
