@@ -64,7 +64,7 @@ export const INITIAL_STATE = {
   finalSavings: 0,
   graphData: [],
   investmentReturnRate: 4,
-  lifeExpectancy: 80,
+  lifeExpectancy: 90,
   retireAge: 65,
   retireAmt: 0,
   retireSpending: 40000,

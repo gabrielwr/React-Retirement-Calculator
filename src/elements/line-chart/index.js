@@ -19,11 +19,11 @@ import { formatMoney } from '../../utils/formatMoney';
 
 class LineChart extends Component {
   render() {
-    const newArr = this.props.graphData;
+    const { graphData } = this.props;
     return (
       <ResponsiveContainer width={'65%'} height={'90%'}>
         <AreaChart
-          data={ newArr }
+          data={ graphData }
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <XAxis

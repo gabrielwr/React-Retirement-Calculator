@@ -21,9 +21,9 @@ class AgeForm extends Component {
     return (
       <AgeFormWrapper>
         <span>I am</span>
-        <AgeFormInput type='number' value={this.props.startingAge}/>
+        <AgeFormInput type='number' value={startingAge}/>
         <span>years old with a life expectancy of</span>
-        <AgeFormInput type='number' value={this.props.lifeExpectancy}/>
+        <AgeFormInput type='number' value={lifeExpectancy}/>
         <span>.</span>
       </AgeFormWrapper>
     );
