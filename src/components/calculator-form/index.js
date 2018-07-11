@@ -5,7 +5,8 @@ import { formatMoney } from '../../utils/formatMoney';
 import {
   FormWrapper,
   FormColumn,
-  Row
+  Input,
+  Row,
 } from './styled';
 
 class CalculatorForm extends Component {
@@ -28,34 +29,34 @@ class CalculatorForm extends Component {
         <FormColumn>
           <Row>
             <span>Net Income</span>
-            <input value={formatMoney(salary, 0)} />
+            <Input value={formatMoney(salary, 0)} />
             <span>$/yr</span>
           </Row>
           <Row>
             <span>Current Savings </span>
-            <input value={formatMoney(startingSavings, 0)}/>
+            <Input value={formatMoney(startingSavings, 0)}/>
             <span>$</span>
           </Row>
           <Row>
             <span>Investment Return</span>
-            <input value={investmentReturnRate}/>
+            <Input value={investmentReturnRate}/>
             <span>%</span>
           </Row>
         </FormColumn>
         <FormColumn>
           <Row>
             <span>Savings Rate</span>
-            <input value={ savingsRate }/>
+            <Input value={ savingsRate }/>
             <span>%</span>
           </Row>
           <Row>
             <span>Retirement Age</span>
-            <input value={ retireAge }/>
+            <Input value={ retireAge }/>
             <span>yrs</span>
           </Row>
           <Row>
             <span>Withdrawal Rate</span>
-            <input value={ 4 }/>
+            <Input value={ 4 }/>
             <span>%</span>
           </Row>
         </FormColumn>

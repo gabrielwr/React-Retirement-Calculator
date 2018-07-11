@@ -25,3 +25,7 @@ export const Row = styled.div`
   align-items: center;
   height: ${props => props.advanced ? 25 : 100/3}%;
 `;
+
+export const Input = styled.input`
+  text-align: center;
+`;
