@@ -8,10 +8,9 @@ import { ChartWrapper } from './styled';
 
 class Chart extends Component {
   render() {
-    const { graphData } = this.props;
     return (
       <ChartWrapper>
-        <LineChart graphData={graphData}/>
+        <LineChart {...this.props}/>
       </ChartWrapper>
     );
   }
@@ -19,9 +18,13 @@ class Chart extends Component {
 
 const mapState = (state) => {
   const graphData = R.path(['calculationData', 'graphData'])(state);
+  const retireAge = R.path(['calculationData', 'retireAge'])(state);
+  const startingAge = R.path(['calculationData', 'startingAge'])(state);
 
   return {
-    graphData
+    graphData,
+    retireAge,
+    startingAge,
   };
 };
 
