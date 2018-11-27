@@ -29,7 +29,7 @@ class LineChart extends Component {
           <XAxis
             margin={{ bottom: 100 }}
             padding={{ top: 20 }}
-            interval={ 10 }
+            interval={ 0 }
             tick={ <XAxisTick {...this.props}/> }
             dataKey='age'
           />

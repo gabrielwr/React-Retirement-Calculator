@@ -1,16 +1,15 @@
 import React from 'react';
 
-const CustomizedXAxisTick = ({ x, y, payload, currentAge, retireAge, lifespan }) => {
-
+const CustomizedXAxisTick = ({ x, y, payload, startingAge, retireAge }) => {
   let xAxisMarker = null;
 
-  if( payload.value === currentAge ) {
-    xAxisMarker = `Current Age ${currentAge}`;
+  if( payload.value === startingAge ) {
+    xAxisMarker = `Today`;
   } else if( payload.value === retireAge ) {
-    xAxisMarker =  `Retirement ${retireAge}`;
-  } else if ( payload.value === lifespan ) {
-    xAxisMarker = `Age ${lifespan}`;
+    xAxisMarker =  `Retirement`;
   }
+
+  if(!xAxisMarker) return null;
 
   return (
     <g transform={`translate(${x},${y})`}>
@@ -19,7 +18,7 @@ const CustomizedXAxisTick = ({ x, y, payload, currentAge, retireAge, lifespan })
           textAnchor="start"
           fill="#666"
         >
-          { xAxisMarker && xAxisMarker }
+          { xAxisMarker }
         </text>
     </g>
   );
