@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="sc-bdVaJa cWaPdO"
+>
+  <span>
+    I am
+  </span>
+  <input
+    className="sc-bwzfXH hOVJAs"
+    type="number"
+    value={28}
+  />
+  <span>
+    years old with a life expectancy of
+  </span>
+  <input
+    className="sc-bwzfXH hOVJAs"
+    type="number"
+    value={90}
+  />
+</div>
+`;
