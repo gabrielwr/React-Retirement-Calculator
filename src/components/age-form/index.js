@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Proptypes from 'prop-types'
 import { connect } from 'react-redux';
 import * as R from 'ramda';
 
@@ -9,21 +10,21 @@ class AgeForm extends Component {
   handleLifespanAge = (_evt, lifeExpectancy) => {
     const { startingAge, addCurrentAge, setLifeExpectancy } = this.props;
 
-    if(lifeExpectancy <= +startingAge){
-      addCurrentAge(lifeExpectancy-1);
+    if (lifeExpectancy <= +startingAge) {
+      addCurrentAge(lifeExpectancy - 1);
     }
     setLifeExpectancy(lifeExpectancy);
     this.computeData();
   }
 
   render() {
-    const { startingAge, lifeExpectancy} = this.props
+    const { startingAge, lifeExpectancy } = this.props
     return (
       <AgeFormWrapper>
         <span>I am</span>
-        <AgeFormInput type='number' value={startingAge}/>
+        <AgeFormInput type='number' value={startingAge} />
         <span>years old with a life expectancy of</span>
-        <AgeFormInput type='number' value={lifeExpectancy}/>
+        <AgeFormInput type='number' value={lifeExpectancy} />
       </AgeFormWrapper>
     );
   }
@@ -39,5 +40,10 @@ const mapStateToProps = (state) => {
   };
 };
 
+AgeForm.proptypes = {
+  lifeExpectancy: Proptypes.number,
+  startingAge: Proptypes.number,
+};
 
+export { AgeForm };
 export default connect(mapStateToProps)(AgeForm);

@@ -22,8 +22,9 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "volleyball": "^1.5.1",
-    "redux-logger": "^3.0.6"
+    "react-test-renderer": "^16.8.6",
+    "redux-logger": "^3.0.6",
+    "volleyball": "^1.5.1"
   },
   "browserslist": [
     ">0.2%",
