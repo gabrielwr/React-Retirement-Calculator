@@ -1,8 +1,8 @@
-import React from 'react';
-import Navbar from './navbar';
-import Footer from './footer';
+import React from "react";
+import Navbar from "./navbar";
+import Footer from "./footer";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const AppWrapper = styled.div`
   height: 100vh;
@@ -13,10 +13,10 @@ const App = ({ children }) => {
   return (
     <AppWrapper>
       <Navbar />
-        { children }
+      {children}
       <Footer />
     </AppWrapper>
   );
-}
+};
 
 export default App;
