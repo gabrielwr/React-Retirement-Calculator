@@ -1,4 +1,4 @@
-import * as R from 'ramda';
+import { assoc } from "ramda";
 
 /*
   # (reducer) calculation-data
@@ -7,18 +7,18 @@ import * as R from 'ramda';
 
 */
 export const actionTypes = {
-  SET_FINAL_SAVINGS: 'CALCULATION_DATA_SET_FINAL_SAVINGS',
-  SET_GRAPH_DATA: 'CALCULATION_DATA_SET_GRAPH_DATA',
-  SET_INVESTMENT_RETURN_RATE: 'CALCULATION_DATA_SET_INVESTMENT_RETURN_RATE',
-  SET_LIFE_EXPECTANCY: 'CALCULATION_DATA_SET_LIFE_EXPECTANCY',
-  SET_RETIRE_AGE: 'CALCULATION_DATA_SET_RETIRE_AGE',
-  SET_RETIRE_AMT: 'CALCULATION_DATA_SET_RETIRE_AMT',
-  SET_RETIRE_SPENDING: 'CALCULATION_DATA_SET_RETIRE_SPENDING',
-  SET_SALARY: 'CALCULATION_DATA_SET_SALARY',
-  SET_SALARY_INCREASE: 'CALCULATION_DATA_SET_SALARY_INCREASE',
-  SET_SAVINGS_RATE: 'CALCULATION_DATA_SET_SAVINGS_RATE',
-  SET_STARTING_AGE: 'CALCULATION_DATA_SET_STARTING_AGE',
-  SET_STARTING_SAVINGS: 'CALCULATION_DATA_SET_STARTING_SAVINGS',
+  SET_FINAL_SAVINGS: "CALCULATION_DATA_SET_FINAL_SAVINGS",
+  SET_GRAPH_DATA: "CALCULATION_DATA_SET_GRAPH_DATA",
+  SET_INVESTMENT_RETURN_RATE: "CALCULATION_DATA_SET_INVESTMENT_RETURN_RATE",
+  SET_LIFE_EXPECTANCY: "CALCULATION_DATA_SET_LIFE_EXPECTANCY",
+  SET_RETIRE_AGE: "CALCULATION_DATA_SET_RETIRE_AGE",
+  SET_RETIRE_AMT: "CALCULATION_DATA_SET_RETIRE_AMT",
+  SET_RETIRE_SPENDING: "CALCULATION_DATA_SET_RETIRE_SPENDING",
+  SET_SALARY: "CALCULATION_DATA_SET_SALARY",
+  SET_SALARY_INCREASE: "CALCULATION_DATA_SET_SALARY_INCREASE",
+  SET_SAVINGS_RATE: "CALCULATION_DATA_SET_SAVINGS_RATE",
+  SET_STARTING_AGE: "CALCULATION_DATA_SET_STARTING_AGE",
+  SET_STARTING_SAVINGS: "CALCULATION_DATA_SET_STARTING_SAVINGS"
 };
 
 export const actions = {
@@ -57,7 +57,7 @@ export const actions = {
   },
   setStartingSavings(savings) {
     return { type: actionTypes.SET_STARTING_SAVINGS, savings };
-  },
+  }
 };
 
 export const INITIAL_STATE = {
@@ -72,59 +72,59 @@ export const INITIAL_STATE = {
   salaryIncrease: 3,
   savingsRate: 10,
   startingAge: 26,
-  startingSavings: 0,
+  startingSavings: 0
 };
 
 export default (_state = INITIAL_STATE, action) => {
   let state = Object.assign({}, _state);
 
-  switch(action.type) {
+  switch (action.type) {
     case actionTypes.SET_FINAL_SAVINGS:
-      state = R.assoc('finalSavings', action.savings)(state);
+      state = assoc("finalSavings", action.savings)(state);
       break;
 
     case actionTypes.SET_GRAPH_DATA:
-      state = R.assoc('graphData', action.graphData)(state);
+      state = assoc("graphData", action.graphData)(state);
       break;
 
     case actionTypes.SET_INVESTMENT_RETURN_RATE:
-      state = R.assoc('investmentReturnRate', action.returnRate)(state);
+      state = assoc("investmentReturnRate", action.returnRate)(state);
       break;
 
     case actionTypes.SET_LIFE_EXPECTANCY:
-      state = R.assoc('lifeExpectancy', action.lifeExpectancy)(state);
+      state = assoc("lifeExpectancy", action.lifeExpectancy)(state);
       break;
 
     case actionTypes.SET_RETIRE_AGE:
-      state = R.assoc('retireAge', action.retireAge)(state);
+      state = assoc("retireAge", action.retireAge)(state);
       break;
 
     case actionTypes.SET_RETIRE_AMT:
-      state = R.assoc('retireAmt', action.retireAmt)(state);
+      state = assoc("retireAmt", action.retireAmt)(state);
       break;
 
     case actionTypes.SET_RETIRE_SPENDING:
-      state = R.assoc('retireSpending', action.retireSpending)(state);
+      state = assoc("retireSpending", action.retireSpending)(state);
       break;
 
     case actionTypes.SET_SALARY:
-      state = R.assoc('salary', action.salary)(state);
+      state = assoc("salary", action.salary)(state);
       break;
 
     case actionTypes.SET_SALARY_INCREASE:
-      state = R.assoc('salaryIncrease', action.salaryIncrease)(state);
+      state = assoc("salaryIncrease", action.salaryIncrease)(state);
       break;
 
     case actionTypes.SET_SAVINGS_RATE:
-      state = R.assoc('savingsRate', action.savingsRate)(state);
+      state = assoc("savingsRate", action.savingsRate)(state);
       break;
 
     case actionTypes.SET_STARTING_AGE:
-      state = R.assoc('startingAge', action.age)(state);
+      state = assoc("startingAge", action.age)(state);
       break;
 
     case actionTypes.SET_STARTING_SAVINGS:
-      state = R.assoc('startingSavings', action.savings)(state);
+      state = assoc("startingSavings", action.savings)(state);
       break;
 
     default:
@@ -132,4 +132,4 @@ export default (_state = INITIAL_STATE, action) => {
   }
 
   return state;
-}
+};

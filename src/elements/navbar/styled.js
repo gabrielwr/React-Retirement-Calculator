@@ -1,10 +1,16 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { Link } from 'react-router';
+import { Link } from "react-router";
 
 export const Navbar = styled.nav`
-  background-image: linear-gradient(90deg, #3023AE 0%, #53A0FD 77%, #59A5F2 88%, #82C5AB 95%);
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);
+  background-image: linear-gradient(
+    90deg,
+    #3023ae 0%,
+    #53a0fd 77%,
+    #59a5f2 88%,
+    #82c5ab 95%
+  );
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   height: 10%;
 `;
 
@@ -24,6 +30,6 @@ export const NavbarLink = styled.li`
 export const StyledLink = styled(Link)`
   color: white;
   font-size: 24px;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.50);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   text-decoration: none;
 `;
