@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Route, IndexRoute, browserHistory } from "react-router";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 
@@ -13,12 +13,12 @@ import "./index.css";
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-        <IndexRoute component={CalculatorContainer} />
-      </Route>
-      <Route path="*" component={NotFound} />
-    </Router>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={App} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root")
 );
