@@ -1,19 +1,21 @@
 import React from "react";
+import styled from "styled-components";
+import { Route } from "react-router-dom";
+
+import CalculatorContainer from "../containers/calculator-container";
 import Navbar from "./navbar";
 import Footer from "./footer";
-
-import styled from "styled-components";
 
 const AppWrapper = styled.div`
   height: 100vh;
   width: 100vw;
 `;
 
-const App = ({ children }) => {
+const App = () => {
   return (
     <AppWrapper>
       <Navbar />
-      {children}
+      <Route path="/" component={CalculatorContainer}></Route>
       <Footer />
     </AppWrapper>
   );
