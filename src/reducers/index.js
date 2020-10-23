@@ -1,9 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import calculationData from './calculation-data';
+import calculationData from "./calculation-data";
 
 const rootReducer = combineReducers({
-  calculationData,
+  calculationData
 });
 
 export default rootReducer;

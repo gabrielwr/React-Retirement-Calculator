@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import Proptypes from 'prop-types'
-import { connect } from 'react-redux';
-import * as R from 'ramda';
+import React, { Component } from "react";
+import Proptypes from "prop-types";
+import { connect } from "react-redux";
+import * as R from "ramda";
 
-import { AgeFormWrapper, AgeFormInput } from './styled';
+import { AgeFormWrapper, AgeFormInput } from "./styled";
 
 class AgeForm extends Component {
-
   handleLifespanAge = (_evt, lifeExpectancy) => {
     const { startingAge, addCurrentAge, setLifeExpectancy } = this.props;
 
@@ -15,24 +14,24 @@ class AgeForm extends Component {
     }
     setLifeExpectancy(lifeExpectancy);
     this.computeData();
-  }
+  };
 
   render() {
-    const { startingAge, lifeExpectancy } = this.props
+    const { startingAge, lifeExpectancy } = this.props;
     return (
       <AgeFormWrapper>
         <span>I am</span>
-        <AgeFormInput type='number' value={startingAge} />
+        <AgeFormInput type="number" value={startingAge} />
         <span>years old with a life expectancy of</span>
-        <AgeFormInput type='number' value={lifeExpectancy} />
+        <AgeFormInput type="number" value={lifeExpectancy} />
       </AgeFormWrapper>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const lifeExpectancy = R.path(['calculationData', 'lifeExpectancy'])(state);
-  const startingAge = R.path(['calculationData', 'startingAge'])(state);
+  const lifeExpectancy = R.path(["calculationData", "lifeExpectancy"])(state);
+  const startingAge = R.path(["calculationData", "startingAge"])(state);
 
   return {
     lifeExpectancy,
@@ -42,7 +41,7 @@ const mapStateToProps = (state) => {
 
 AgeForm.proptypes = {
   lifeExpectancy: Proptypes.number,
-  startingAge: Proptypes.number,
+  startingAge: Proptypes.number
 };
 
 export { AgeForm };
