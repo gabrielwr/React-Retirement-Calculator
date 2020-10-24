@@ -36,7 +36,7 @@ Install all project dependencies:
 ```bash
 $ npm install
 ```
-To start the server and have webpack build your bundle.js:
+To start the server and app:
 ```bash
 $ npm start
 ```
